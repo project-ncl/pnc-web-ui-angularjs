@@ -1,9 +1,0 @@
-{
-    "@module-config": "BpmModuleConfig",
-    "username": "",
-    "password": "",
-    "deploymentId": "",
-    "bcCreationProcessId": "",
-    "componentBuildProcessId": "",
-    "httpConnectionRequestTimeout": 10
-}
