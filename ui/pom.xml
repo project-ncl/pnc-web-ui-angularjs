@@ -88,6 +88,7 @@
                 <replace dir="${project.build.outputDirectory}/META-INF/resources/scripts/" includes="pnc*.js" token="@project.version@" value="${project.version}" />
                 <replace dir="${project.build.outputDirectory}/META-INF/resources/scripts/" includes="pnc*.js" token="@datetime@" value="${datetime}" />
                 <replace dir="${project.build.outputDirectory}/META-INF/resources/scripts/" includes="pnc*.js" token="@git.commit.id.abbrev@" value="${git.commit.id.abbrev}" />
+                <replace dir="${project.build.outputDirectory}/META-INF/resources/" includes="index.html" token="@configUrl@" value="${configUrl}" />
               </target>
             </configuration>
           </execution>
