@@ -30,11 +30,11 @@
 
   <groupId>org.jboss.pnc</groupId>
   <artifactId>parent</artifactId>
-  <version>2.1.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>pnc</name>
-  <description>A system for managing, executing, and tracking builds.</description>
+  <name>pnc-web-ui-angularjs</name>
+  <description>Web user interface for a system for managing, executing, and tracking builds.</description>
   <url>https://github.com/project-ncl</url>
   <inceptionYear>2014</inceptionYear>
 
@@ -47,9 +47,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:https://github.com/project-ncl/pnc.git</connection>
-    <developerConnection>scm:git:git@github.com:project-ncl/pnc.git</developerConnection>
-    <url>https://github.com/project-ncl/pnc/</url>
+    <connection>scm:git:https://github.com/project-ncl/pnc-web-ui-angularjs.git</connection>
+    <developerConnection>scm:git:git@github.com:project-ncl/pnc-web-ui-angularjs.git</developerConnection>
+    <url>https://github.com/project-ncl/pnc-web-ui-angularjs/</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -61,38 +61,7 @@
   </developers>
 
   <modules>
-    <module>constants</module>
-    <module>test-common</module>
-    <module>common</module>
-    <module>causeway-client</module>
-    <module>moduleconfig</module>
-    <module>auth</module>
-    <module>datastore</module>
-    <module>messaging-spi</module>
-    <module>messaging</module>
-    <module>ear-package</module>
-    <module>termd-build-driver</module>
-    <module>indy-repository-manager</module>
-    <module>build-coordinator</module>
-    <module>build-executor</module>
-    <module>model</module>
-    <module>dto</module>
-    <module>facade</module>
-    <module>rest-api</module>
-    <module>rest</module>
-    <module>notifications</module>
-    <module>spi</module>
     <module>ui</module>
-    <module>web</module>
-    <module>openshift-environment-driver</module>
-    <module>demo-data</module>
-    <module>integration-test</module>
-    <module>pnc-mock</module> <!-- keep 'pnc' prefix as 'mock' is dy default ignored in some cases (intellij) -->
-    <module>bpm</module>
-    <module>processor</module>
-    <module>rest-client</module>
-    <module>mapper</module>
-    <module>bpm-mock</module>
   </modules>
 
   <properties>
