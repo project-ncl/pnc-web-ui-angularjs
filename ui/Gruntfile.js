@@ -92,7 +92,7 @@ module.exports = function (grunt) {
 
     function writeConfig(cfg) {
       grunt.log.writeflags(cfg, 'Using UI Config');
-      grunt.file.write(appConfig.tmp + '/scripts/config.js', convertToJsString(cfg));
+      grunt.file.write(appConfig.tmp + '/grunt-temporary-config.js', convertToJsString(cfg));
     }
 
     var cfg;
