@@ -67,7 +67,7 @@
         that.like = function (value) {
           value = value.replace(/\*/g, '%');
           value = value.replace(/\?/g, '_');
-          ctx.addToQuery('=like="' + value + '"');
+          ctx.addToQuery('=like="%' + value + '%"');
           return ctx.next();
         };
 
