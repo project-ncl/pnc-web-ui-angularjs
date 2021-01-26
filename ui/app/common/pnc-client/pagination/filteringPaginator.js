@@ -114,7 +114,7 @@
           activeFilters
               .filter(f => f.method === 'QUERY_PARAM')
               .forEach(f => {
-                params[f.field] = f.value;
+                params[f.field] = f.value.replace('?', '_'); // direct params do not support '?' operator
                 directQueryParams.set(f.field, f.value);
               });
 
@@ -173,10 +173,11 @@
             if (!f.method) {
               f.method = 'RSQL';
             }
-            if(f.comparator === 'like' && f.value.substr(0,1) === '!'){
+            if (f.comparator === 'like' && f.method === 'RSQL' && f.value.substr(0,1) === '!') {
               f.value = f.value.slice(1);
               f.comparator = 'notlike';
             }
+            f.value = '%' + f.value + '%'; // always search for substring
             activeFilters.push(f);
           });
           return this;
