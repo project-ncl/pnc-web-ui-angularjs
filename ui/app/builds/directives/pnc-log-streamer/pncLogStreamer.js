@@ -37,7 +37,7 @@
         const bifrostUrl = new URL(pncProperties.externalBifrostUrl);
         $ctrl.bifrostHost = bifrostUrl.host;
         $ctrl.prefixFilters = 'loggerName.keyword:org.jboss.pnc._userlog_';
-        $ctrl.matchFilters = `mdc.processContext.keyword:build-${$ctrl.build.id}`;
+        $ctrl.matchFilters = `mdc.processContext.keyword:${$ctrl.build.buildContentId}`;
       };
   }
 })();
