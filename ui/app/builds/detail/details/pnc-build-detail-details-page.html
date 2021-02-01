@@ -18,7 +18,7 @@
 
 -->
 <div class="row push-down">
-  <div class="col-sm-12 col-md-10 col-lg-8">
+  <div class="col-sm-12 col-lg-9">
 
     <div class="pnc-build-details">
       <dl class="dl-horizontal">
@@ -101,7 +101,7 @@
         <dd>{{ $ctrl.build.environment.description || '&mdash;' }}</dd>
 
         <dt>Script:</dt>
-        <dd><pre class="pre-scrollable">{{ $ctrl.build.buildConfigRevision.buildScript || '&mdash;' }}</pre></dd>
+        <dd><pre class="build-script">{{ $ctrl.build.buildConfigRevision.buildScript || '&mdash;' }}</pre></dd>
 
         <dt ng-repeat-start="(key, value) in $ctrl.build.attributes">{{key}}</dt>
         <dd ng-repeat-end>{{value}}</dd>
@@ -112,7 +112,7 @@
             <li ng-repeat="(key, value) in $ctrl.buildConfigRevision.parameters">
               <span>{{ key }}</span><br>
               <span class="text-monospace">
-                <pre class="pre-scrollable">{{ value }}</pre>
+                <pre class="build-script">{{ value }}</pre>
               </span>
             </li>
           </ul>

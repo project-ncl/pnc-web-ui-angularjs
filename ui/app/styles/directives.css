@@ -382,13 +382,6 @@
   display: block;
 }
 
-@media (min-width: 1200px) {
-  .build-script {
-    display: inline-block;
-    min-width: 650px;
-  }
-}
-
 .build-status-table .pnc-build-status {
   min-width: 310px;
   height: 28px;
