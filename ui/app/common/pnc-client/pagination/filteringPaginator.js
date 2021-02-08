@@ -114,7 +114,7 @@
           activeFilters
               .filter(f => f.method === 'QUERY_PARAM')
               .forEach(f => {
-                params[f.field] = f.value.replace('?', '_'); // direct params do not support '?' operator
+                params[f.field] = f.value;
                 directQueryParams.set(f.field, f.value);
               });
 
@@ -177,7 +177,19 @@
               f.value = f.value.slice(1);
               f.comparator = 'notlike';
             }
+
             f.value = '%' + f.value + '%'; // always search for substring
+
+            if (f.method === 'QUERY_PARAM') {
+                f.value = f.value.replace('?', '_'); // direct params do not support '?' operator
+
+                // support of '!' operator in direct params
+                if (f.value.substr(1,1) === '!') {
+                    // Current form: %!<filter>%
+                    // Backend expects: !%<filter>% - switch first two characters
+                    f.value = '!%' + f.value.substr(2);
+                }
+            }
             activeFilters.push(f);
           });
           return this;
