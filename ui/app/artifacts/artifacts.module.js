@@ -96,6 +96,11 @@
               'artifact',
               'ArtifactResource',
               (artifact, ArtifactResource) => ArtifactResource.queryRevisions({ id: artifact.id, pageSize: 10 }).$promise
+            ],
+            milestones: [
+              'artifact',
+              'ArtifactResource',
+              (artifact, ArtifactResource) => ArtifactResource.queryMilestones({ id: artifact.id, pageSize: 10 }).$promise
             ]
           }
         });
