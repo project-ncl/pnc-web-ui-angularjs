@@ -15,29 +15,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 (function () {
   'use strict';
 
-  angular.module('pnc.product-milestones').component('pncProductMilestoneLink', {
+  angular.module('pnc.artifacts').component('pncArtifactMilestonesDatatable', {
     bindings: {
-      productVersion: '<',
-      productMilestone: '<',
-      productId: '<?',
-      isCurrent: '<'
+     milestones: '<'
     },
-    templateUrl: 'product-milestones/components/pnc-product-milestone-link/pnc-product-milestone-link.html',
-    controller: [Controller]
+    templateUrl: 'artifacts/components/pnc-artifact-milestones-datatable/pnc-artifact-milestones-datatable.html',
+    controller: ['paginator', Controller]
   });
 
 
-  function Controller() {
+  function Controller(paginator) {
     const $ctrl = this;
 
     // -- Controller API --
 
     // --------------------
 
-    $ctrl.$onInit = () => {};
+
+    $ctrl.$onInit = () => {
+      $ctrl.paginator = paginator($ctrl.milestones);
+    };
+
   }
 
 })();

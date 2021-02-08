@@ -17,16 +17,5 @@
     limitations under the License.
 
 -->
-<script type="text/ng-template" id="tooltipTemplateRelease.html">
-  <strong>Release Date: </strong>{{::$ctrl.productRelease.releaseDate | date:'mediumDate'}}<br>
-  <strong>Support Level: </strong>{{::$ctrl.productRelease.supportLevel }}<br>
-</script>
-
-<span class="inline-block m-t-5 m-b-5">
-  <span class="label label-success"
-        tooltip-placement="left"
-        tooltip-enable="$ctrl.productRelease.releaseDate"
-        uib-tooltip-template="'tooltipTemplateRelease.html'">
-    {{ ::$ctrl.productRelease.version }}
-  </span>
-</span>
+<pnc-artifact-milestone-list milestones="$ctrl.paginator.data"></pnc-artifact-milestone-list>
+<pnc-page-controls class="pull-right m-b-10" pnc-page="$ctrl.paginator" ng-if="$ctrl.paginator"></pnc-page-controls>

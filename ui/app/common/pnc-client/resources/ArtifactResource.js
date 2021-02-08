@@ -43,6 +43,11 @@
           method: 'GET',
           isPaged: true
         },
+        queryMilestones: {
+          url: ENDPOINT + '/milestones',
+          method: 'GET',
+          isPaged: true
+        },
         changeQuality: {
           url: ENDPOINT + '/artifacts/quality',
           method: 'POST',

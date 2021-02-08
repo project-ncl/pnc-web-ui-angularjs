@@ -24,7 +24,8 @@
      artifact: '<',
      build: '<',
      usages: '<',
-     revisions: '<'
+     revisions: '<',
+     milestones: '<'
     },
     templateUrl: 'artifacts/detail/pnc-artifacts-detail-page.html',
     controller: ['ArtifactModals', Controller]
