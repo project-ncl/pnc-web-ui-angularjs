@@ -52,7 +52,7 @@
       $ctrl.filterFields = [{
         id: 'name',
         title: 'Name',
-        placeholder: 'Filter by Name',
+        placeholder: 'string | !string | s?ring | st*ng',
         filterType: 'text'
       }];
 

@@ -44,12 +44,12 @@
     $ctrl.buildConfigsFilteringFields = [{
       id: 'name',
       title: 'Name',
-      placeholder: 'Filter by Name',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }, {
       id: 'description',
       title:  'Description',
-      placeholder: 'Filter by Description',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }];
 

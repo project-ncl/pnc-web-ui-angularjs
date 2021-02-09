@@ -38,12 +38,12 @@
     $ctrl.scmRepositoriesFilteringFields = [{
       id: 'internalUrl',
       title: 'Internal URL',
-      placeholder: 'Filter by Internal URL',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }, {
       id: 'externalUrl',
       title: 'External URL',
-      placeholder: 'Filter by External URL',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }];
 
