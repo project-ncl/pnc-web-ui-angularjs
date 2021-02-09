@@ -37,12 +37,12 @@
     $ctrl.performedBuildsFilteringFields = [{
       id: 'user.username',
       title: 'Username',
-      placeholder: 'Filter by Username',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }, {
       id: 'buildConfigName',
       title: 'Build Config name',
-      placeholder: 'Filter by Build Config name',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text',
       filterMethod: 'QUERY_PARAM'
     }, {

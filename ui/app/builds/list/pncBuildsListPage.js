@@ -35,13 +35,13 @@
     $ctrl.buildsFilteringFields = [{
       id: 'user.username',
       title: 'Username',
-      placeholder: 'Filter by Username',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text',
       filterMethod: 'RSQL'
     }, {
       id: 'buildConfigName',
       title: 'Build Config Name',
-      placeholder: 'Filter by Build Config name',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text',
       filterMethod: 'QUERY_PARAM'
     }, {

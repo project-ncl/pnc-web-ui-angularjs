@@ -48,13 +48,13 @@
         {
           id: 'name',
           title: 'Name',
-          placeholder: 'Filter by Name',
+          placeholder: 'string | !string | s?ring | st*ng',
           filterType: 'text'
         },
         {
           id: 'abbreviation',
           title: 'Abbreviation',
-          placeholder: 'Filter by abbreviation',
+          placeholder: 'string | !string | s?ring | st*ng',
           filterType: 'text'
         }
       ];

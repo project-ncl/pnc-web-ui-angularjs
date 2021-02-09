@@ -490,6 +490,10 @@ td.status-icon {
   }
 }
 
+.filter-pf input {
+    min-width: 200px;
+}
+
 .right-pad-page-controls pnc-page-controls {
   padding-right: 20px !important;
 }

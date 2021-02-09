@@ -41,12 +41,12 @@
     $ctrl.groupBuildsFilteringFields = [{
       id: 'user.username',
       title: 'Username',
-      placeholder: 'Filter by Username',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }, {
       id: 'groupConfig.name',
       title: 'Group Config name',
-      placeholder: 'Filter by Group Config name',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }, {
       id: 'status',

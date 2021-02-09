@@ -51,12 +51,12 @@
     $ctrl.artifactsFilteringFields = [{
       id: 'identifier',
       title: 'Identifier',
-      placeholder: 'Filter by Identifier',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }, {
       id: 'filename',
       title: 'File Name',
-      placeholder: 'Filter by File Name',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }, {
       id: 'targetRepository.repositoryType',
@@ -86,17 +86,17 @@
     }, {
       id: 'md5',
       title: 'md5',
-      placeholder: 'Filter by md5 checksum',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }, {
       id: 'sha1',
       title: 'sha1',
-      placeholder: 'Filter by sha1 checksum',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }, {
       id: 'sha256',
       title: 'sha256',
-      placeholder: 'Filter by sha256 checksum',
+      placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }];
 
