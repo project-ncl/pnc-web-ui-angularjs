@@ -30,21 +30,39 @@
       function inMaintenanceMode() {
         return $http.get(ENDPOINT + '/in-maintenance-mode');
       }
+
       function activateMaintenanceMode(reason) {
         return $http.post(ENDPOINT + '/activate-maintenance-mode', reason);
       }
+
       function deactivateMaintenanceMode() {
         return $http.post(ENDPOINT + '/deactivate-maintenance-mode');
       }
+
       function getAnnouncementBanner() {
         return $http.get(ENDPOINT + '/announcement-banner');
       }
+
       function setAnnouncementBanner(message) {
         return $http.post(ENDPOINT + '/announcement-banner', message);
       }
 
+      function getPNCSystemVersion() {
+        return $http.get(ENDPOINT + '/pnc-version');
+      }
+
+      function setPNCSystemVersion(version) {
+        return $http.post(ENDPOINT + '/pnc-version', '"' + version + '"');
+      }
+
       return {
-        inMaintenanceMode, activateMaintenanceMode, deactivateMaintenanceMode, getAnnouncementBanner, setAnnouncementBanner
+        inMaintenanceMode,
+        activateMaintenanceMode,
+        deactivateMaintenanceMode,
+        getAnnouncementBanner,
+        setAnnouncementBanner,
+        getPNCSystemVersion,
+        setPNCSystemVersion
       };
 
     }

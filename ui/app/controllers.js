@@ -34,7 +34,7 @@
     app.controller('defaultConfigurationController', ['pncProperties', function(pncProperties) {
 
         var SESSION_STORAGE_NAME = 'defaultConfigurationModal';
-        
+
         this.isDefaultConfiguration = pncProperties.isDefaultConfiguration;
         this.title = 'No UI configuration provided';
 
@@ -62,7 +62,20 @@
           $userGuideLink.popover('destroy');
         });
       }
+    }]);
 
+    app.controller('pncSystemVersionController', ['$scope', 'pncProperties', 'GenericSetting', 'events',
+      function($scope, pncProperties, GenericSetting, events) {
+        this.url = pncProperties.pncVersionsUrl;
+        this.pncSystemVersion = null;
+
+        GenericSetting.getPNCSystemVersion().then(res => {
+          this.pncSystemVersion = res.data;
+        });
+
+        $scope.$on(events.PNC_SYSTEM_VERSION_CHANGE, (event, version) => {
+          this.pncSystemVersion = version;
+        });
     }]);
 
 })();

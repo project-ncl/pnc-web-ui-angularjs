@@ -25,13 +25,17 @@
     bindings: {
     },
     templateUrl: 'common/components/pnc-admin-panel/pnc-admin-panel.html',
-    controller: ['GenericSetting', '$scope', 'events', Controller]
+    controller: ['GenericSetting', '$scope', '$rootScope', 'events', Controller]
   });
 
-  function Controller(GenericSetting, $scope, events) {
+  function Controller(GenericSetting, $scope, $rootScope, events) {
     var $ctrl = this;
     $ctrl.isInMaintenanceMode = false;
+    $ctrl.pncVersion = null;
     $ctrl.message = null;
+
+    $ctrl.pncVersionModel = null;
+    $ctrl.editingVersion = false;
 
     $ctrl.data = {
       /* Reason for activating Maintenance Mode */
@@ -77,6 +81,23 @@
           }
         });
       }
+    };
+
+    $ctrl.editPNCVersion = function () {
+      if (!$ctrl.editingVersion) {
+        $ctrl.pncVersionModel = $ctrl.pncVersion;
+      }
+      $ctrl.editingVersion = !$ctrl.editingVersion;
+    };
+
+    $ctrl.updatePNCVersion = function () {
+      GenericSetting.setPNCSystemVersion($ctrl.pncVersionModel).then(res => {
+        if (res.status === 204) {
+          $ctrl.pncVersion = $ctrl.pncVersionModel;
+          $rootScope.$broadcast(events.PNC_SYSTEM_VERSION_CHANGE, $ctrl.pncVersion);
+        }
+      });
+      $ctrl.editPNCVersion();
     };
 
     /**
@@ -137,6 +158,14 @@
 
 
     $ctrl.$onInit = function () {
+
+      GenericSetting.getPNCSystemVersion().then(res => {
+        const pncVersion = res.data;
+        if(pncVersion){
+          $ctrl.pncVersion = pncVersion;
+        }
+      });
+
       GenericSetting.inMaintenanceMode().then(res => {
         changeMaintenanceSwitch(res.data);
       });
@@ -164,7 +193,6 @@
         }
         $scope.$apply();
       });
-
     };
   }
 })();

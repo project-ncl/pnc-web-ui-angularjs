@@ -18,9 +18,13 @@
 
 -->
 <p>
-<a href="https://github.com/project-ncl/pnc">PNC</a>,
-<a href="https://github.com/project-ncl/pnc-web-ui-angularjs">PNC Web UI</a>,
-<span>     (UI Version: @project.version@ @datetime@ Rev: @git.commit.id.abbrev@)</span>
-<span> | </span>
-Red Hat, Inc. © 2021
+  <a href="https://github.com/project-ncl/pnc">PNC</a>
+  <span ng-controller="pncSystemVersionController as pncVersionCtrl" ng-show="pncVersionCtrl.pncSystemVersion">
+    (PNC System Version: <a href="{{ pncVersionCtrl.url }}" >{{ pncVersionCtrl.pncSystemVersion }}</a>)
+  </span>
+  <span> | </span>
+  <a href="https://github.com/project-ncl/pnc-web-ui-angularjs">PNC Web UI</a>
+  <span>(UI Version: @project.version@ @datetime@ Rev: @git.commit.id.abbrev@)</span>
+  <span> | </span>
+  Red Hat, Inc. © 2021
 </p>
