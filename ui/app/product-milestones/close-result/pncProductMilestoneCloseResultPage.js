@@ -26,10 +26,10 @@
       closeResult: '<'
     },
     templateUrl: 'product-milestones/close-result/pnc-product-milestone-close-result-page.html',
-    controller: [Controller]
+    controller: ['$scope', Controller]
   });
 
-  function Controller() {
+  function Controller($scope) {
     const $ctrl = this;
 
     // -- Controller API --
@@ -43,12 +43,22 @@
 
       $ctrl.prefixFilters = 'loggerName.keyword:org.jboss.pnc.causeway|org.jboss.pnc._userlog_,level.keyword:INFO|ERROR|WARN';
       $ctrl.matchFilters = `mdc.processContext.keyword:${$ctrl.data.id}`;
+
+      $scope.$on('MILESTONE_PUSH_STATUS_CHANGE', (event, milestonePushResult) => {
+        $scope.$applyAsync(() => load(milestonePushResult));
+      });
     };
 
     function showTable() {
         return $ctrl.data.buildPushResults && $ctrl.data.buildPushResults.length;
     }
 
+    function load(milestonePushResult) {
+      if (milestonePushResult) {
+        $ctrl.data = milestonePushResult;
+        $ctrl.matchFilters = `mdc.processContext.keyword:${$ctrl.data.id}`;
+      }
+    }
   }
 
 })();

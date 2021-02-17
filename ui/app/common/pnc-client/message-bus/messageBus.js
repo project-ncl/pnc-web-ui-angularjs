@@ -79,6 +79,10 @@
         $rootScope.$broadcast(events.BUILD_PUSH_STATUS_CHANGE, buildPushResult, notification);
       });
 
+      messageBus.onMilestonePushStatusChange((productMilestoneCloseResult, notification) => {
+        $rootScope.$broadcast(events.MILESTONE_PUSH_STATUS_CHANGE, productMilestoneCloseResult, notification);
+      });
+
       return messageBus;
     }
   ]);

@@ -62,6 +62,10 @@
       $ctrl.closeStatus = getStatus();
     };
 
+    $ctrl.$onChanges = () => {
+      $ctrl.closeStatus = getStatus();
+    };
+
     function getStatus() {
       if (angular.isUndefined($ctrl.closeResult)) {
         return null;
