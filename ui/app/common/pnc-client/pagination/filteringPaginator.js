@@ -173,23 +173,26 @@
             if (!f.method) {
               f.method = 'RSQL';
             }
-            if (f.comparator === 'like' && f.method === 'RSQL' && f.value.substr(0,1) === '!') {
-              f.value = f.value.slice(1);
-              f.comparator = 'notlike';
-            }
 
-            f.value = '%' + f.value + '%'; // always search for substring
+            if (f.comparator === 'like') {
+              let isExcluding = f.value.substr(0,1) === '!';
+              f.value = '%' + f.value + '%'; // always search for substring with like
 
-            if (f.method === 'QUERY_PARAM') {
+              if (isExcluding && f.method === 'RSQL') {
+                f.value = '%' + f.value.substr(2); // remove '!'
+                f.comparator = 'notlike';
+              }
+
+              else if (f.method === 'QUERY_PARAM') {
                 f.value = f.value.replace('?', '_'); // direct params do not support '?' operator
-
-                // support of '!' operator in direct params
-                if (f.value.substr(1,1) === '!') {
-                    // Current form: %!<filter>%
-                    // Backend expects: !%<filter>% - switch first two characters
-                    f.value = '!%' + f.value.substr(2);
+                if (isExcluding) {
+                  // Current form: %!<filter>%
+                  // Backend expects: !%<filter>% - switch first two characters
+                  f.value = '!%' + f.value.substr(2);
                 }
+              }
             }
+
             activeFilters.push(f);
           });
           return this;
