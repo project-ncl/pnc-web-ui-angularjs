@@ -25,7 +25,8 @@ var DEFAULT_PROXY_PROFILE = {
       context: '/pnc-rest',
       host: 'localhost',
       port: 8080,
-      wss: true
+      https: true,
+      ws: true
   }
 };
 
