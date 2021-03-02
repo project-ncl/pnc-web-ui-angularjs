@@ -45,7 +45,7 @@ if (angular.isUndefined(window.pnc)) {
     isDefaultConfiguration: true,
     externalLegacyPncUrl: '/pnc-rest/rest',
     externalPncUrl: '/pnc-rest/v2',
-    pncNotificationsUrl: 'ws://' + window.location.host + '/pnc-rest/notifications'
+    pncNotificationsUrl: 'wss://' + window.location.host + '/pnc-rest/notifications'
   };
 
   /**
