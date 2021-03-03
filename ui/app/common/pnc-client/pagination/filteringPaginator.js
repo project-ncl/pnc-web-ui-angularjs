@@ -38,7 +38,7 @@
 
       var SEARCH_WILDCARD_CHAR = '*';
 
-      function filteringPaginator(page, search) {
+      function filteringPaginator(page, search, userId) {
         var prototype = paginator(page);
         var that = Object.create(prototype);
 
@@ -58,12 +58,21 @@
         // List of filters for search by direct query param
         var directQueryParams = new Map();
 
+        let filterUserId = userId;
+
 
         /*
          * Generates an RSQL query string based on the current internal state.
          */
         function generateQ() {
           var q = rsqlQuery();
+
+          if(filterUserId){
+            if (!q.where) {
+              q = q.and();
+            }
+            q = q.where('user.id').eq(filterUserId);
+          }
 
           if (activeFilters.length > 0) {
 
