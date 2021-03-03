@@ -22,7 +22,10 @@
     <div class="spinner spinner-sm pull-right" ng-hide="page.isLoaded"></div>
     <h3 class="panel-title">My Group Builds</h3>
   </div>
-
-  <pnc-builds-list group-builds="page.data" display-fields="displayFields"></pnc-builds-list>
-  <pnc-page-controls class="pull-right" pnc-page="page" ng-if="page"></pnc-page-controls>
+  <div class="row">
+    <pnc-toolbar filtering-page="$ctrl.groupBuildsFilteringPageForFiltering" filtering-fields="$ctrl.groupBuildsFilteringFields"
+                 sorting-fields="$ctrl.groupBuildsSortingFields" sorting-configs="$ctrl.groupBuildsSortingConfigs"></pnc-toolbar>
+  </div>
+  <pnc-builds-list group-builds="$ctrl.groupBuildsFilteringPage.data" display-fields="$ctrl.displayFields"></pnc-builds-list>
+  <pnc-page-controls class="pull-right" pnc-page="$ctrl.groupBuildsFilteringPage" ng-if="$ctrl.groupBuildsFilteringPage"></pnc-page-controls>
 </div>
