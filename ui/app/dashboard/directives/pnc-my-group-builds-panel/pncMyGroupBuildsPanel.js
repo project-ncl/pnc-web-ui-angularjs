@@ -20,9 +20,6 @@
   'use strict';
 
   angular.module('pnc.dashboard').component('pncMyGroupBuildsPanel', {
-    bindings: {
-      groupBuilds: '<',
-    },
     templateUrl: 'dashboard/directives/pnc-my-group-builds-panel/pnc-my-group-builds-panel.html',
     controller: ['$scope', 'authService', 'GroupBuildResource', 'events', 'filteringPaginator', 'SortHelper', Controller]
   });
