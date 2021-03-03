@@ -79,26 +79,28 @@
       title: 'End Time',
     }];
 
-    $scope.show = function() {
+    $ctrl.show = () => {
       return authService.isAuthenticated();
     };
 
     $ctrl.$onInit = () => {
-      $ctrl.groupBuildsSortingConfigs = SortHelper.getSortConfig(PAGE_NAME);
-      authService.getPncUser().then(result => {
-        let initialPage = GroupBuildResource.query({
-          q: 'user.id=='+result.id,
-          pageSize: 10,
-          sort: '=desc=startTime'
+      if (authService.isAuthenticated()) {
+        $ctrl.groupBuildsSortingConfigs = SortHelper.getSortConfig(PAGE_NAME);
+        authService.getPncUser().then(result => {
+          let initialPage = GroupBuildResource.query({
+            q: 'user.id=='+result.id,
+            pageSize: 10,
+            sort: '=desc=startTime'
+          });
+          $ctrl.groupBuildsFilteringPage = filteringPaginator(initialPage, null, result.id);
         });
-        $ctrl.groupBuildsFilteringPage = filteringPaginator(initialPage, null, result.id);
-      });
 
-      $scope.$on(events.GROUP_BUILD_PROGRESS_CHANGED, (event, groupBuild) => {
-        if (authService.isCurrentUser(groupBuild.user)) {
-          $ctrl.groupBuildsFilteringPage.refresh();
-        }
-      });
+        $scope.$on(events.GROUP_BUILD_PROGRESS_CHANGED, (event, groupBuild) => {
+          if (authService.isCurrentUser(groupBuild.user)) {
+            $ctrl.groupBuildsFilteringPage.refresh();
+          }
+        });
+      }
     };
 
   }
