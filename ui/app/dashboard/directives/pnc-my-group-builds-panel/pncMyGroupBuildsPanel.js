@@ -91,7 +91,7 @@
           }).$promise.then(page =>{
             page.userId = result.id;
             $ctrl.groupBuildsFilteringPage = filteringPaginator(page);
-          })
+          });
         });
 
         $scope.$on(events.GROUP_BUILD_PROGRESS_CHANGED, (event, groupBuild) => {
