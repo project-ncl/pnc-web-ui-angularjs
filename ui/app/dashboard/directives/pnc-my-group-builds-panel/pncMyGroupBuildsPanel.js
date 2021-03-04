@@ -89,7 +89,8 @@
             pageSize: 10,
             sort: '=desc=startTime'
           });
-          $ctrl.groupBuildsFilteringPage = filteringPaginator(initialPage, null, result.id);
+          initialPage.userId = result.id;
+          $ctrl.groupBuildsFilteringPage = filteringPaginator(initialPage);
         });
 
         $scope.$on(events.GROUP_BUILD_PROGRESS_CHANGED, (event, groupBuild) => {

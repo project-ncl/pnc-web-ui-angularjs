@@ -38,7 +38,14 @@
 
       var SEARCH_WILDCARD_CHAR = '*';
 
-      function filteringPaginator(page, search, userId) {
+      /**
+       * Create a filteringPaginator with specific page.
+       *
+       * @param {object} page - The page object to create the filteringPaginator.
+       * @param {array} search - search properties for the filteringPaginator.
+       * @returns that - the paginator to be used.
+       */
+      function filteringPaginator(page, search) {
         var prototype = paginator(page);
         var that = Object.create(prototype);
 
@@ -58,7 +65,8 @@
         // List of filters for search by direct query param
         var directQueryParams = new Map();
 
-        let filterUserId = userId;
+        // The userId criteria that need to be added to the filter.
+        let filterUserId = page.userId;
 
 
         /*
