@@ -67,7 +67,7 @@
       title: 'Status',
     }, {
       id: 'groupConfig.name',
-      title: 'Build Config',
+      title: 'Group Config',
     }, {
       id: 'startTime',
       title: 'Start Time'
@@ -84,13 +84,14 @@
       if (authService.isAuthenticated()) {
         $ctrl.groupBuildsSortingConfigs = SortHelper.getSortConfig(PAGE_NAME);
         authService.getPncUser().then(result => {
-          let initialPage = GroupBuildResource.query({
+          GroupBuildResource.query({
             q: 'user.id=='+result.id,
             pageSize: 10,
             sort: '=desc=startTime'
-          });
-          initialPage.userId = result.id;
-          $ctrl.groupBuildsFilteringPage = filteringPaginator(initialPage);
+          }).$promise.then(page =>{
+            page.userId = result.id;
+            $ctrl.groupBuildsFilteringPage = filteringPaginator(page);
+          })
         });
 
         $scope.$on(events.GROUP_BUILD_PROGRESS_CHANGED, (event, groupBuild) => {
