@@ -21,6 +21,7 @@
   <thead>
     <th>Identifier</th>
     <th>Quality</th>
+    <th>Build Category</th>
     <th>File Name</th>
     <th>Type</th>
     <th>Checksums</th>
@@ -30,6 +31,7 @@
     <tr ng-repeat="artifact in $ctrl.artifacts">
       <td><pnc-artifact-link artifact="artifact"></pnc-artifact-link></td>
       <td class="text-center shrink-to-fit"><pnc-artifact-quality-label artifact="artifact"></pnc-artifact-quality-label></td>
+      <td>{{ artifact.buildCategory }}</td>
       <td>
         <a ng-href="{{ artifact.publicUrl }}" target="_self" href>{{ artifact.filename }}</a>
       </td>

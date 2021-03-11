@@ -54,6 +54,29 @@
       placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }, {
+     id: 'artifactQuality',
+     title: 'Quality',
+     placeholder: ' Filter by artifact quality',
+     filterType: 'select',
+     filterValues: [
+       'NEW',
+       'VERIFIED',
+       'TESTED',
+       'DEPRECATED',
+       'BLACKLISTED',
+       'TEMPORARY',
+       'DELETED'
+     ]
+    }, {
+     id: 'buildCategory',
+     title: 'Build Category',
+     placeholder: ' Filter by build category',
+     filterType: 'select',
+     filterValues: [
+       'STANDARD',
+       'SERVICE'
+     ]
+    }, {
       id: 'filename',
       title: 'File Name',
       placeholder: 'string | !string | s?ring | st*ng',
@@ -68,20 +91,6 @@
         'GENERIC_PROXY',
         'NPM',
         'COCOA_POD'
-      ]
-    }, {
-      id: 'artifactQuality',
-      title: 'Quality',
-      placeholder: ' Filter by artifact quality',
-      filterType: 'select',
-      filterValues: [
-        'NEW',
-        'VERIFIED',
-        'TESTED',
-        'DEPRECATED',
-        'BLACKLISTED',
-        'TEMPORARY',
-        'DELETED'
       ]
     }, {
       id: 'md5',
@@ -103,6 +112,9 @@
     $ctrl.artifactsSortingFields = [{
       id: 'identifier',
       title: 'Identifier',
+    }, {
+     id: 'buildCategory',
+     title: 'Build Category',
     }, {
       id: 'artifactQuality',
       title: 'Quality',
