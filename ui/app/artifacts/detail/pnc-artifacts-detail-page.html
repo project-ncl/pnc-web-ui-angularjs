@@ -46,6 +46,8 @@
           <span ng-if="$ctrl.build"><pnc-build-link build="$ctrl.build" short-link="false"></pnc-build-link></span>
           <span ng-if="!$ctrl.build">n/a</span>
         </dd>
+        <dt>Build Category</dt>
+        <dd>{{ $ctrl.artifact.buildCategory || '—'}}</dd>
       </dl>
     </div>
 
