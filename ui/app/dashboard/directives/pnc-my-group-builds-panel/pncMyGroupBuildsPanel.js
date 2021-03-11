@@ -15,63 +15,93 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-'use strict';
 
 (function () {
+  'use strict';
 
-  var module = angular.module('pnc.dashboard');
+  angular.module('pnc.dashboard').component('pncMyGroupBuildsPanel', {
+    templateUrl: 'dashboard/directives/pnc-my-group-builds-panel/pnc-my-group-builds-panel.html',
+    controller: ['$scope', 'authService', 'GroupBuildResource', 'events', 'filteringPaginator', 'SortHelper', Controller]
+  });
 
-  /**
-   * @ngdoc directive
-   * @name pnc.dashboard:pncMyBuildSetsPanel
-   * @restrict E
-   * @description
-   * @example
-   * @author Alex Creasy
-   */
-  module.directive('pncMyGroupBuildsPanel', [
-    'authService',
-    'GroupBuildResource',
-    'events',
-    'paginator',
-    function (authService, GroupBuildResource, events, paginator) {
-      return {
-        restrict: 'E',
-        templateUrl: 'dashboard/directives/pnc-my-group-builds-panel/pnc-my-group-builds-panel.html',
-        scope: {},
-        link: function (scope) {
+  function Controller($scope, authService, GroupBuildResource, events, filteringPaginator, SortHelper) {
+    const $ctrl = this;
 
-          scope.show = function() {
-            return authService.isAuthenticated();
-          };
+    const PAGE_NAME = 'myGroupBuildsPanel';
 
-          function init() {
+    const DEFAULT_FIELDS = ['status', 'id', 'configurationName', 'startTime', 'endTime'];
 
-            authService.getPncUser().then(function(result) {
-              return GroupBuildResource.queryByUser({
-                userId: result.id,
-                pageSize: 10,
-                sort: '=desc=startTime'
-              }).$promise.then(function(page) {
-                scope.page = paginator(page);
-              });
-            });
+    $ctrl.displayFields = DEFAULT_FIELDS;
 
-            scope.displayFields = ['status', 'id', 'configurationName', 'startTime', 'endTime'];
+    // -- Controller API --
+    $ctrl.groupBuildsFilteringFields = [{
+      id: 'groupConfig.name',
+      title: 'Group Config name',
+      placeholder: 'string | !string | s?ring | st*ng',
+      filterType: 'text'
+    }, {
+      id: 'status',
+      title: 'Status',
+      placeholder: 'Filter by Status',
+      filterType: 'select',
+      filterValues: [
+        'SUCCESS',
+        'REJECTED',
+        'FAILED',
+        'CANCELLED',
+        'BUILDING'
+      ]
+    }, {
+      id: 'temporaryBuild',
+      title: 'Temporary Build',
+      placeholder: 'Filter by Temporary Build',
+      filterType: 'select',
+      filterValues: [
+        'FALSE',
+        'TRUE'
+      ]
+    }];
 
-            scope.$on(events.GROUP_BUILD_PROGRESS_CHANGED, (event, groupBuild) => {
-              if (authService.isCurrentUser(groupBuild.user)) {
-                scope.page.refresh();
-              }
-            });
+    $ctrl.groupBuildsSortingFields = [{
+      id: 'status',
+      title: 'Status',
+    }, {
+      id: 'groupConfig.name',
+      title: 'Group Config',
+    }, {
+      id: 'startTime',
+      title: 'Start Time'
+    }, {
+      id: 'endTime',
+      title: 'End Time',
+    }];
+
+    $ctrl.show = () => {
+      return authService.isAuthenticated();
+    };
+
+    $ctrl.$onInit = () => {
+      if (authService.isAuthenticated()) {
+        $ctrl.groupBuildsSortingConfigs = SortHelper.getSortConfig(PAGE_NAME);
+        authService.getPncUser().then(result => {
+          GroupBuildResource.query({
+            q: 'user.id=='+result.id,
+            pageSize: 10,
+            sort: '=desc=startTime'
+          }).$promise.then(page =>{
+            page.userId = result.id;
+            $ctrl.groupBuildsFilteringPage = filteringPaginator(page);
+          });
+        });
+
+        $scope.$on(events.GROUP_BUILD_PROGRESS_CHANGED, (event, groupBuild) => {
+          if (authService.isCurrentUser(groupBuild.user)) {
+            $ctrl.groupBuildsFilteringPage.refresh();
           }
+        });
+      }
+    };
 
-          if (authService.isAuthenticated()) {
-            init();
-          }
-        }
-      };
-    }
-  ]);
+  }
 
 })();

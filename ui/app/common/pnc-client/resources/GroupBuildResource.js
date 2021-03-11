@@ -63,23 +63,18 @@
           url: ENDPOINT + '/brew-push',
           successNotification: false
         },
-        queryByUser: {
-          method: 'GET',
-          isPaged: true,
-          url: ENDPOINT + '/?q=user.id==:userId',
-        },
         // NCL-5797 needs to add latest support
         getLatestByGroupConfig: {
           method: 'GET',
           url: GROUP_CONFIGS_ENDPOINT + '/group-builds',
           params: {
-            latest: true 
+            latest: true
           }
         }
       });
 
 
-      /* 
+      /*
        * canonicalName
        */
       function canonicalName(groupBuild) {
@@ -90,7 +85,7 @@
       };
       resource.canonicalName = canonicalName;
 
-      /* 
+      /*
        * isSuccess
        */
       function isSuccess(buildConfigSetRecord) {
@@ -102,7 +97,7 @@
       resource.isSuccess = isSuccess;
 
 
-      /* 
+      /*
        * isCancelable
        */
       const CANCELABLE_STATUSES = [
