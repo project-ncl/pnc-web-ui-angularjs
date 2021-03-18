@@ -22,12 +22,20 @@
 </script>
 <div class="form-group">
   <label class="control-label">Key</label>
-  <px-combobox px-expression="key.name for key in $ctrl.searchKnownKeys($viewValue)" ng-model="$ctrl.key" editable=true placeholder="Select or input parameter key" option-template-url="pnc-enter-build-parameters/combobox-option-template.html"></px-combobox>
+  <px-combobox ng-change="$ctrl.updateEnumParameterValues()"
+               px-expression="key.name for key in $ctrl.searchKnownKeys($viewValue)" ng-model="$ctrl.key" editable=true
+               placeholder="Select or input parameter key"
+               option-template-url="pnc-enter-build-parameters/combobox-option-template.html"></px-combobox>
 </div>
 
 <div class="form-group">
   <label class="control-label">Value</label>
-  <textarea ng-model="$ctrl.value" class="form-control" rows="3"></textarea>
+  <textarea ng-if="!$ctrl.enumParameterValues" ng-model="$ctrl.value" class="form-control"
+            rows="3"></textarea>
+  <select ng-if="$ctrl.enumParameterValues" class="form-control" rows="3" name="buildParameterEnumValue"
+          pf-bootstrap-select="{ noneSelectedText: 'Select Value' }" ng-model="$ctrl.value"
+          id="build-parameter-enum-value"
+          ng-options="value as value for value in $ctrl.enumParameterValues"></select>
 </div>
 
 <div class="form-group pull-left">
