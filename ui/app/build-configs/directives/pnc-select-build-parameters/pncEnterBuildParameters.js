@@ -30,6 +30,7 @@
 
   function Controller($q, $filter, utils) {
     var $ctrl = this;
+    $ctrl.enumParameters = [{ name: 'BUILD_CATEGORY', enumValues: ['STANDARD', 'SERVICE'] }];
 
 
     // -- Controller API --
@@ -40,6 +41,14 @@
 
     // --------------------
 
+    $ctrl.updateEnumParameterValues = () => {
+      let parameters = $ctrl.enumParameters.filter(parameter => parameter.name === $ctrl.key);
+      if(parameters && parameters[0]){
+        $ctrl.enumParameterValues = parameters[0].enumValues;
+      }else{
+        $ctrl.enumParameterValues = null;
+      }
+    };
 
     function add() {
       $ctrl.onAdd({ key: $ctrl.key, value: $ctrl.value });
@@ -49,6 +58,7 @@
     function clear() {
       $ctrl.key = undefined;
       $ctrl.value = undefined;
+      $ctrl.updateEnumParameterValues();
     }
 
     function searchKnownKeys($viewValue) {
