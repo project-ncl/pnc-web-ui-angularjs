@@ -36,7 +36,7 @@
     // -- Controller API --
     $ctrl.groupBuildsFilteringFields = [{
       id: 'groupConfig.name',
-      title: 'Group Config name',
+      title: 'Group Config',
       placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text'
     }, {
@@ -50,15 +50,6 @@
         'FAILED',
         'CANCELLED',
         'BUILDING'
-      ]
-    }, {
-      id: 'temporaryBuild',
-      title: 'Temporary Build',
-      placeholder: 'Filter by Temporary Build',
-      filterType: 'select',
-      filterValues: [
-        'FALSE',
-        'TRUE'
       ]
     }];
 

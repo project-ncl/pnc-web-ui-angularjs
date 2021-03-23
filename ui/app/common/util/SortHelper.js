@@ -35,7 +35,8 @@
       artifactsList: { field: { id: 'identifier', title: 'Identifier' }, asc: true },
       buildsList: { field: { id: 'submitTime', title: 'Submit Time' }, asc: false },
       groupBuildsList: { field: { id: 'startTime', title: 'Start Time' }, asc: false },
-      myGroupBuildsPanel: { field: { id: 'name', title: 'Name' }, asc: true },
+      myGroupBuildsPanel: { field: { id: 'startTime', title: 'Start Time' }, asc: false },
+      myBuildsPanel: { field: { id: 'submitTime', title: 'Submit Time' }, asc: false },
     };
 
     var helper = {};

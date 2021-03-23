@@ -76,7 +76,7 @@
       title: 'Status',
     }, {
       id: 'groupConfig.name',
-      title: 'Build Config',
+      title: 'Group Config',
     }, {
       id: 'startTime',
       title: 'Start Time'

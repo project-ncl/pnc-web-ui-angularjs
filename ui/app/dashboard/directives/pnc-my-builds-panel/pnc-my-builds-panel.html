@@ -17,12 +17,18 @@
     limitations under the License.
 
 -->
-<div class="panel panel-default" ng-if="show()" style="">
+<div class="panel panel-default" ng-if="$ctrl.show()" style="">
   <div class="panel-heading">
-    <div class="spinner spinner-sm pull-right" ng-hide="page.isLoaded"></div>
+    <div class="spinner spinner-sm pull-right" ng-hide="$ctrl.buildsFilteringPage.isLoaded"></div>
     <h3 class="panel-title">My Builds</h3>
   </div>
+  <div class="row" ng-if="$ctrl.buildsFilteringPage">
+    <pnc-toolbar filtering-page="$ctrl.buildsFilteringPage" filtering-fields="$ctrl.buildsFilteringFields"
+                 sorting-fields="$ctrl.buildsSortingFields"
+                 sorting-configs="$ctrl.buildsSortingConfigs"></pnc-toolbar>
+  </div>
 
-  <pnc-builds-list builds="page.data" display-fields="displayFields"></pnc-builds-list>
-  <pnc-page-controls class="pull-right" pnc-page="page" ng-if="page"></pnc-page-controls>
+  <pnc-builds-list builds="$ctrl.buildsFilteringPage.data" display-fields="$ctrl.displayFields"></pnc-builds-list>
+  <pnc-page-controls class="pull-right" pnc-page="$ctrl.buildsFilteringPage"
+                     ng-if="$ctrl.buildsFilteringPage"></pnc-page-controls>
 </div>
