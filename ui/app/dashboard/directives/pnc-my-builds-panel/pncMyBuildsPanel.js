@@ -15,65 +15,85 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-'use strict';
 
 (function () {
+  'use strict';
 
-  var module = angular.module('pnc.dashboard');
+  angular.module('pnc.dashboard').component('pncMyBuildsPanel', {
+    templateUrl: 'dashboard/directives/pnc-my-builds-panel/pnc-my-builds-panel.html',
+    controller: ['$scope', 'authService', 'BuildResource', 'events', 'filteringPaginator', 'SortHelper', Controller]
+  });
 
-  /**
-   * @ngdoc directive
-   * @name pnc.dashboard:pncMyBuildsPanel
-   * @restrict E
-   * @description
-   * If the user is authenticated displays a panel of the user's builds.
-   * @example
-   * <pnc-my-builds-panel></pnc-my-builds-panel>
-   * @author Alex Creasy
-   */
-  module.directive('pncMyBuildsPanel', [
-    'authService',
-    'BuildResource',
-    'events',
-    'paginator',
-    function (authService, BuildResource, events, paginator) {
-      return {
-        restrict: 'E',
-        templateUrl: 'dashboard/directives/pnc-my-builds-panel/pnc-my-builds-panel.html',
-        scope: {},
-        link: function (scope) {
-          scope.show = function() {
-            return authService.isAuthenticated();
-          };
+  function Controller($scope, authService, BuildResource, events, filteringPaginator, SortHelper) {
+    const $ctrl = this;
 
-          function init() {
+    const PAGE_NAME = 'myBuildsPanel';
 
-            authService.getPncUser().then(function(result) {
-              return BuildResource.queryByUser({
-                userId: result.id,
-                pageSize: 10,
-                sort: '=desc=submitTime'
-              }).$promise.then(function(page){
-                scope.page = paginator(page);
-              });
-            });
+    const DEFAULT_FIELDS = ['status', 'id', 'configurationName', 'startTime', 'endTime'];
 
-            scope.displayFields = ['status', 'id', 'configurationName', 'startTime', 'endTime'];
+    $ctrl.displayFields = DEFAULT_FIELDS;
 
-            scope.$on(events.BUILD_PROGRESS_CHANGED, (event, build) => {
-              if (authService.isCurrentUser(build.user)) {
-                scope.page.refresh();
-              }
-            });
+    // -- Controller API --
+    $ctrl.buildsFilteringFields = [{
+      id: 'buildConfigName',
+      title: 'Build Config name',
+      placeholder: 'string | !string | s?ring | st*ng',
+      filterType: 'text',
+      filterMethod: 'QUERY_PARAM'
+    }, {
+      id: 'status',
+      title: 'Status',
+      placeholder: 'Filter by Status',
+      filterType: 'select',
+      filterValues: [
+        'SUCCESS',
+        'REJECTED',
+        'FAILED',
+        'CANCELLED',
+        'BUILDING'
+      ]
+    }];
 
+    $ctrl.buildsSortingFields = [{
+      id: 'status',
+      title: 'Status',
+    }, {
+      id: 'submitTime',
+      title: 'Submit Time'
+    }, {
+      id: 'startTime',
+      title: 'Start Time'
+    }, {
+      id: 'endTime',
+      title: 'End Time',
+    }];
+
+    $ctrl.show = () => {
+      return authService.isAuthenticated();
+    };
+
+    $ctrl.$onInit = () => {
+      if (authService.isAuthenticated()) {
+        $ctrl.buildsSortingConfigs = SortHelper.getSortConfig(PAGE_NAME);
+        authService.getPncUser().then(result => {
+          BuildResource.query({
+            q: 'user.id=='+result.id,
+            pageSize: 10,
+            sort: '=desc=submitTime'
+          }).$promise.then(page =>{
+            page.userId = result.id;
+            $ctrl.buildsFilteringPage = filteringPaginator(page);
+          });
+        });
+
+        $scope.$on(events.BUILD_PROGRESS_CHANGED, (event, Build) => {
+          if (authService.isCurrentUser(Build.user)) {
+            $ctrl.buildsFilteringPage.refresh();
           }
+        });
+      }
+    };
 
-          if (authService.isAuthenticated()) {
-            init();
-          }
-        }
-      };
-    }
-  ]);
+  }
 
 })();
