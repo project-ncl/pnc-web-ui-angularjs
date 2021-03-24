@@ -42,12 +42,7 @@
     // --------------------
 
     $ctrl.updateEnumParameterValues = () => {
-      let parameters = $ctrl.enumParameters.filter(parameter => parameter.name === $ctrl.key);
-      if(parameters && parameters[0]){
-        $ctrl.enumParameterValues = parameters[0].enumValues;
-      }else{
-        $ctrl.enumParameterValues = null;
-      }
+      $ctrl.enumParameterValues = $ctrl.enumParameters.filter(parameter => parameter.name === $ctrl.key)?.[0]?.enumValues;
     };
 
     function add() {
