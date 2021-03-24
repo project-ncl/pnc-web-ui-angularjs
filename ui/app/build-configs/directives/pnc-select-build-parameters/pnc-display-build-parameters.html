@@ -37,7 +37,12 @@
     <!-- Edit Mode -->
     <div ng-show="$ctrl.isEditOn(key)" class="clearfix">
       <pf-form-group>
-        <textarea ng-model="$ctrl.currentParams[key]" class="form-control" rows="3"></textarea>
+        <textarea ng-if="!$ctrl.isEnumParameter(key)" ng-model="$ctrl.currentParams[key]" class="form-control"
+                  rows="3"></textarea>
+        <select ng-if="$ctrl.isEnumParameter(key)" class="form-control" name="buildParameterEnumValue"
+                pf-bootstrap-select="{ noneSelectedText: 'Select Value' }" ng-model="$ctrl.currentParams[key]"
+                id="build-parameter-enum-value"
+                ng-options="value as value for value in $ctrl.getEnumParameterValuesByKey(key)"></select>
       </pf-form-group>
       <div class="pull-right">
         <button class="btn btn-default" ng-click="$ctrl.cancel(key)">Cancel</button>

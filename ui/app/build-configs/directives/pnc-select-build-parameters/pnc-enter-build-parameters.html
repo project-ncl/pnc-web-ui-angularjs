@@ -32,10 +32,9 @@
   <label class="control-label">Value</label>
   <textarea ng-if="!$ctrl.enumParameterValues" ng-model="$ctrl.value" class="form-control"
             rows="3"></textarea>
-  <select ng-if="$ctrl.enumParameterValues" class="form-control" rows="3" name="buildParameterEnumValue"
+  <select ng-if="$ctrl.enumParameterValues" class="form-control" name="buildParameterEnumValue"
           pf-bootstrap-select="{ noneSelectedText: 'Select Value' }" ng-model="$ctrl.value"
-          id="build-parameter-enum-value"
-          ng-options="value as value for value in $ctrl.enumParameterValues"></select>
+          id="build-parameter-enum-value" ng-options="value as value for value in $ctrl.enumParameterValues"></select>
 </div>
 
 <div class="form-group pull-left">

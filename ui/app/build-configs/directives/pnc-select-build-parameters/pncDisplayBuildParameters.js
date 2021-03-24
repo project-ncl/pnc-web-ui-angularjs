@@ -31,10 +31,19 @@
   function Controller() {
     var $ctrl = this,
         editMap = {};
+    $ctrl.enumParameters = [{ name: 'BUILD_CATEGORY', enumValues: ['STANDARD', 'SERVICE'] }];
 
     // -- Controller API --
 
     // --------------------
+
+    $ctrl.getEnumParameterValuesByKey = key => {
+      return $ctrl.enumParameters.filter(parameter => parameter.name === key)?.[0]?.enumValues;
+    };
+
+    $ctrl.isEnumParameter = key =>{
+      return $ctrl.enumParameters.filter(parameter => parameter.name === key)?.[0];
+    };
 
     function copyParam(key) {
       $ctrl.currentParams[key] = angular.copy($ctrl.params[key]);
