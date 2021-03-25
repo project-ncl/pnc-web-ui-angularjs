@@ -38,11 +38,13 @@
     // --------------------
 
     $ctrl.getEnumParameterValuesByKey = key => {
-      return $ctrl.enumParameters.filter(parameter => parameter.name === key)?.[0]?.enumValues;
+      let enumParameter = $ctrl.enumParameters.filter(parameter => parameter.name === key);
+      return (enumParameter && enumParameter[0]) ? enumParameter[0].enumValues : null;
     };
 
     $ctrl.isEnumParameter = key =>{
-      return $ctrl.enumParameters.filter(parameter => parameter.name === key)?.[0];
+      let enumParameter = $ctrl.enumParameters.filter(parameter => parameter.name === key);
+      return enumParameter && enumParameter[0];
     };
 
     function copyParam(key) {
