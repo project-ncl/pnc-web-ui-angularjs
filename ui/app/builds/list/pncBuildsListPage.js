@@ -46,7 +46,7 @@
       filterMethod: 'QUERY_PARAM'
     }, {
       id: 'status',
-      title: 'Status',
+      title: 'Show Status',
       placeholder: 'Filter by Status',
       filterType: 'select',
       filterValues: [
@@ -59,6 +59,22 @@
         'SYSTEM_ERROR'
       ],
       filterMethod: 'RSQL'
+    }, {
+      id: 'status',
+      title: 'Hide Status',
+      placeholder: 'Filter by Status to HIDE',
+      filterType: 'select',
+      filterValues: [
+        'SUCCESS',
+        'REJECTED',
+        'FAILED',
+        'CANCELLED',
+        'BUILDING',
+        'NO_REBUILD_REQUIRED',
+        'SYSTEM_ERROR'
+      ],
+      filterMethod: 'RSQL',
+      overrideComparator: 'neq'
     }, {
       id: 'temporaryBuild',
       title: 'Temporary Build',

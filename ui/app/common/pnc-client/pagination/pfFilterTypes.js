@@ -22,7 +22,7 @@
          .constant('PF_FILTER_TYPES', Object.freeze({
 
     text: 'like',
-    select: 'eq'
-
+    select: 'eq',
+    negativeSelect: 'neq'
   }));
 })();

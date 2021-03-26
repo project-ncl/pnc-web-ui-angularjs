@@ -43,11 +43,11 @@
           paginator.clearFilters();
 
           filters.forEach(filter => {
-            const filterDef = filterDefinitions.find(fd => fd.id === filter.id);
+            const filterDef = filterDefinitions.find(fd => fd.id === filter.id && fd.title === filter.title);
             paginator.addFilter({
               field: filter.id,
               value: filter.value,
-              comparator: PF_FILTER_TYPES[filterDef.filterType],
+              comparator: filterDef.overrideComparator ? filterDef.overrideComparator : PF_FILTER_TYPES[filterDef.filterType],
               method: filterDef.filterMethod || 'RSQL'
             });
           });
