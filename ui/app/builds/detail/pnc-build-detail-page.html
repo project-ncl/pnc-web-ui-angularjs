@@ -17,6 +17,8 @@
     limitations under the License.
 
 -->
+<meta itemprop="entity-id" content="{{ ::$ctrl.build.id }}">
+
 <div class="row margin-bottom-md">
   <div class="col-md-12">
     <div class="page-header border-none">
@@ -63,10 +65,4 @@
 <div class="row">
   <div class="col-md-12" ui-view>
   </div>
-</div>
-
-<!-- Used for automated scraping, e.g. release tests -->
-<div class="metadata build"
-     data-model-class="build"
-     data-model-id="{{ ::$ctrl.build.id }}">
 </div>
