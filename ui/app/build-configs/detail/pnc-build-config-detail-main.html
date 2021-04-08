@@ -17,6 +17,8 @@
     limitations under the License.
 
 -->
+<meta itemprop="entity-id" content="{{ ::$ctrl.buildConfig.id }}">
+
 <div class="row">
   <div class="col-md-12">
     <pnc-header class="no-divider-header">
@@ -44,10 +46,4 @@
     <div class="m-t-20" ui-view></div>
   </div><!-- /col -->
 </div> <!-- /row -->
-
-<!-- Used for automated scraping, e.g. release tests -->
-<div class="metadata build-config"
-     data-model-class="build-config"
-     data-model-id="{{ ::$ctrl.buildConfig.id }}">
-</div>
 
