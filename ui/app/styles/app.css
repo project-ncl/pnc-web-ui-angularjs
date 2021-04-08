@@ -373,3 +373,7 @@ td.shrink-to-fit {
 table.v-align-middle td {
   vertical-align: middle !important;
 }
+
+.metadata {
+  display: none !important;
+}
