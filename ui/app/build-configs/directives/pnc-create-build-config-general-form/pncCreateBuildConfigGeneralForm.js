@@ -34,6 +34,7 @@
     $ctrl.buildTypes = buildTypes;
     $ctrl.showBrewPullCheckbox = showBrewPullCheckbox;
     $ctrl.onSelectChange = onSelectChange;
+    $ctrl.isMavenValidationActive = isMavenValidationActive;
 
     // --------------------
 
@@ -58,5 +59,10 @@
         $ctrl.data.brewPullActive = false;
       }
     }
+
+    function isMavenValidationActive() {
+      return $ctrl.data.buildType === 'MVN';
+    }
+
   }
 })();
