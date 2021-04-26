@@ -72,7 +72,7 @@
 
       authService.getPncUser = function () {
         return $q((resolve, reject) => {
-          if (!authService.isAuthenticated) {
+          if (!authService.isAuthenticated()) {
             return reject('User is not authenticated');
           }
 

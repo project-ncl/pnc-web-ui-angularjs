@@ -70,7 +70,7 @@
       }
 
       function getAuthorizedLevelsForCurrentUser() {
-        if (!authService.isAuthenticated) {
+        if (!authService.isAuthenticated()) {
           return [];
         }
 
