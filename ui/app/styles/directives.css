@@ -447,7 +447,7 @@ table.build-status-table tr > td {
   }
 }
 
-.build-config-edit-form #build-config-build-script {
+.build-config-edit-form #build-config-build-script, .build-config-edit-form #build-config-build-script2 {
   height: 300px;
 }
 
