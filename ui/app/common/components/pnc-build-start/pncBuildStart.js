@@ -69,8 +69,7 @@
       // default build values
       $ctrl.params = {
         temporaryBuild: false,
-        rebuildMode: $ctrl.rebuildModes[REBUILD_MODE_INDEX_DEFAULT].value,
-        timestampAlignment: false
+        rebuildMode: $ctrl.rebuildModes[REBUILD_MODE_INDEX_DEFAULT].value
       };
 
       $ctrl.refreshRebuildModes(REBUILD_MODE_INDEX_DEFAULT);
@@ -78,12 +77,6 @@
       if ($ctrl.buildConfig) {
         $ctrl.params.keepPodOnFailure = false;
         $ctrl.params.buildDependencies = true;
-      }
-    };
-
-    $ctrl.refreshBuildTypes = function() {
-      if (!$ctrl.params.temporaryBuild) {
-        $ctrl.params.timestampAlignment = false;
       }
     };
 
