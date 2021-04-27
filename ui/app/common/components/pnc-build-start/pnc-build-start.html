@@ -35,7 +35,7 @@
     <!-- build type -->
     <div class="radio">
       <label>
-        <input type="radio" name="buildStartType-{{$id}}" ng-model="$ctrl.params.temporaryBuild" ng-value="false" ng-change="$ctrl.refreshBuildTypes()"> Persistent
+        <input type="radio" name="buildStartType-{{$id}}" ng-model="$ctrl.params.temporaryBuild" ng-value="false"> Persistent
         <a uib-popover="Standard build, which can be used for product release" popover-trigger="'outsideClick'" popover-placement="top" popover-class="popover-info-tip" popover-append-to-body="true" href>
           <span class="fa fa-info-circle"></span>
         </a>
@@ -43,7 +43,7 @@
     </div>
     <div class="radio">
       <label>
-        <input type="radio" name="buildStartType-{{$id}}" ng-model="$ctrl.params.temporaryBuild" ng-value="true" ng-change="$ctrl.refreshBuildTypes()"> Temporary
+        <input type="radio" name="buildStartType-{{$id}}" ng-model="$ctrl.params.temporaryBuild" ng-value="true"> Temporary
         <a uib-popover="Test build, which cannot be used for product release and which will be garbage collected" popover-trigger="'outsideClick'" popover-placement="top" popover-class="popover-info-tip" popover-append-to-body="true" href>
           <span class="fa fa-info-circle"></span>
         </a>
@@ -107,14 +107,6 @@
       <label>
         <input type="checkbox" ng-model="$ctrl.params.buildDependencies"> with dependencies
         <a uib-popover="Build also dependencies of this build configuration if they are not built yet" popover-trigger="'outsideClick'" popover-placement="top" popover-class="popover-info-tip" popover-append-to-body="true" href>
-          <span class="fa fa-info-circle"></span>
-        </a>
-      </label>
-    </div>
-    <div class="checkbox" ng-class="{'disabled-option': !$ctrl.params.temporaryBuild}" title="{{ !$ctrl.params.temporaryBuild ? 'Not valid option' : '' }}">
-      <label>
-        <input type="checkbox" ng-model="$ctrl.params.timestampAlignment"> timestamp alignment
-        <a uib-popover="Append timestamp to the artifact's maven version during the alignment phase" popover-trigger="'outsideClick'" popover-placement="top" popover-class="popover-info-tip" popover-append-to-body="true" href>
           <span class="fa fa-info-circle"></span>
         </a>
       </label>
