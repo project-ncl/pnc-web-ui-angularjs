@@ -41,6 +41,11 @@
           method: 'GET',
           isPaged: true
         },
+        queryWithLatestBuild: {
+          method: 'GET',
+          url: ENDPOINT + '/x-with-latest-build',
+          isPaged: true
+        },
         save: {
           method: 'POST',
           successNotification: false

@@ -67,6 +67,11 @@
           url: ENDPOINT + '/build-configs',
           isPaged: true
         },
+        queryBuildConfigsWithLatestBuild: {
+          method: 'GET',
+          url: restConfig.getPncRestUrl() + '/build-configs/x-with-latest-build?q=groupConfigurations.id==:id',
+          isPaged: true
+        },
         addBuildConfig: {
           method: 'POST',
           url: ENDPOINT + 'build-configs',

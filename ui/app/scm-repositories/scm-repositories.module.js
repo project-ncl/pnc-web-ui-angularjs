@@ -68,7 +68,7 @@
           }).$promise;
         }],
         buildConfigs: ['ScmRepositoryResource', '$stateParams', function(ScmRepositoryResource, $stateParams) {
-          return ScmRepositoryResource.queryBuildConfigs({
+          return ScmRepositoryResource.queryBuildConfigsWithLatestBuild({
             id: $stateParams.scmRepositoryId
           }).$promise;
         }],

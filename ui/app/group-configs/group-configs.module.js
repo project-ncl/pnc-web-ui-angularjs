@@ -111,7 +111,7 @@
           buildConfigs: [
             'groupConfig',
             (groupConfig) => {
-              return groupConfig.$queryBuildConfigs();
+              return groupConfig.$queryBuildConfigsWithLatestBuild();
             }
           ]
         },
