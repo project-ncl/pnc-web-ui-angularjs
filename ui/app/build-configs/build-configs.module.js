@@ -54,7 +54,7 @@
         },
         resolve: {
           buildConfigs: ['BuildConfigResource', 'SortHelper', (BuildConfigResource, SortHelper) => {
-            return BuildConfigResource.query(SortHelper.getSortQueryString('buildConfigsList')).$promise;
+            return BuildConfigResource.queryWithLatestBuild(SortHelper.getSortQueryString('buildConfigsList')).$promise;
           }]
         }
       });

@@ -60,7 +60,12 @@
           method: 'GET',
           url: ENDPOINT + '/build-configs',
           isPaged: true
-        }
+        },
+        queryBuildConfigsWithLatestBuild: {
+          method: 'GET',
+          url: restConfig.getPncRestUrl() + '/build-configs/x-with-latest-build?q=scmRepository.id==:id',
+          isPaged: true
+        },
       });
 
       resource.prototype.getName = function () {

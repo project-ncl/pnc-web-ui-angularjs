@@ -35,7 +35,7 @@
   });
 
 
-  function Controller($scope, events, BuildConfigResource) {
+  function Controller($scope, events) {
     const $ctrl = this;
 
     // -- Controller API --
@@ -44,10 +44,7 @@
 
 
     $ctrl.$onInit = () => {
-      $ctrl.isLoaded = false;
-      BuildConfigResource.getLatestBuild({ id: $ctrl.buildConfig.id }).$promise
-          .then(build => $ctrl.build = build)
-          .finally(() => $ctrl.isLoaded = true);
+      $ctrl.build = $ctrl.buildConfig.latestBuild;
 
       $scope.$on(events.BUILD_STATUS_CHANGED, (event, build) => {
         if ($ctrl.buildConfig.id === build.buildConfigRevision.id) {

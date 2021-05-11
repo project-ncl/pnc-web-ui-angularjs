@@ -36,10 +36,6 @@
        */
       groupBuild: '<?',
       /**
-       * Object: Truthy or falsy object indicating whether data request is finished or not.
-       */
-      isLoaded: '<',
-      /**
        * Object: Truthy of falsy object indicating whether click should be propagated or not.
        * Sometimes propagated clicks can cause side effects that should be stopped.
        */

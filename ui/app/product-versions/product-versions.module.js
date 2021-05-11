@@ -63,7 +63,7 @@
             '$stateParams',
             'ProductVersionResource',
             ($stateParams, ProductVersionResource) => {
-              return ProductVersionResource.queryBuildConfigs({ id: $stateParams.productVersionId }).$promise;
+              return ProductVersionResource.queryBuildConfigsWithLatestBuild({ id: $stateParams.productVersionId }).$promise;
             }
           ],
           groupConfigs: [
