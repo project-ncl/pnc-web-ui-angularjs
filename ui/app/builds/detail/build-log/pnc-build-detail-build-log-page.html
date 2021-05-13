@@ -57,8 +57,18 @@
         <span class="display-when-active">Hide</span>
         SSH credentials
     </button>
+    <button
+      ng-if="!$ctrl.sshCredentials.command"
+      type="button"
+      class="btn btn-sm w-min-100"
+      uib-tooltip="SSH credentials are only available for those unsuccessful builds with 'keep pod alive' option. Alternatively you can modify your build script to intentionally fail it and get the SSH credentials you need."
+      tooltip-placement="right"
+      tooltip-append-to-body="true"
+      tooltip-popup-delay="1000">
+        SSH credentials
+    </button>
   </div>
 
   <pnc-static-log log="$ctrl.buildLog.payload"></pnc-static-log>
-  
+
 </div>
