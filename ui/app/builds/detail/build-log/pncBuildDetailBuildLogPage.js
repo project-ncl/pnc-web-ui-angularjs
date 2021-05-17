@@ -25,11 +25,11 @@
       sshCredentials: '<'
     },
     templateUrl: 'builds/detail/build-log/pnc-build-detail-build-log-page.html',
-    controller: [Controller]
+    controller: ['authService', Controller]
   });
 
 
-  function Controller() {
+  function Controller(authService) {
     const $ctrl = this;
 
     // -- Controller API --
@@ -37,7 +37,7 @@
     $ctrl.sshCredentialsBtn = {
       clicked: false
     };
-
+    $ctrl.currentUser = authService.getPrinciple();
 
     // --------------------
 
