@@ -236,7 +236,7 @@
      */
     var loadBuildMetrics = function(builds) {
       var buildIds = builds.map(function(build) {
-        return build.id.toString();
+        return build.buildContentId.toString();
       });
 
       return BuildResource.getBuildMetrics(buildIds).then(function(buildMetricsDatasetsResult) {
