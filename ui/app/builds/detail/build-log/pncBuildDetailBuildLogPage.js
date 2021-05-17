@@ -37,12 +37,12 @@
     $ctrl.sshCredentialsBtn = {
       clicked: false
     };
-    $ctrl.currentUser = authService.getPrinciple();
 
     // --------------------
 
     $ctrl.$onInit = function () {
       $ctrl.logFileName = $ctrl.build.id + '_' + $ctrl.build.buildConfigRevision.name + '_' + $ctrl.build.status + '.txt';
+      $ctrl.isCurrentUser = authService.isCurrentUser($ctrl.build.user);
     };
 
   }
