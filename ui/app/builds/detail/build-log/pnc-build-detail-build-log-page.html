@@ -45,7 +45,7 @@
     </script>
 
     <!--Button set for ssh credentials-->
-    <span ng-if="$ctrl.build.user.username === $ctrl.currentUser">
+    <span ng-if="$ctrl.isCurrentUser">
        <button
          uib-popover-template="'popoverTemplate.html'"
          popover-title="SSH credentials"
