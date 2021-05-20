@@ -44,7 +44,12 @@
 
 
     $ctrl.$onInit = () => {
-      $ctrl.build = $ctrl.buildConfig.latestBuild;
+      if ($ctrl.buildConfig.latestBuild) {
+        $ctrl.build = $ctrl.buildConfig.latestBuild;
+        $ctrl.build.user = {username: $ctrl.buildConfig.latestBuildUsername};
+        $ctrl.build.project = {id: $ctrl.buildConfig.project.id};
+        $ctrl.build.buildConfigRevision = {id: $ctrl.buildConfig.id};
+      }
 
       $scope.$on(events.BUILD_STATUS_CHANGED, (event, build) => {
         if ($ctrl.buildConfig.id === build.buildConfigRevision.id) {
