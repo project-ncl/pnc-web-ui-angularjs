@@ -26,7 +26,7 @@
       </div>
       <h1>
         <pnc-build-status-icon build="$ctrl.build" no-warnings="true"></pnc-build-status-icon>
-        Build #{{ $ctrl.build.id }} of {{ $ctrl.build.buildConfigRevision.name }}
+        Build <pnc-build-name build="$ctrl.build" long-name="true" text="true"></pnc-build-name>
         <pnc-corrupted-build-label build="$ctrl.build" class="label-sm"></pnc-corrupted-build-label>
         <pnc-temporary-build-label build="$ctrl.build" class="label-sm"></pnc-temporary-build-label>
       </h1>
