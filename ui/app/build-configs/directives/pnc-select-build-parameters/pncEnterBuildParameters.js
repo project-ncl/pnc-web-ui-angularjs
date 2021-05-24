@@ -65,7 +65,7 @@
       }
 
       return normalized.then(function (params) {
-        return $filter('filter')(params, { name: $viewValue });
+        return $filter('filter')(params, { name: $viewValue.split(' - ')[0], description: $viewValue.split(' - ')[1] });
       });
 
     }
