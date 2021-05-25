@@ -23,7 +23,7 @@
 <div class="form-group">
   <label class="control-label">Key</label>
   <px-combobox ng-change="$ctrl.updateEnumParameterValues()"
-               px-expression="key ? key.name + ' - ' + key.description : '' for key in $ctrl.searchKnownKeys($viewValue)" ng-model="$ctrl.key" editable=true
+               px-expression="key.name as key ? key.name + ' - ' + key.description : '' for key in $ctrl.searchKnownKeys($viewValue)" ng-model="$ctrl.key" editable=true
                placeholder="Select or input parameter key"
                option-template-url="pnc-enter-build-parameters/combobox-option-template.html"></px-combobox>
 </div>
