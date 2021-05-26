@@ -21,7 +21,7 @@
   <div ng-show="$ctrl.item && $ctrl.item.status">
     <pnc-build-status-icon build="$ctrl.item"></pnc-build-status-icon>
 
-    <pnc-build-link ng-if="::$ctrl.build" build="$ctrl.build" short-link="true"></pnc-build-link>
+    <pnc-build-name ng-if="::$ctrl.build" build="$ctrl.build" link="true"></pnc-build-name>
     <pnc-group-build-link ng-if="::$ctrl.groupBuild" group-build="$ctrl.groupBuild" short-link="true"></pnc-group-build-link>
 
     <span title="End Time">{{ $ctrl.item.endTime | date:'medium' }}</span>

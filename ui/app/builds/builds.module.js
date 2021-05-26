@@ -111,7 +111,7 @@
         url: '/{buildId}',
         data: {
           proxy: 'projects.detail.build-configs.detail.builds.detail.default',
-          title: '#{{ build.id }} {{ build.buildConfigRevision.name }} | Build'
+          title: '#{{ buildName }} {{ build.buildConfigRevision.name }} | Build'
         },
         component: 'pncBuildDetailPage',
         resolve: {
@@ -123,7 +123,10 @@
           }],
           buildConfigRevision: ['BuildResource', 'build', function (BuildResource, build) {
             return BuildResource.getRevision({ id: build.buildConfigRevision.id, revisionId: build.buildConfigRevision.rev }).$promise;
-          }]
+          }],
+          buildName: ['utils', 'build', function (utils, build){
+            return utils.getBuildName(build);
+          }] 
         }
       });
 
@@ -131,7 +134,15 @@
         url: '',
         component: 'pncBuildDetailDetailsPage',
         data: {
-          displayName: 'Job #{{ build.id }}',
+          displayName: 'Build #{{ buildName }}',
+        },
+        resolve: {
+          build: ['BuildResource', '$stateParams', function (BuildResource, $stateParams) {
+            return BuildResource.get({ id: $stateParams.buildId }).$promise;
+          }],
+          buildName: ['utils', 'build', function (utils, build){
+            return utils.getBuildName(build);
+          }] 
         }
       });
 
@@ -140,7 +151,12 @@
         component: 'pncBuildDetailBuildMetricsPage',
         data: {
           displayName: 'Build Metrics',
-          title: '#{{ build.id }} {{ build.buildConfigRevision.name }} | Build Metrics'
+          title: '#{{ buildName }} {{ build.buildConfigRevision.name }} | Build Metrics'
+        },
+        resolve: {
+          buildName: ['utils', 'build', function (utils, build){
+            return utils.getBuildName(build);
+          }] 
         }
       });
 
@@ -149,7 +165,7 @@
         component: 'pncBuildDetailBuildLogPage',
         data: {
           displayName: 'Build Log',
-          title: '#{{ build.id }} {{ build.buildConfigRevision.name }} | Build Log'
+          title: '#{{ buildName }} {{ build.buildConfigRevision.name }} | Build Log'
         },
         resolve: {
           buildLog: ['BuildResource', 'build', function (BuildResource, build) {
@@ -160,7 +176,10 @@
               id: build.id,
               buildUser: build.user
             });
-          }]
+          }],
+          buildName: ['utils', 'build', function (utils, build){
+            return utils.getBuildName(build);
+          }] 
         }
       });
 
@@ -169,14 +188,17 @@
         component: 'pncBuildDetailArtifactsPage',
         data: {
           displayName: 'Build Artifacts',
-          title: '#{{ build.id }} {{ build.buildConfigRevision.name }} | Build Artifacts'
+          title: '#{{ buildName }} {{ build.buildConfigRevision.name }} | Build Artifacts'
         },
         resolve: {
           artifacts: [
             'BuildResource',
             'build',
             (BuildResource, build) => BuildResource.getBuiltArtifacts({ id: build.id, pageSize: 10 }).$promise
-          ]
+          ],
+          buildName: ['utils', 'build', function (utils, build){
+            return utils.getBuildName(build);
+          }] 
         }
       });
 
@@ -185,14 +207,17 @@
           component: 'pncBuildDetailDependenciesPage',
           data: {
             displayName: 'Dependencies',
-            title: '#{{ build.id }} {{ build.buildConfigRevision.name }} | Dependencies'
+            title: '#{{ buildName }} {{ build.buildConfigRevision.name }} | Dependencies'
           },
           resolve: {
             artifacts: [
               'BuildResource',
               'build',
               (BuildResource, build) => BuildResource.getArtifactsDependencies({ id: build.id, pageSize: 10 }).$promise
-            ]
+            ],
+            buildName: ['utils', 'build', function (utils, build){
+              return utils.getBuildName(build);
+            }] 
           }
         });
 
@@ -201,12 +226,15 @@
         component: 'pncBuildDetailAlignmentLogPage',
         data: {
           displayName: 'Alignment Log',
-          title: '#{{ build.id }} {{ build.buildConfigRevision.name }} | Alignment Log'
+          title: '#{{ buildName }} {{ build.buildConfigRevision.name }} | Alignment Log'
         },
         resolve: {
           alignmentLog: ['BuildResource', 'build', function (BuildResource, build) {
             return BuildResource.getLogAlign({ id: build.id }).$promise;
-          }]
+          }],
+          buildName: ['utils', 'build', function (utils, build){
+            return utils.getBuildName(build);
+          }] 
         }
       });
 
@@ -215,14 +243,17 @@
         component: 'pncBuildDetailBrewPushPage',
         data: {
           displayName: 'Brew Push Results',
-          title: '#{{ build.id }} {{ build.buildConfigRevision.name }} | Brew Push'
+          title: '#{{ buildName }} {{ build.buildConfigRevision.name }} | Brew Push'
         },
         resolve: {
           brewPushResult: [
             'BuildResource',
             'build',
             (BuildResource, build) => BuildResource.getBrewPushResult({ id: build.id }).$promise
-          ]
+          ],
+          buildName: ['utils', 'build', function (utils, build){
+            return utils.getBuildName(build);
+          }] 
         }
       });
 
