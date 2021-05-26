@@ -32,10 +32,10 @@
       componentId: '@?'
     },
     templateUrl: 'common/components/pnc-build-metrics/pnc-build-metrics.html',
-    controller: ['BuildResource', Controller]
+    controller: ['BuildResource', 'utils', Controller]
   });
 
-  function Controller(BuildResource) {
+  function Controller(BuildResource, utils) {
     var $ctrl = this;
     var chart = null;
     var canvasElement = null;
@@ -202,7 +202,7 @@
       return  time.milliseconds + ' ms'; 
     };
 
-    var generateBuildTitle = function(buildId) { return  '#' + buildId; };
+    var generateBuildTitle = function(buildName) { return  '#' + buildName; };
 
 
     /**
@@ -254,7 +254,7 @@
           });
 
           var buildMetricsData = {
-            labels: buildIds,
+            labels: builds.map(b => utils.getBuildName(b)),
             datasets: buildMetricsDatasetsResult.data
           };
 

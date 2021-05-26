@@ -180,6 +180,21 @@
             });
        }
 
+       function getBuildName(build) {
+         const time = new Date(build.submitTime);
+
+         const outputTime = [time.getUTCFullYear(), twoDigitCorrection(time.getUTCMonth()), twoDigitCorrection(time.getUTCDate()), '-', twoDigitCorrection(time.getUTCHours()), twoDigitCorrection(time.getUTCMinutes())].join('');
+         return outputTime;
+       }
+
+       function twoDigitCorrection(number) {
+         let n = number.toString();
+         if (n.length < 2) {
+           n = '0' + n;
+         }
+         return n;
+      }
+
       return {
         isEmpty,
         isNotEmpty,
@@ -187,7 +202,8 @@
         concatStrings,
         hashCode,
         prettyPrint,
-        dePaginate
+        dePaginate,
+        getBuildName
       };
     }
   ]);
