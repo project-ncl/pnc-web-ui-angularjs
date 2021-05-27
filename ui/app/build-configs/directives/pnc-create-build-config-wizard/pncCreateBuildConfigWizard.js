@@ -20,16 +20,17 @@
 
   angular.module('pnc.build-configs').component('pncCreateBuildConfigWizard', {
     templateUrl: 'build-configs/directives/pnc-create-build-config-wizard/pnc-create-build-config-wizard.html',
-    controller: ['$timeout', '$rootScope', 'events', 'BuildConfigResource', 'buildConfigCreator', 'utils', Controller],
+    controller: ['$timeout', '$element', '$rootScope', 'events', 'BuildConfigResource', 'buildConfigCreator', 'utils', Controller],
     bindings: {
       modalInstance: '<',
       project: '<',
       resolve: '<',
-      onClose: '&close'
+      onClose: '&close',
+
     }
   });
 
-  function Controller($timeout, $rootScope, events, BuildConfigResource, buildConfigCreator, utils) {
+  function Controller($timeout, $element, $rootScope, events, BuildConfigResource, buildConfigCreator, utils) {
     var $ctrl = this,
         emptyWizardData = {
           general: {},
@@ -61,6 +62,11 @@
     $ctrl.$onInit = function () {
       $ctrl.wizardData = angular.extend({}, emptyWizardData, $ctrl.resolve.initialValues);
       $ctrl.wizardData.project = $ctrl.resolve.project;
+    };
+
+    $ctrl.$postLink = () => {
+      // Used for synchronizing automated release tests.
+      $element.attr('data-wizard-ready', 'true');
     };
 
     function onStepChange(step) {

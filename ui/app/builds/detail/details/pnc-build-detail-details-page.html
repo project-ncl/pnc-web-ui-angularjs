@@ -27,7 +27,7 @@
         <dd>{{ $ctrl.build.id }}</dd>
 
         <dt>Status:</dt>
-        <dd ng-class="$ctrl.buildStatusHelper.isSuccess($ctrl.build.status) ? 'text-success' : 'text-danger'">{{ $ctrl.build.status }} <span ng-show="$ctrl.buildStatusHelper.isFinished($ctrl.build.status)" class="m-l-20">[ <a ng-href="{{ $ctrl.build.$buildLogUrl() }}" >Plain Text Log</a> ]</span></dd>
+        <dd ng-class="$ctrl.buildStatusHelper.isSuccess($ctrl.build.status) ? 'text-success' : 'text-danger'"><span class="current-build-status">{{ $ctrl.build.status }}</span> <span ng-show="$ctrl.buildStatusHelper.isFinished($ctrl.build.status)" class="m-l-20">[ <a ng-href="{{ $ctrl.build.$buildLogUrl() }}" >Plain Text Log</a> ]</span></dd>
 
         <dt>Build Config:</dt>
         <dd>
