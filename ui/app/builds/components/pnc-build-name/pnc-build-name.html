@@ -19,12 +19,12 @@
 -->
 <span ng-if="::$ctrl.link"> <a
         ui-sref="projects.detail.build-configs.detail.builds.detail.default({ projectId: $ctrl.build.project.id, configurationId: $ctrl.build.buildConfigRevision.id, buildId: $ctrl.build.id })"
-        ng-transclude href>{{ $ctrl.buildName }}</a>
+        ng-transclude href>#{{ $ctrl.buildName }}</a>
     <span ng-if="::$ctrl.longName"> of
         <a
             ui-sref="projects.detail.build-configs.detail({ projectId: $ctrl.build.project.id, configurationId: $ctrl.build.buildConfigRevision.id })">{{
             $ctrl.buildConfigName }}</a>
     </span>
 </span>
-<span ng-if="::$ctrl.text">{{ $ctrl.buildName }} <span ng-if="::$ctrl.longName">of {{$ctrl.buildConfigName
+<span ng-if="::$ctrl.text">#{{ $ctrl.buildName }} <span ng-if="::$ctrl.longName">of {{$ctrl.buildConfigName
         }}</span></span>
