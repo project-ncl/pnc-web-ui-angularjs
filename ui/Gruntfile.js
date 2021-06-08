@@ -47,6 +47,8 @@ module.exports = function (grunt) {
     tmp: '.tmp'
   };
 
+  var serveStatic = require('serve-static');
+
   /**
    * Task responsible for initializing REST proxy settings, by reading from a config file.
    * Proxy is needed to avoid 'cross-origin resource sharing' (CORS) restriction.
@@ -167,7 +169,7 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['<%= yeoman.app %>/**/*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        tasks: ['newer:copy:styles', 'postcss']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -203,12 +205,12 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
+              serveStatic('.tmp'),
               connect().use(
                 '/bower_components',
-                connect.static('./bower_components')
+                serveStatic('./bower_components')
               ),
-              connect.static(appConfig.app),
+              serveStatic(appConfig.app),
               require('grunt-connect-proxy-updated/lib/utils').proxyRequest
             ];
           }
@@ -220,13 +222,13 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             // Setup the proxy
             var middlewares = [];
-            middlewares.push(connect.static('.tmp'));
-            middlewares.push(connect.static('test'));
+            middlewares.push(serveStatic('.tmp'));
+            middlewares.push(serveStatic('test'));
             middlewares.push(connect().use(
               '/<%= yeoman.lib %>',
-              connect.static('./<%= yeoman.lib %>')
+              serveStatic('./<%= yeoman.lib %>')
             ));
-            middlewares.push(connect.static(appConfig.app));
+            middlewares.push(serveStatic(appConfig.app));
             middlewares.push(require('grunt-connect-proxy-updated/lib/utils').proxyRequest);
 
             return middlewares;
@@ -237,10 +239,10 @@ module.exports = function (grunt) {
         options: {
           open: true,
           port: 9000,
-          middleware: function (connect) {
+          middleware: function () {
             return [
               require('grunt-connect-proxy-updated/lib/utils').proxyRequest,
-              connect.static(appConfig.dist)
+              serveStatic(appConfig.dist)
             ];
           }
         }
@@ -316,17 +318,22 @@ module.exports = function (grunt) {
     },
 
     // Add vendor prefixed styles
-    autoprefixer: {
+    postcss: {
       options: {
-        browsers: ['last 1 version']
+        map: true,
+        processors: [
+          require('autoprefixer')(), // add vendor prefixes, browser version specified in package.json "browserslist"
+        ]
       },
       dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= yeoman.tmp %>/styles/',
-          src: '{,*/}*.css',
-          dest: '<%= yeoman.tmp %>/styles/'
-        }]
+        files: [
+          {
+            expand: true,
+            cwd: '<%= yeoman.tmp %>/styles/',
+            dest: '<%= yeoman.tmp %>/styles/',
+            src: '{,*/}*.css',
+          }
+        ]
       }
     },
 
@@ -563,7 +570,7 @@ module.exports = function (grunt) {
       'includeSource:server',
       'concurrent:server',
       'copy:fonts',
-      'autoprefixer',
+      'postcss',
       'configureProxies',
       'connect:livereload',
       'watch'
@@ -579,7 +586,7 @@ module.exports = function (grunt) {
     'initCORSProxy',
     'clean:server',
     'concurrent:test',
-    'autoprefixer',
+    'postcss',
     'connect:test'
   ]);
 
@@ -590,7 +597,7 @@ module.exports = function (grunt) {
     'wiredep',
     'includeSource:dist',
     'useminPrepare',
-    'autoprefixer',
+    'postcss',
     'ngtemplates',
     'concat',
     'copy:dist',
