@@ -65,7 +65,7 @@
           project: ['ProjectResource', '$stateParams', (ProjectResource, $stateParams) => ProjectResource.get({
             id: $stateParams.projectId
           }).$promise],
-          buildConfigs: ['ProjectResource', '$stateParams', (ProjectResource, $stateParams) => ProjectResource.queryBuildConfigurations({
+          buildConfigs: ['ProjectResource', '$stateParams', (ProjectResource, $stateParams) => ProjectResource.queryBuildConfigsWithLatestBuild({
             id: $stateParams.projectId
           }).$promise]
         }
