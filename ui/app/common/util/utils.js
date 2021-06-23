@@ -183,7 +183,7 @@
        function getBuildName(build) {
          const time = new Date(build.submitTime);
 
-         const outputTime = [time.getUTCFullYear(), twoDigitCorrection(time.getUTCMonth()), twoDigitCorrection(time.getUTCDate()), '-', twoDigitCorrection(time.getUTCHours()), twoDigitCorrection(time.getUTCMinutes())].join('');
+         const outputTime = [time.getUTCFullYear(), twoDigitCorrection(time.getUTCMonth() + 1), twoDigitCorrection(time.getUTCDate()), '-', twoDigitCorrection(time.getUTCHours()), twoDigitCorrection(time.getUTCMinutes())].join('');
          return outputTime;
        }
 
