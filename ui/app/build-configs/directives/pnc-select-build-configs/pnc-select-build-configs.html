@@ -25,7 +25,7 @@
         <pnc-build-config-combobox ng-model="$ctrl.buildConfig"></pnc-build-config-combobox>
       </div>
       <div class="btn-group pull-right" role="group" aria-label="...">
-        <button type="button" class="btn btn-primary" ng-click="$ctrl.add($ctrl.buildConfig)" ng-disabled="dependenciesForm.$invalid">Add</button>
+        <button id="addButton" type="button" class="btn btn-primary" ng-click="$ctrl.add($ctrl.buildConfig)" ng-disabled="dependenciesForm.$invalid">Add</button>
       </div>
     </div>
     <div>
