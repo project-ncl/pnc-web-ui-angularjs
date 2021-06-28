@@ -46,6 +46,11 @@
           url: ENDPOINT + '/x-with-latest-build',
           isPaged: true
         },
+        queryWithLatestBuildByBCId: {
+          method: 'GET',
+          url: ENDPOINT + '/x-with-latest-build?q=id==:buildConfigId',
+          isPaged: true
+        },
         save: {
           method: 'POST',
           successNotification: false
