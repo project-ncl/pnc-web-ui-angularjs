@@ -35,7 +35,7 @@
   });
 
 
-  function Controller($scope, events) {
+  function Controller($scope, events, BuildConfigResource) {
     const $ctrl = this;
 
     // -- Controller API --
@@ -49,6 +49,18 @@
         $ctrl.build.user = {username: $ctrl.buildConfig.latestBuildUsername};
         $ctrl.build.project = {id: $ctrl.buildConfig.project.id};
         $ctrl.build.buildConfigRevision = {id: $ctrl.buildConfig.id};
+      } else if ($ctrl.buildConfig.latestBuild === undefined){
+//      Only enter when the latestBuild is undefined, which means the bc was not returned by x-with-latest-build
+//      This is to avoid duplicate query that already triggered for x-with-latest-build results
+        BuildConfigResource.queryWithLatestBuildByBCId({buildConfigId: $ctrl.buildConfig.id}).$promise.then(res => {
+          let bcWithLatestBuild = res.data[0];
+          if (bcWithLatestBuild.latestBuild) {
+            $ctrl.build = bcWithLatestBuild.latestBuild;
+            $ctrl.build.user = {username: bcWithLatestBuild.latestBuildUsername};
+            $ctrl.build.project = {id: bcWithLatestBuild.project.id};
+            $ctrl.build.buildConfigRevision = {id: bcWithLatestBuild.id};
+          }
+        });
       }
 
       $scope.$on(events.BUILD_STATUS_CHANGED, (event, build) => {
