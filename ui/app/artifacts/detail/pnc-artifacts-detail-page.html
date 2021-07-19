@@ -36,7 +36,7 @@
         <dt>Filename</dt>
         <dd>{{ $ctrl.artifact.filename }}</dd>
         <dt>Package URL</dt>
-        <dd>{{ $ctrl.artifact.purl }}</dd>
+        <dd>{{ $ctrl.artifact.purl || 'n/a'}}</dd>
         <dt>Size</dt>
         <dd> {{ $ctrl.artifact.size | fileSize }}</dd>
         <dt>Quality</dt>
