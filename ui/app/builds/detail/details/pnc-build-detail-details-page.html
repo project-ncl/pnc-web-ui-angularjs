@@ -108,6 +108,9 @@
         <dt>Script:</dt>
         <dd><pre class="build-script">{{ $ctrl.build.buildConfigRevision.buildScript || '&mdash;' }}</pre></dd>
 
+        <dt ng-hide="$ctrl.hideBrewPullActive()">Brew Pull Active</dt>
+        <dd ng-hide="$ctrl.hideBrewPullActive()">{{ $ctrl.build.buildConfigRevision.brewPullActive }}</dd>
+
         <dt ng-repeat-start="(key, value) in $ctrl.build.attributes">{{key}}</dt>
         <dd ng-repeat-end>{{value}}</dd>
 
