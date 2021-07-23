@@ -34,6 +34,7 @@
 
     // -- Controller API --
 
+    $ctrl.hideBrewPullActive = hideBrewPullActive;
 
     // --------------------
 
@@ -46,6 +47,10 @@
         }
       });
     };
+
+    function hideBrewPullActive(){
+      return $ctrl.build.buildConfigRevision.buildType === 'NPM';
+    }
   }
 
 })();
