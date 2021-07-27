@@ -1575,10 +1575,7 @@
           <configuration>
             <tagNameFormat>@{project.version}${tagSuffix}</tagNameFormat>
             <autoVersionSubmodules>true</autoVersionSubmodules>
-            <useReleaseProfile>false</useReleaseProfile>
-            <releaseProfiles>skip-integration-tests,release,production,auth</releaseProfiles>
-            <stagingRepository>https://oss.sonatype.org/service/local/staging/deploy/maven2/</stagingRepository>
-            <goals>deploy</goals>
+            <goals>install</goals>
           </configuration>
         </plugin>
       <plugin>
