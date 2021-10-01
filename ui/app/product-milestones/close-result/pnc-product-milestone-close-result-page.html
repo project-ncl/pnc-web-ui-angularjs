@@ -38,15 +38,18 @@
 
 <table class="table table-bordered table-striped table-hover" ng-show="$ctrl.showTable()">
   <thead>
-    <th>Status</th>
-    <th>PNC Build Id</th>
+    <th>Brew Push Status</th>
+    <th>PNC Job Id</th>
     <th>Brew Build Id</th>
     <th>Brew Build URL</th>
   </thead>
   <tbody>
     <tr ng-repeat="buildPushResult in $ctrl.data.buildPushResults">
       <td>{{ ::buildPushResult.status || '&mdash;' }}</td>
-      <td>{{ ::buildPushResult.buildId || '&mdash;' }}</td>
+      <!--<td>{{ ::buildPushResult.buildId || '&mdash;' }}</td>-->
+      <td>
+        <a href ui-sref="builds.detail({ buildId: buildPushResult.buildId })" >#{{::buildPushResult.buildId }}</a>
+      </td>
       <td>{{ ::buildPushResult.brewBuildId || '&mdash;' }}</td>
       <td>
         <a ng-if="buildPushResult.brewBuildUrl" target="_blank" href="{{ ::buildPushResult.brewBuildUrl }}">{{ ::buildPushResult.brewBuildUrl }}</a>
