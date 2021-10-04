@@ -59,10 +59,10 @@
 
               var deferred = $q.defer();
 
-              keycloak.updateToken(0).success(function () {
+              keycloak.updateToken(0).then(() => {
                 addAuthHeaders(config, keycloak.token);
                 deferred.resolve(config);
-              }).error(function () {
+              }).catch(function () {
                 $log.warn('Failed to refresh authentication token');
                 keycloak.clearToken();
                 deferred.resolve(config);
@@ -72,7 +72,7 @@
             }
           }
         }
-        
+
         return config;
       };
 
