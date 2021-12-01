@@ -79,6 +79,10 @@
       {
         id: 'modificationTime',
         title: 'Modified'
+      },
+      {
+        id: 'buildType',
+        title: 'Build Type'
       }];
 
       $ctrl.sortingConfigs = SortHelper.getSortConfig(PAGE_NAME);
