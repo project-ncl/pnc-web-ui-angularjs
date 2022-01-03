@@ -61,6 +61,18 @@
           title: 'Name',
           placeholder: 'string | !string | s?ring | st*ng',
           filterType: 'text'
+        },
+        {
+          id: 'buildType',
+          title: 'Build Type',
+          placeholder: 'Filter by Build Type',
+          filterType: 'select',
+          filterValues: [
+            'MVN',
+            'NPM',
+            'GRADLE',
+            'SBT'
+          ],
         }
       ];
 
