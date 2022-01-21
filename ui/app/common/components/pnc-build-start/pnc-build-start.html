@@ -88,7 +88,7 @@
 
     <div class="radio" ng-repeat="rebuildMode in $ctrl.rebuildModes">
       <label>
-        <input type="radio" name="rebuildModeName" ng-model="$ctrl.params.rebuildMode" value="{{ rebuildMode.value }}" ng-change="$ctrl.refreshRebuildModes($index)"> {{ rebuildMode.title }}
+        <input type="radio" name="rebuildModeName-{{$id}}" ng-model="$ctrl.params.rebuildMode" value="{{ rebuildMode.value }}" ng-change="$ctrl.refreshRebuildModes($index)"> {{ rebuildMode.title }}
       </label>
     </div>
 
