@@ -43,13 +43,23 @@
   function Controller($log, BuildConfigResource, GroupConfigResource) {
     const $ctrl = this;
 
-    var REBUILD_MODE_INDEX_DEFAULT = 1;
-
     $ctrl.dropdownMenu = false;
+
+    var ALIGNMENT_PREFERENCE_INDEX_DEFAULT = 1;
+    $ctrl.alignmentPreferences = [{
+      title: 'Persistent',
+      value: 'PREFER_PERSISTENT',
+      description: 'Prefers latest persistent build version'
+    }, {
+      title: 'Temporary',
+      value: 'PREFER_TEMPORARY',
+      description: 'Prefers latest temporary build version'
+    }];
 
     /*
      * When used together with forceRebuild parameter (deprecated), forceRebuild will be ignored
      */
+    var REBUILD_MODE_INDEX_DEFAULT = 1;
     $ctrl.rebuildModes = [{
       title: 'Explicit',
       value: 'EXPLICIT_DEPENDENCY_CHECK'
@@ -72,6 +82,8 @@
         rebuildMode: $ctrl.rebuildModes[REBUILD_MODE_INDEX_DEFAULT].value
       };
 
+      $ctrl.initAlignmentPreference();
+
       $ctrl.refreshRebuildModes(REBUILD_MODE_INDEX_DEFAULT);
 
       if ($ctrl.buildConfig) {
@@ -80,12 +92,21 @@
       }
     };
 
+    $ctrl.initAlignmentPreference = function() {
+      $ctrl.params.alignmentPreference = $ctrl.alignmentPreferences[ALIGNMENT_PREFERENCE_INDEX_DEFAULT].value;
+    };
+
     $ctrl.refreshRebuildModes = function(rebuildModeIndex) {
       $ctrl.currentRebuildModeTitle = $ctrl.rebuildModes[rebuildModeIndex].title;
     };
 
     $ctrl.build = function() {
       $ctrl.dropdownMenu = false;
+
+      // is persistent build
+      if (!$ctrl.params.temporaryBuild) {
+        delete $ctrl.params.alignmentPreference;
+      } 
 
       if ($ctrl.buildConfig) {
         $log.debug('pncBuildStart: Initiating build of: %O', $ctrl.buildConfig);
