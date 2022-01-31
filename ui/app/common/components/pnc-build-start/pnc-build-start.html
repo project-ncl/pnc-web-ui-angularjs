@@ -54,11 +54,8 @@
 
     <!-- alignment preference -->
     <div ng-hide="!$ctrl.params.temporaryBuild">
-
       Alignment Preference
       <script type="text/ng-template" id="alignmentPreferenceTemplate.html"><div>
-        <span style="color: #ec7a08">When the build has specified a custom parameter, the Alignment Preference will be ignored!</span>
-        <br><br>
         Select temporary build dependency alignment preferences:
         <dl class="m-t-10">
           <dt>{{ $ctrl.alignmentPreferences[0].title }}</dt>
@@ -76,7 +73,7 @@
         </dl>
       </div></script>
       <a uib-popover-template="'alignmentPreferenceTemplate.html'" popover-trigger="'outsideClick'" popover-placement="right" popover-class="popover-info-tip" popover-append-to-body="true" href>
-        <span class="pficons pficon-warning-triangle-o"></span>
+        <span class="fa fa-info-circle"></span>
       </a>
 
       <div class="radio" ng-repeat="alignmentPreference in $ctrl.alignmentPreferences">
