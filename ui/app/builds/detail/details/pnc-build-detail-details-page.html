@@ -39,6 +39,9 @@
         <dt>Started By:</dt>
         <dd>{{ $ctrl.build.user.username || '&mdash;' }}</dd>
 
+        <dt>Alignment Preference:</dt>
+        <dd>{{ $ctrl.build.alignmentPreference || '&mdash;' }}</dd>
+
         <dt ng-show="$ctrl.build.submitTime">Submitted:</dt>
         <dd ng-show="$ctrl.build.submitTime">{{ ($ctrl.build.submitTime | date : 'medium') }}</dd>
 
