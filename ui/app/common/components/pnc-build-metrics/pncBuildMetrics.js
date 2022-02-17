@@ -129,6 +129,14 @@
             skip: true
           };
 
+        // light purple
+        case 'SEALING_REPOSITORY_MANAGER_RESULTS':
+          return {
+            color: '#c7bfff',
+            label: 'Sealing',
+            description: 'Sealing artifact repository in Indy'
+          };
+
         // purple
         case 'COLLECTING_RESULTS_FROM_REPOSITORY_MANAGER': 
           return { 
