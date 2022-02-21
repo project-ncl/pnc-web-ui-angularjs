@@ -17,9 +17,35 @@
     limitations under the License.
 
 -->
-<span ng-if="$ctrl.isTemporary()">
-  <span class="label label-warning" uib-tooltip="Test build, which cannot be used for product release and which will be garbage collected during automatic cleaning" tooltip-popup-delay="1000">
-    TEMPORARY - the build will be garbage collected
+<span ng-if="$ctrl.buildItem.temporaryBuild">
+  <!-- PREFER_TEMPORARY -->
+  <span 
+    ng-if="$ctrl.buildItem.alignmentPreference === 'PREFER_TEMPORARY'" 
+    class="label label-info" 
+    uib-tooltip="Test build, which cannot be used for product release and which will be garbage collected during automatic cleaning. Latest temporary dependencies' versions were preferred in alignment." 
+    tooltip-popup-delay="1000"
+  >
+    TEMPORARY - to be garbage collected
+  </span>
+
+  <!-- PREFER_PERSISTENT -->
+  <span 
+    ng-if="$ctrl.buildItem.alignmentPreference === 'PREFER_PERSISTENT'" 
+    class="label label-warning" 
+    uib-tooltip="Test build, which cannot be used for product release and which will be garbage collected during automatic cleaning. Latest persistent dependencies' versions were preferred in alignment." 
+    tooltip-popup-delay="1000"
+  >
+    TEMPORARY - PREFER PERSISTENT - to be garbage collected
+  </span>
+
+  <!-- AlignmentPreference is not defined -->
+  <span 
+    ng-if="!$ctrl.buildItem.alignmentPreference" 
+    class="label label-info" 
+    uib-tooltip="Test build, which cannot be used for product release and which will be garbage collected during automatic cleaning. Alignment Preference was not defined." 
+    tooltip-popup-delay="1000"
+  >
+    TEMPORARY - to be garbage collected
   </span>
   
 </span>

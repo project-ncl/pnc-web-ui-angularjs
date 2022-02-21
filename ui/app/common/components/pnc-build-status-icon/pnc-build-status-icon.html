@@ -39,7 +39,14 @@
       <i class="pficon pficon-warning-triangle-o fa-lg" uib-tooltip="The build may have completed successfully but has since been corrupted by a system error" tooltip-popup-delay="1000" tooltip-placement="right"></i>
     </span>
     <span ng-if="$ctrl.isTemporary">
-      <i class="fa fa-clock-o fa-lg c-info" uib-tooltip="Temporary build; this will be garbage collected" tooltip-popup-delay="1000" tooltip-placement="right"></i>
+      <!-- PREFER_TEMPORARY -->
+      <i ng-if="$ctrl.build.alignmentPreference === 'PREFER_TEMPORARY'"  class="fa fa-clock-o fa-lg c-info" uib-tooltip="Test build, which cannot be used for product release and which will be garbage collected during automatic cleaning. Latest temporary dependencies' versions were preferred in alignment." tooltip-popup-delay="1000" tooltip-placement="right"></i>
+      
+      <!-- PREFER_PERSISTENT -->
+      <i ng-if="$ctrl.build.alignmentPreference === 'PREFER_PERSISTENT'"  class="fa fa-clock-o fa-lg" style="color: #ec7a08" uib-tooltip="Test build, which cannot be used for product release and which will be garbage collected during automatic cleaning. Latest persistent dependencies' versions were preferred in alignment." tooltip-popup-delay="1000" tooltip-placement="right"></i>
+      
+      <!-- AlignmentPreference is not defined -->
+      <i ng-if="!$ctrl.build.alignmentPreference" class="fa fa-clock-o fa-lg c-info" uib-tooltip="Test build, which cannot be used for product release and which will be garbage collected during automatic cleaning. Alignment Preference was not defined." tooltip-popup-delay="1000" tooltip-placement="right"></i>
     </span>
   </span>
 </span>
