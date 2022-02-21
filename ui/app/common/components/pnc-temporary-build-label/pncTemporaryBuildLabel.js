@@ -38,16 +38,9 @@
   function Controller() {
     var $ctrl = this;
 
-    var build;
-
     $ctrl.$onInit = function() {
-      build = $ctrl.build ? $ctrl.build : $ctrl.groupBuild;
-      $ctrl.isTemporary = isTemporary;
+      $ctrl.buildItem = $ctrl.build ? $ctrl.build : $ctrl.groupBuild;
     };
-
-    function isTemporary() {
-      return build.temporaryBuild;
-    }
   }
 
 })();
