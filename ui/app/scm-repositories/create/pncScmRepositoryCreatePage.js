@@ -35,6 +35,9 @@
     $ctrl.isCreatingInProgress = false;
 
     // --------------------
+    $ctrl.onScmUrlChange = ()=>{
+      $scope.scmRepositoryForm.scmUrl.$setValidity('scmRepoValid',true);
+    }
 
     // set default only if there is no initial value coming from ngModel
     if (typeof $ctrl.scmRepository.preBuildSyncEnabled === 'undefined') {
@@ -76,6 +79,13 @@
               gotoScmRepositoryDetailPage(payload.id);
             }
           });
+          $scope.$on(events.SCM_REPOSITORY_CREATION_ERROR, function (event, payload) {
+            // when SCM failed with some error
+            $ctrl.notificationTypeString = payload.notificationType.split('.')[1].split('(')[0];
+            $ctrl.isCreatingInProgress = false;
+            $scope.scmRepositoryForm.scmUrl.$setValidity('scmRepoValid',false);
+            $scope.$apply();
+          });
         }
 
       }).catch(function() {
@@ -85,6 +95,7 @@
 
     function reset(form) {
       if (form) {
+        $scope.scmRepositoryForm.scmUrl.$setValidity('scmRepoValid',true);
         form.$setPristine();
         form.$setUntouched();
         $ctrl.scmRepository = new ScmRepositoryResource();

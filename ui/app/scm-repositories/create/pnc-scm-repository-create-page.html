@@ -30,10 +30,11 @@
 
         <!-- Validation: This field is optional, however if it is not empty it must be a valid URL -->
         <div class="form-group" ng-class="{ 'has-error': scmRepositoryForm.scmUrl.$invalid && scmRepositoryForm.scmUrl.$touched, 'has-success': scmRepositoryForm.scmUrl.$valid && scmRepositoryForm.scmUrl.$touched }">
-          <label for="scmUrl" class="col-sm-3 col-lg-2 control-label">SCM Repository URL</label>
+          <label for="scmUrl" class="col-sm-3 col-lg-2 control-label required">SCM Repository URL</label>
           <div class="col-sm-9 col-lg-7">
-            <input type="text" pnc-scm-validator="git|ssh|http|https|git+ssh|git@" id="scmUrl" class="form-control" name="scmUrl" maxlength="255" ng-model="$ctrl.scmRepository.scmUrl">
-            <span class="help-block" ng-show="scmRepositoryForm.scmUrl.$invalid && scmRepositoryForm.scmUrl.$touched">Invalid Repository URL</span>
+            <input type="text" pnc-scm-validator="git|ssh|http|https|git+ssh|git@" id="scmUrl" ng-change="$ctrl.onScmUrlChange()" class="form-control" name="scmUrl" maxlength="255" ng-model="$ctrl.scmRepository.scmUrl" required>
+            <span class="help-block" ng-show="scmRepositoryForm.scmUrl.$invalid && scmRepositoryForm.scmUrl.$touched && !scmRepositoryForm.scmUrl.$error.scmRepoValid">Invalid Repository URL</span>
+            <span class="help-block" ng-class="{ 'has-error': scmRepositoryForm.scmUrl.$error.scmRepoValid }" ng-show="scmRepositoryForm.scmUrl.$error.scmRepoValid">Failed to create SCM: {{::$ctrl.notificationTypeString}}</span>
           </div>
         </div>
 
