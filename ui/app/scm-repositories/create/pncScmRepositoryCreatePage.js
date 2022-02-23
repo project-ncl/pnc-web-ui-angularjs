@@ -35,9 +35,9 @@
     $ctrl.isCreatingInProgress = false;
 
     // --------------------
-    $ctrl.onScmUrlChange = ()=>{
+    $ctrl.onScmUrlChange = () => {
       $scope.scmRepositoryForm.scmUrl.$setValidity('scmRepoValid',true);
-    }
+    };
 
     // set default only if there is no initial value coming from ngModel
     if (typeof $ctrl.scmRepository.preBuildSyncEnabled === 'undefined') {
