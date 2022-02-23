@@ -75,6 +75,12 @@
         }
       });
 
+      messageBus.onScmRepositoryCreationError(notification => {
+        if (!notification.scmRepository) {
+          $rootScope.$broadcast(events.SCM_REPOSITORY_CREATION_ERROR, notification);
+        }
+      });
+
       messageBus.onBuildPushStatusChange((buildPushResult, notification) => {
         $rootScope.$broadcast(events.BUILD_PUSH_STATUS_CHANGE, buildPushResult, notification);
       });
