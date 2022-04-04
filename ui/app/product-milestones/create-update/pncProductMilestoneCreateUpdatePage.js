@@ -53,7 +53,7 @@
   
         // Remove the prefix
         $ctrl.version = $ctrl.data.version.substring($ctrl.productVersion.version.length + 1);
-  
+        $ctrl.originalVersion = $ctrl.version;
         // date component <- timestamp
         $ctrl.startingDate = new Date($ctrl.data.startingDate);
         $ctrl.plannedEndDate = new Date($ctrl.data.plannedEndDate);
@@ -74,7 +74,6 @@
 
     function submit() {
       $ctrl.data.version = $ctrl.productVersion.version + '.' + $ctrl.version; // add the prefix
-
       // timestamp <- date component
       $ctrl.data.startingDate = dateUtilConverter.convertToUTCNoon($ctrl.startingDate);
       $ctrl.data.plannedEndDate = dateUtilConverter.convertToUTCNoon($ctrl.plannedEndDate);

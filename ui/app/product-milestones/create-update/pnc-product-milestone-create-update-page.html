@@ -40,7 +40,10 @@
                 <div class="input-group">
                   <span class="input-group-addon">{{ $ctrl.productVersion.version }}.</span>
                   <div class="input-validation-spinner">
-                    <input required id="input-version" class="form-control" name="version" maxlength="255" ng-model="$ctrl.version" error-messages="$ctrl.productMilestoneVersionErrorMessages" product-milestone-version-validator product-version="{{$ctrl.productVersion.version}}" product-version-id="{{$ctrl.productVersion.id}}">
+                    <input required id="input-version" class="form-control" name="version" maxlength="255" ng-model="$ctrl.version"
+                      product-milestone-version-validator original-value="$ctrl.originalVersion"
+                      error-messages="$ctrl.productMilestoneVersionErrorMessages" product-version="{{$ctrl.productVersion.version}}"
+                      product-version-id="{{$ctrl.productVersion.id}}">
                     <span ng-show="productMilestoneForm.version.$pending.productMilestoneVersionValidator" class="spinner spinner-sm"></span>
                   </div>
                 </div>
