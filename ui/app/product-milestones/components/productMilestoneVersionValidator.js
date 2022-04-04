@@ -25,7 +25,8 @@
             restrict: 'A',
             require: 'ngModel',
             scope: {
-                errorMessages: '='
+                errorMessages: '=',
+                originalValue: '<'
             },
             link: function (scope, element, attrs, ngModel) {
 
@@ -44,21 +45,24 @@
                             productVersion = attrs.productVersion;
 
                         if (milestoneVersion && productVersionId && productVersion) {
-                
-                            ProductMilestoneResource.validateVersion({
-                                productVersionId: productVersionId,
-                                version: productVersion + '.' + milestoneVersion
-                            }).$promise.then((response) => {
-                                if (response.isValid) {
-                                    deferred.resolve();
-                                } else {
-                                    scope.errorMessages = response.hints;
+                            if(scope.originalValue !== milestoneVersion){
+                                ProductMilestoneResource.validateVersion({
+                                    productVersionId: productVersionId,
+                                    version: productVersion + '.' + milestoneVersion
+                                }).$promise.then((response) => {
+                                    if (response.isValid) {
+                                        deferred.resolve();
+                                    } else {
+                                        scope.errorMessages = response.hints;
+                                        deferred.reject();
+                                    }
+                                }).catch(() => {
+                                    scope.errorMessages = ['An unexpected error occurred, please try again later'];
                                     deferred.reject();
-                                }
-                            }).catch(() => {
-                                scope.errorMessages = ['An unexpected error occurred, please try again later'];
-                                deferred.reject();
-                            });
+                                });
+                            } else {
+                                deferred.resolve();
+                            }
                         }
 
                         return deferred.promise;
