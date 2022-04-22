@@ -412,15 +412,24 @@ table.build-status-table tr > td {
 }
 
 
-.master-detail {
-  display: flex;
-  flex-direction: column;
+.master-detail > .master {
+  padding-left: 0;
+  
+  border-bottom: 1px solid silver;
+  margin-bottom: 20px;
 }
 
-
 @media (min-width: 768px) {
-  .master-detail {
-    flex-direction: row;
+  .master-detail > .master  {
+    float: left;
+    width: 180px;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .master-detail > .detail {
+    float: right;
+    width: calc(100% - 180px);
   }
 
   .master-detail > * {
@@ -443,7 +452,6 @@ table.build-status-table tr > td {
   .revisions-tab {
     min-height: calc(100vh - 2 * var(--pf-col-padding) - var(--masthead-height) - var(--breadcrumbs-height) - var(--footer-height) - var(--page-header-height) - var(--tabs-height));
     padding-bottom: 0;
-    margin-left: -20px;
   }
 }
 
