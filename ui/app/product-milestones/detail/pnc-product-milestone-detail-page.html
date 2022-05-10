@@ -17,56 +17,41 @@
     limitations under the License.
 
 -->
-<div ui-view>
-
-  <pnc-header>
+<div>
+  <pnc-header class="no-divider-header">
     <pnc-header-title>Product Milestone {{ $ctrl.productMilestone.version }}</pnc-header-title>
     <pnc-header-buttons>
-      <pnc-product-milestone-actions product-milestone="$ctrl.productMilestone" product="$ctrl.product" product-version="$ctrl.productVersion" is-current="$ctrl.isCurrent()"></pnc-product-milestone-actions>
+      <pnc-product-milestone-actions product-milestone="$ctrl.productMilestone" product="$ctrl.product"
+        product-version="$ctrl.productVersion" is-current="$ctrl.isCurrent()"></pnc-product-milestone-actions>
     </pnc-header-buttons>
   </pnc-header>
 
-  <div class="row">
+  <div class="row m-b-20">
     <div class="col-md-12">
-
-      <dl class="dl-horizontal">
-
-        <dt>Status</dt>
-        <dd>{{ $ctrl.closeStatus }}</dd>
-
-        <dt>Start Date</dt>
-        <dd>{{ $ctrl.productMilestone.startingDate | date:'yyyy/MM/dd' }}</dd>
-
-        <dt>Planned End Date</dt>
-        <dd>{{ $ctrl.productMilestone.plannedEndDate | date:'yyyy/MM/dd' }}</dd>
-
-        <dt>End Date</dt>
-        <dd>{{ ($ctrl.productMilestone.endDate | date:'yyyy/MM/dd') || '&mdash;' }}</dd>
-
-        <dt>Last Close Result</dt>
-        <dd><pnc-milestone-close-status-label close-result="$ctrl.latestCloseResult"></pnc-milestone-close-status-label></dd>
-      </dl>
+      <ul class="nav nav-tabs">
+        <li role="presentation" ui-sref-active="active">
+          <a href ui-sref="products.detail.product-versions.detail.milestone.detail.default"
+            ui-sref-opts="{reload:true}">Details</a>
+        </li>
+        <li role="presentation" ui-sref-active="active">
+          <a href ui-sref="products.detail.product-versions.detail.milestone.detail.builds-performed-tab">Builds Performed</a>
+        </li>
+        <li role="presentation" ui-sref-active="active">
+          <a href ui-sref="products.detail.product-versions.detail.milestone.detail.close-results-tab">Close Results</a>
+        </li>
+        <li role="presentation" ui-sref-active="active">
+          <a href ui-sref="products.detail.product-versions.detail.milestone.detail.deliverables-operations-tab">Deliverables
+            Operations</a>
+        </li>
+        <li role="presentation" ui-sref-active="active">
+          <a href ui-sref="products.detail.product-versions.detail.milestone.detail.delivered-artifacts-tab">Delivered
+            Artifacts</a>
+        </li>
+      </ul>
     </div>
   </div>
-
   <div class="row">
-    <div class="col-lg-6">
-      <pnc-header>
-        <pnc-header-title sub-header="true">
-          <small>Builds Performed</small>
-        </pnc-header-title>
-      </pnc-header>
-      <pnc-product-milestone-builds product-milestone="$ctrl.productMilestone" performed-builds="$ctrl.performedBuilds"></pnc-product-milestone-builds>
-    </div>
-
-    <div class="col-lg-6">
-      <pnc-header>
-        <pnc-header-title sub-header="true">
-          <small>Close Results</small>
-        </pnc-header-title>
-      </pnc-header>
-      <pnc-product-milestone-close-results-data-table close-results="$ctrl.closeResults"></pnc-product-milestone-close-results-data-table>
+    <div class="col-md-12" ui-view>
     </div>
   </div>
-
 </div>
