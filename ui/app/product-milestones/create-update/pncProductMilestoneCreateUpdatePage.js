@@ -92,7 +92,7 @@
 
         $ctrl.productVersion.$update().then(() => {
           $ctrl.data.$update().then(() => {
-            reloadPage($ctrl.product.id, $ctrl.productVersion.id);
+            displayProductMilestoneDetail($ctrl.productVersion.id, $ctrl.data.id);
           });
         });
 
@@ -112,15 +112,6 @@
           }
         });
       }
-    }
-
-    function reloadPage(productId, productVersionId) {
-      $state.go('products.detail.product-versions.detail', {
-        productId: productId,
-        productVersionId: productVersionId
-      }, {
-        reload: true
-      });
     }
 
     function displayProductMilestoneDetail(productVersionId, productMilestoneId) {

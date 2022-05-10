@@ -44,6 +44,7 @@
 
       .state('products.detail.product-versions.detail.milestone.detail', {
         url: '/{productMilestoneId}',
+        redirectTo: 'products.detail.product-versions.detail.milestone.detail.default',
         component: 'pncProductMilestoneDetailPage',
         data: {
           displayName: '{{ productMilestone.version }}',
@@ -61,7 +62,63 @@
           ]
         }
       })
-
+      .state('products.detail.product-versions.detail.milestone.detail.default', {
+        url: '/',
+        component: 'pncProductMilestoneDetailDetailsTab',
+        data: {
+          title: '{{ productMilestone.version }} | {{ product.name }} | Milestone',
+          displayName: 'Details',
+        },
+        resolve: {
+          productMilestone: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+            ProductMilestoneResource.get({ id: $stateParams.productMilestoneId }).$promise
+          ],
+          performedBuilds: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+            ProductMilestoneResource.queryPerformedBuilds({ id: $stateParams.productMilestoneId }).$promise
+          ],
+          closeResults: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+            ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId }).$promise
+          ]
+        }
+      })
+      .state('products.detail.product-versions.detail.milestone.detail.builds-performed-tab', {
+        url: '/build-performed-tab',
+        component: 'pncProductMilestoneDetailBuildsPerformedTab',
+        data: {
+          displayName: 'Builds Performed',
+          title: '{{ productMilestone.version }} | {{ product.name }} | Milestone | Builds Performed'
+        },
+        resolve: {
+          productMilestone: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+            ProductMilestoneResource.get({ id: $stateParams.productMilestoneId }).$promise
+          ],
+          performedBuilds: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+            ProductMilestoneResource.queryPerformedBuilds({ id: $stateParams.productMilestoneId }).$promise
+          ],
+          closeResults: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+            ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId }).$promise
+          ]
+        }
+      })
+      .state('products.detail.product-versions.detail.milestone.detail.close-results-tab', {
+        url: '/close-results-tab',
+        component: 'pncProductMilestoneCloseResultsTab',
+        data: {
+          displayName: 'Close Result',
+          title: '{{ productMilestone.version }} | {{ product.name }} | Milestone | Close Result'
+        },
+        resolve: {
+          productMilestone: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+            ProductMilestoneResource.get({ id: $stateParams.productMilestoneId }).$promise
+          ],
+          performedBuilds: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+            ProductMilestoneResource.queryPerformedBuilds({ id: $stateParams.productMilestoneId }).$promise
+          ],
+          closeResults: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+            ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId }).$promise
+          ]
+        }
+      })
       .state('products.detail.product-versions.detail.milestone.detail.log', {
         url: '/log',
         component: 'pncProductMilestoneDetailLogPage',

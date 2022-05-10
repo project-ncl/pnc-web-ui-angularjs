@@ -15,34 +15,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-(function() {
-  'use strict';
+(function () {
+  "use strict";
 
-  angular.module('pnc.product-milestones').component('pncProductMilestoneDetailPage', {
-    bindings: {
-      productMilestone: '<',
-      performedBuilds: '<',
-      closeResults: '<',
-      product: '<',
-      productVersion: '<'
-    },
-    templateUrl: 'product-milestones/detail/pnc-product-milestone-detail-page.html',
-    controller: ['ProductMilestoneHelper', Controller]
-  });
+  angular
+    .module("pnc.product-milestones")
+    .component("pncProductMilestoneDetailDetailsTab", {
+      bindings: {
+        productMilestone: "<",
+        closeResults: "<",
+      },
+      templateUrl:
+        "product-milestones/detail/details/pnc-product-milestone-detail-details-page.html",
+      controller: [Controller],
+    });
 
-  function Controller(ProductMilestoneHelper) {
+  function Controller() {
     const $ctrl = this;
 
     // -- Controller API --
 
-    $ctrl.isCurrent = isCurrent;
-
     // --------------------
 
-    function isCurrent() {
-      return ProductMilestoneHelper.isCurrentProductMilestone($ctrl.productVersion, $ctrl.productMilestone.id);
-    }
-
+    $ctrl.$onInit = () => {
+      $ctrl.closeStatus = $ctrl.productMilestone.endDate ? "CLOSED" : "OPEN";
+      $ctrl.latestCloseResult = $ctrl.closeResults.data[0];
+    };
   }
-
 })();

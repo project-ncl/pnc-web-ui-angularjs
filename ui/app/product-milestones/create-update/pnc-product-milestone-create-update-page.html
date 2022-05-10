@@ -19,7 +19,7 @@
 -->
 <div>
 
-  <div class="page-header">
+  <div class="page-header" ng-if="!$ctrl.hideHeader">
     <h1 ng-if="!$ctrl.isUpdating">Create milestone for {{ $ctrl.product.name }} {{ $ctrl.productVersion.version }}</h1>
     <h1 ng-if="$ctrl.isUpdating">Update milestone {{ $ctrl.data.version }} of {{ $ctrl.product.name }} {{ $ctrl.productVersion.version }}</h1>
   </div>
