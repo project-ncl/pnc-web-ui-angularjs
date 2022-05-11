@@ -53,12 +53,6 @@
         resolve: {
           productMilestone: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
             ProductMilestoneResource.get({ id: $stateParams.productMilestoneId }).$promise
-          ],
-          performedBuilds: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.queryPerformedBuilds({ id: $stateParams.productMilestoneId }).$promise
-          ],
-          closeResults: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId }).$promise
           ]
         }
       })
@@ -70,12 +64,6 @@
           displayName: 'Details',
         },
         resolve: {
-          productMilestone: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.get({ id: $stateParams.productMilestoneId }).$promise
-          ],
-          performedBuilds: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.queryPerformedBuilds({ id: $stateParams.productMilestoneId }).$promise
-          ],
           closeResults: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
             ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId }).$promise
           ]
@@ -89,14 +77,8 @@
           title: '{{ productMilestone.version }} | {{ product.name }} | Milestone | Builds Performed'
         },
         resolve: {
-          productMilestone: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.get({ id: $stateParams.productMilestoneId }).$promise
-          ],
           performedBuilds: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
             ProductMilestoneResource.queryPerformedBuilds({ id: $stateParams.productMilestoneId }).$promise
-          ],
-          closeResults: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId }).$promise
           ]
         }
       })
@@ -108,12 +90,6 @@
           title: '{{ productMilestone.version }} | {{ product.name }} | Milestone | Close Result'
         },
         resolve: {
-          productMilestone: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.get({ id: $stateParams.productMilestoneId }).$promise
-          ],
-          performedBuilds: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.queryPerformedBuilds({ id: $stateParams.productMilestoneId }).$promise
-          ],
           closeResults: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
             ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId }).$promise
           ]

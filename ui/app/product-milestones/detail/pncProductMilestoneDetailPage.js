@@ -21,9 +21,6 @@
   angular.module('pnc.product-milestones').component('pncProductMilestoneDetailPage', {
     bindings: {
       productMilestone: '<',
-      performedBuilds: '<',
-      closeResults: '<',
-      product: '<',
       productVersion: '<'
     },
     templateUrl: 'product-milestones/detail/pnc-product-milestone-detail-page.html',
