@@ -30,8 +30,6 @@
     });
 
   function Controller() {
-    const $ctrl = this;
-
     // -- Controller API --
 
     // --------------------
