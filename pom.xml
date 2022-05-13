@@ -1352,6 +1352,15 @@
               <exclude>**/node/**</exclude>
               <exclude>**/node_modules/**</exclude>
               <exclude>**/rest-config.json</exclude>
+
+              <!-- Exclude UI config file and pics -->
+              <exclude>**/.bowerrc</exclude>
+              <exclude>**/.editorconfig</exclude>
+              <exclude>**/.gitattributes</exclude>
+              <exclude>**/.htmlhintrc</exclude>
+              <exclude>**/.jshintrc</exclude>
+              <exclude>**.js.map</exclude>
+              <exclude>**.svg</exclude> 
             </excludes>
           </configuration>
         </plugin>
