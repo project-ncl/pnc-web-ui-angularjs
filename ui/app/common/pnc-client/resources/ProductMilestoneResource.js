@@ -79,6 +79,13 @@
           method: 'POST',
           url: ENDPOINT + '/validate-version',
           successNotification: false
+        },
+
+        getDeliveredArtifacts: {
+          method: 'GET',
+          url: ENDPOINT + '/delivered-artifacts',
+          isPaged: true,
+          successNotification: false
         }
       });
 

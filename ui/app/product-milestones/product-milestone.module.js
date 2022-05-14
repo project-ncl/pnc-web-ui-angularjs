@@ -95,6 +95,19 @@
           ]
         }
       })
+      .state('products.detail.product-versions.detail.milestone.detail.delivered-artifacts-tab', {
+        url: '/delivered-artifacts-tab',
+        component: 'pncProductMilestoneDetailDeliveredArtifactsTab',
+        data: {
+          displayName: 'Delivered Artifacts',
+          title: '{{ productMilestone.version }} | {{ product.name }} | Milestone | Delivered Artifacts'
+        },
+        resolve: {
+          deliveredArtifacts: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+            ProductMilestoneResource.getDeliveredArtifacts({ id: $stateParams.productMilestoneId }).$promise
+          ],
+        }
+      })
       .state('products.detail.product-versions.detail.milestone.detail.log', {
         url: '/log',
         component: 'pncProductMilestoneDetailLogPage',
