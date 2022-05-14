@@ -39,7 +39,7 @@
 
     $ctrl.$onInit = () => {
       $ctrl.closeStatus = $ctrl.productMilestone.endDate ? 'CLOSED' : 'OPEN';
-      $ctrl.latestCloseResult = $ctrl.closeResults.data[0];
+      $ctrl.latestCloseResult = $ctrl.closeResults.content[0];
     };
   }
 })();

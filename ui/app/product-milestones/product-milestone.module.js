@@ -65,7 +65,7 @@
         },
         resolve: {
           closeResults: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId }).$promise
+            ProductMilestoneResource.getLatestCloseResult({ id: $stateParams.productMilestoneId }).$promise
           ]
         }
       })
@@ -168,7 +168,7 @@
         },
         resolve: {
           closeResult: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.getLatestCloseResult({ id: $stateParams.productMilestoneId, q: 'id==' + $stateParams.closeResultId }).$promise
+            ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId, q: 'id==' + $stateParams.closeResultId }).$promise
           ],
           productMilestone: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) => 
             ProductMilestoneResource.get({id: $stateParams.productMilestoneId }).$promise
