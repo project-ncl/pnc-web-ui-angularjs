@@ -22,7 +22,8 @@
     bindings: {
       product: '<',
       productVersion: '<',
-      productMilestone: '<'
+      productMilestone: '<',
+      hideHeader: '<'
     },
     templateUrl: 'product-milestones/close/pnc-product-milestone-close-page.html',
     controller: ['$state', Controller]

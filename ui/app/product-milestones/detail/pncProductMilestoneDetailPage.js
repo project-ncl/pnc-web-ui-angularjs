@@ -21,7 +21,8 @@
   angular.module('pnc.product-milestones').component('pncProductMilestoneDetailPage', {
     bindings: {
       productMilestone: '<',
-      productVersion: '<'
+      productVersion: '<',
+      product: '<',
     },
     templateUrl: 'product-milestones/detail/pnc-product-milestone-detail-page.html',
     controller: ['ProductMilestoneHelper', Controller]
