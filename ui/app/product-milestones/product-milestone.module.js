@@ -124,7 +124,16 @@
           displayName: 'Update Milestone',
           title: '{{ productMilestone.version }} | {{ product.name }} | Update Milestone',
           requireAuth: true
-        }
+        },
+        params: {
+          hideHeader: {
+            value: false,
+            type: 'bool'
+          }
+        },
+        resolve: {
+          hideHeader: ['$stateParams', ($stateParams) => $stateParams.hideHeader]
+        },
       })
 
       .state('products.detail.product-versions.detail.milestone.detail.close', {
@@ -134,7 +143,16 @@
           displayName: 'Close Milestone',
           title: '{{ productMilestone.version }} | {{ product.name }} | Close Milestone',
           requireAuth: true
-        }
+        },
+        params: {
+          hideHeader: {
+            value: false,
+            type: 'bool'
+          }
+        },
+        resolve: {
+          hideHeader: ['$stateParams', ($stateParams) => $stateParams.hideHeader]
+        },
       })
 
       .state('products.detail.product-versions.detail.milestone.detail.close-result', {
@@ -150,7 +168,7 @@
         },
         resolve: {
           closeResult: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId, q: 'id==' + $stateParams.closeResultId }).$promise
+            ProductMilestoneResource.getLatestCloseResult({ id: $stateParams.productMilestoneId, q: 'id==' + $stateParams.closeResultId }).$promise
           ],
           productMilestone: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) => 
             ProductMilestoneResource.get({id: $stateParams.productMilestoneId }).$promise

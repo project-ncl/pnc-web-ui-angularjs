@@ -22,7 +22,8 @@
     bindings: {
       product: '<',
       productVersion: '<',
-      productMilestone: '<'
+      productMilestone: '<',
+      hideHeader: '<'
     },
     templateUrl: 'product-milestones/create-update/pnc-product-milestone-create-update-page.html',
     controller: ['$state', 'ProductMilestoneResource', 'dateUtilConverter', Controller]
