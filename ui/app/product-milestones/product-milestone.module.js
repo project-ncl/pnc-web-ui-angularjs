@@ -95,6 +95,19 @@
           ]
         }
       })
+      .state('products.detail.product-versions.detail.milestone.detail.delivered-artifacts-tab', {
+        url: '/delivered-artifacts-tab',
+        component: 'pncProductMilestoneDetailDeliveredArtifactsTab',
+        data: {
+          displayName: 'Delivered Artifacts',
+          title: '{{ productMilestone.version }} | {{ product.name }} | Milestone | Delivered Artifacts'
+        },
+        resolve: {
+          deliveredArtifacts: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+            ProductMilestoneResource.getDeliveredArtifacts({ id: $stateParams.productMilestoneId }).$promise
+          ],
+        }
+      })
       .state('products.detail.product-versions.detail.milestone.detail.log', {
         url: '/log',
         component: 'pncProductMilestoneDetailLogPage',
@@ -168,7 +181,7 @@
         },
         resolve: {
           closeResult: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId, q: 'id==' + $stateParams.closeResultId }).$promise
+          ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId, q: 'id==' + $stateParams.closeResultId }).$promise
           ],
           productMilestone: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) => 
             ProductMilestoneResource.get({id: $stateParams.productMilestoneId }).$promise
