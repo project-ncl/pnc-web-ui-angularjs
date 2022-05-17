@@ -65,7 +65,7 @@
         },
         resolve: {
           closeResults: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.queryCloseResults({ id: $stateParams.productMilestoneId }).$promise
+            ProductMilestoneResource.getLatestCloseResult({ id: $stateParams.productMilestoneId }).$promise
           ]
         }
       })
