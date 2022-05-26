@@ -86,7 +86,15 @@
           url: ENDPOINT + '/delivered-artifacts',
           isPaged: true,
           successNotification: false
-        }
+        },
+
+        getDeliverablesAnalyzerOperations: {
+          method: 'GET',
+          url: ENDPOINT + '/deliverables-analyzer-operations',
+          isPaged: true,
+          successNotification: false
+        },
+
       });
 
       patchHelper.assignPatchMethods(resource);

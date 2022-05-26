@@ -108,6 +108,32 @@
           ],
         }
       })
+      .state('products.detail.product-versions.detail.milestone.detail.deliverables-operations-tab', {
+        url: '/deliverables-operations-tab',
+        component: 'pncProductMilestoneDetailDeliverablesOperationsTab',
+        data: {
+          displayName: 'Deliverables Operations',
+          title: '{{ productMilestone.version }} | {{ product.name }} | Milestone | Deliverables Operations'
+        },
+        resolve: {
+          deliverablesOperations: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+            ProductMilestoneResource.getDeliverablesAnalyzerOperations({ id: $stateParams.productMilestoneId }).$promise
+          ],
+        }
+      })
+      .state('products.detail.product-versions.detail.milestone.deliverables-operation-details', {
+        url: '/deliverables-operation-details/{deliverablesOperationId}',
+        component: 'pncProductMilestoneDeliverablesOperationDetailsPage',
+        data: {
+          displayName: 'Deliverables Operation Details',
+          title: 'Deliverables Operation Details'
+        },
+        resolve: {
+          deliverablesOperation: ['OperationResource', '$stateParams', (OperationResource, $stateParams) =>
+            OperationResource.get({ id: $stateParams.deliverablesOperationId }).$promise
+          ],
+        }
+      })
       .state('products.detail.product-versions.detail.milestone.detail.log', {
         url: '/log',
         component: 'pncProductMilestoneDetailLogPage',
