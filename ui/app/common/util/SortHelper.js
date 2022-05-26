@@ -37,6 +37,7 @@
       groupBuildsList: { field: { id: 'startTime', title: 'Start Time' }, asc: false },
       myGroupBuildsPanel: { field: { id: 'startTime', title: 'Start Time' }, asc: false },
       myBuildsPanel: { field: { id: 'submitTime', title: 'Submit Time' }, asc: false },
+      deliverablesOperationsDataTable: { field: { id: 'submitTime', title: 'Submit Time' }, asc: false },
     };
 
     var helper = {};
