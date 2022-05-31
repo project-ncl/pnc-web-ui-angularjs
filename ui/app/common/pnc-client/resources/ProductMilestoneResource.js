@@ -75,6 +75,12 @@
           interceptor: { response: r => r.data }
         },
 
+        analyzeDeliverables: {
+          method: 'POST',
+          url: ENDPOINT + '/analyze-deliverables',
+          successNotification: 'Analysis of deliverables process started',
+        },
+
         validateVersion: {
           method: 'POST',
           url: ENDPOINT + '/validate-version',

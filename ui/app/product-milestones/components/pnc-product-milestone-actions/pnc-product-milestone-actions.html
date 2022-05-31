@@ -49,4 +49,11 @@
     <span ng-if="!$ctrl.size">Close</span>
   </button>
 
+  <button ui-sref="products.detail.product-versions.detail.milestone.detail.analyze-deliverables({productMilestoneId: $ctrl.productMilestone.id, hideHeader: true})"
+    title="Analyze Deliverables"
+    class="btn btn-default btn-{{ $ctrl.size ? $ctrl.size : 'lg'}}"
+    pnc-requires-auth>
+    <span ng-if="!$ctrl.size">Analyze Deliverables</span>
+  </button>
+
 </div>

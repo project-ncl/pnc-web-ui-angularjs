@@ -187,6 +187,25 @@
             ProductMilestoneResource.get({id: $stateParams.productMilestoneId }).$promise
           ]
         }
+      })
+      
+      .state('products.detail.product-versions.detail.milestone.detail.analyze-deliverables', {
+        url: '/analyze-deliverables',
+        component: 'pncProductMilestoneAnalyzeDeliverablesPage',
+        data: {
+          displayName: 'Analyze Deliverables',
+          title: '{{ productMilestone.version }} | {{ product.name }} | Analyze Deliverables',
+          requireAuth: true
+        },
+        params: {
+          hideHeader: {
+            value: false,
+            type: 'bool'
+          }
+        },
+        resolve: {
+          hideHeader: ['$stateParams', ($stateParams) => $stateParams.hideHeader]
+        },
       });
 
   }]);
