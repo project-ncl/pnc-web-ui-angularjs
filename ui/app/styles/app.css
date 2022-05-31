@@ -382,3 +382,7 @@ table.v-align-middle td {
 .metadata {
   display: none !important;
 }
+
+.pficon-warning-triangle-o--white::before {
+  color: white;
+}

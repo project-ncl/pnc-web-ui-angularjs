@@ -90,7 +90,8 @@
         'MAVEN',
         'GENERIC_PROXY',
         'NPM',
-        'COCOA_POD'
+        'COCOA_POD',
+        'DISTRIBUTION_ARCHIVE'
       ]
     }, {
       id: 'md5',
