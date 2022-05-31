@@ -36,7 +36,8 @@
         <a ng-href="{{ artifact.publicUrl }}" target="_self" href>{{ artifact.filename }}</a>
       </td>
       <td class="text-center shrink-to-fit">
-        <span class="label label-default">{{ artifact.targetRepository.repositoryType }}</span>
+        <span ng-if="artifact.targetRepository.repositoryType !== 'DISTRIBUTION_ARCHIVE'" class="label label-default">{{ artifact.targetRepository.repositoryType }}</span>
+        <span ng-if="artifact.targetRepository.repositoryType === 'DISTRIBUTION_ARCHIVE'" class="label label-warning" title="Artifacts with the DISTRIBUTION_ARCHIVE Repository Type are not built">{{ artifact.targetRepository.repositoryType }} <i class="pficon-warning-triangle-o pficon-warning-triangle-o--white"></i></span>
       </td>
       <td>
         <div class="checksum checksum-md5">
