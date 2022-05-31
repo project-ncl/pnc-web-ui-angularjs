@@ -242,6 +242,11 @@ label.required::before {
   margin-right: 10px;
 }
 
+.dropdown-kebab-pf > .dropdown-menu-right a.not-available {
+  color: silver;
+  font-style: italic;
+}
+
 .checksum-md5:before {
   content: "md5:\0000a0";
   font-weight: bold;

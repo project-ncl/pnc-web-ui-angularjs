@@ -60,7 +60,8 @@
             <i class="fa fa-ellipsis-v"></i>
           </button>
           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownKebab">
-            <li><a ng-href="{{ artifact.publicUrl }}" target="_self" href>Download</a></li>
+            <li ng-if="artifact.publicUrl"><a ng-href="{{ artifact.publicUrl }}" target="_self" href>Download</a></li>
+            <li ng-if="!artifact.publicUrl"><a class="not-available" title="Download is not available for this item" href>Download (not available)</a></li>
             <li><a ng-click="$ctrl.changeQuality(artifact)" href>Change Quality</a></li>
             <li><a ng-click="$ctrl.showQualityRevisions(artifact)" href>Quality Revisions</a></li>
           </ul>
