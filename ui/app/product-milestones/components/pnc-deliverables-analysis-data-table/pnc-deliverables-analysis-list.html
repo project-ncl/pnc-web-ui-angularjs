@@ -26,14 +26,14 @@
     <th>Submit Time</th>
   </thead>
   <tbody>
-    <tr ng-repeat="deliverablesOperation in $ctrl.deliverablesOperations">
+    <tr ng-repeat="deliverablesAnalysis in $ctrl.deliverablesAnalysis">
       <td>
-        <a ui-sref="products.detail.product-versions.detail.milestone.deliverables-operation-details({ deliverablesOperationId: deliverablesOperation.id })"
-          href>{{deliverablesOperation.id}}</a>
+        <a ui-sref="products.detail.product-versions.detail.milestone.deliverables-analysis-details({ deliverablesAnalysisId: deliverablesAnalysis.id })"
+          href>{{deliverablesAnalysis.id}}</a>
       </td>
-      <td>{{deliverablesOperation.progressStatus}}</td>
-      <td>{{deliverablesOperation.result}}</td>
-      <td>{{deliverablesOperation.submitTime | date:'medium' }}</td>
+      <td>{{deliverablesAnalysis.progressStatus}}</td>
+      <td>{{deliverablesAnalysis.result}}</td>
+      <td>{{deliverablesAnalysis.submitTime | date:'medium' }}</td>
     </tr>
   </tbody>
 </table>

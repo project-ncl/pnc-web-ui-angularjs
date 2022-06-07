@@ -20,12 +20,12 @@
 
   angular
     .module('pnc.product-milestones')
-    .component('pncProductMilestoneDetailDeliverablesOperationsTab', {
+    .component('pncProductMilestoneDetailDeliverablesAnalysisTab', {
       bindings: {
-        deliverablesOperations: '<',
+        deliverablesAnalysis: '<',
       },
       templateUrl:
-        'product-milestones/detail/deliverables-operations/pnc-product-milestone-detail-deliverables-operations-tab.html',
+        'product-milestones/detail/deliverables-analysis/pnc-product-milestone-detail-deliverables-analysis-tab.html',
       controller: [Controller],
     });
 
