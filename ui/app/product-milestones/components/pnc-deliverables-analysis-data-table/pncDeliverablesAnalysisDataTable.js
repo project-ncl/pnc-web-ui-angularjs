@@ -16,75 +16,75 @@
  * limitations under the License.
  */
 (function () {
-  "use strict";
+  'use strict';
 
   angular
-    .module("pnc.product-milestones")
-    .component("pncDeliverablesOperationsDataTable", {
+    .module('pnc.product-milestones')
+    .component('pncDeliverablesAnalysisDataTable', {
       bindings: {
         /**
-         * Array: The list of deliverables operations to display in the table
+         * Array: The list of deliverables analysis to display in the table
          */
-        deliverablesOperations: "<",
+        deliverablesAnalysis: '<',
       },
       templateUrl:
-        "product-milestones/components/pnc-deliverables-operations-data-table/pnc-deliverables-operations-data-table.html",
-      controller: ["filteringPaginator", "SortHelper", Controller],
+        'product-milestones/components/pnc-deliverables-analysis-data-table/pnc-deliverables-analysis-data-table.html',
+      controller: ['filteringPaginator', 'SortHelper', Controller],
     });
 
   function Controller(filteringPaginator, SortHelper) {
     const $ctrl = this;
 
-    const PAGE_NAME = "deliverablesOperationsDataTable";
+    const PAGE_NAME = 'deliverablesAnalysisDataTable';
 
     // -- Controller API --
 
     $ctrl.filteringFields = [
       {
-        id: "id",
-        title: "Id",
-        placeholder: "string | !string | s?ring | st*ng",
-        filterType: "text",
+        id: 'id',
+        title: 'Id',
+        placeholder: 'string | !string | s?ring | st*ng',
+        filterType: 'text',
       },
       {
-        id: "progressStatus",
-        title: "Status",
-        placeholder: "Filter by Status",
-        filterType: "select",
-        filterValues: ["NEW", "IN_PROGRESS", "FINISHED"],
+        id: 'progressStatus',
+        title: 'Status',
+        placeholder: 'Filter by Status',
+        filterType: 'select',
+        filterValues: ['NEW', 'IN_PROGRESS', 'FINISHED'],
       },
       {
-        id: "result",
-        title: "Result",
-        placeholder: "Filter by Result",
-        filterType: "select",
-        filterValues: ["SUCCESSFUL", "FAILED", "SYSTEM_ERROR"],
+        id: 'result',
+        title: 'Result',
+        placeholder: 'Filter by Result',
+        filterType: 'select',
+        filterValues: ['SUCCESSFUL', 'FAILED', 'SYSTEM_ERROR'],
       },
     ];
 
     $ctrl.sortingFields = [
       {
-        id: "id",
-        title: "Id",
+        id: 'id',
+        title: 'Id',
       },
       {
-        id: "progressStatus",
-        title: "Status",
+        id: 'progressStatus',
+        title: 'Status',
       },
       {
-        id: "result",
-        title: "Result",
+        id: 'result',
+        title: 'Result',
       },
       {
-        id: "submitTime",
-        title: "Submit Time",
+        id: 'submitTime',
+        title: 'Submit Time',
       },
     ];
 
     // --------------------
 
     $ctrl.$onInit = () => {
-      $ctrl.filteringPage = filteringPaginator($ctrl.deliverablesOperations);
+      $ctrl.filteringPage = filteringPaginator($ctrl.deliverablesAnalysis);
 
       $ctrl.sortingConfigs = SortHelper.getSortConfig(PAGE_NAME);
     };

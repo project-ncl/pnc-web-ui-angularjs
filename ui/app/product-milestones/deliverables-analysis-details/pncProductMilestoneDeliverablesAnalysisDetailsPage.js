@@ -16,19 +16,19 @@
  * limitations under the License.
  */
 (function () {
-  "use strict";
+  'use strict';
 
   angular
-    .module("pnc.product-milestones")
-    .component("pncDeliverablesOperationsList", {
+    .module('pnc.product-milestones')
+    .component('pncProductMilestoneDeliverablesAnalysisDetailsPage', {
       bindings: {
         /**
-         * Array: The list of deliverables operations to display in the table
+         * deliverablesAnalysis: the deliverables analysis object to display.
          */
-        deliverablesOperations: "<",
+        deliverablesAnalysis: '<',
       },
       templateUrl:
-        "product-milestones/components/pnc-deliverables-operations-data-table/pnc-deliverables-operations-list.html",
+        'product-milestones/deliverables-analysis-details/pnc-product-milestone-deliverables-analysis-details-page.html',
       controller: [Controller],
     });
 
@@ -39,10 +39,11 @@
 
     // --------------------
 
-    $ctrl.hasData = () => {
-      return (
-        $ctrl.deliverablesOperations && $ctrl.deliverablesOperations.length > 0
-      );
+    $ctrl.$onInit = () => {
+      $ctrl.data = $ctrl.deliverablesAnalysis;
+
+      $ctrl.prefixFilters = 'loggerName.keyword:org.jboss.pnc,level.keyword:DEBUG|INFO|ERROR|WARN';
+      $ctrl.matchFilters = `mdc.processContext.keyword:${$ctrl.data.id}`;
     };
   }
 })();
