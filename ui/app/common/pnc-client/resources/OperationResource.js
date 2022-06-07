@@ -20,20 +20,17 @@
 
   var module = angular.module('pnc.common.pnc-client.resources');
 
-  module.value('OPERATIONS_PATH', '/operations/:id');
-  module.value('DELIVERABLE_ANALYZER_OPERATIONS_PATH', '/operations/deliverable-analyzer/:id');
+  module.value('DELIVERABLE_ANALYZER_PATH', '/operations/deliverable-analyzer/:id');
 
   module.factory('OperationResource', [
     '$resource',
     'restConfig',
-    'PRODUCTS_PATH',
-    'DELIVERABLE_ANALYZER_OPERATIONS_PATH',
+    'DELIVERABLE_ANALYZER_PATH',
     'patchHelper',
-    ($resource, restConfig, PRODUCTS_PATH, DELIVERABLE_ANALYZER_OPERATIONS_PATH, patchHelper) => {
-      const ENDPOINT = restConfig.getPncRestUrl() + PRODUCTS_PATH;
-      const DELIVERABLE_ANALYZER_OPERATIONS_ENDPOINT = restConfig.getPncRestUrl() + DELIVERABLE_ANALYZER_OPERATIONS_PATH;
+    ($resource, restConfig, DELIVERABLE_ANALYZER_PATH, patchHelper) => {
+      const DELIVERABLE_ANALYZER_ENDPOINT = restConfig.getPncRestUrl() + DELIVERABLE_ANALYZER_PATH;
 
-      const resource = $resource(DELIVERABLE_ANALYZER_OPERATIONS_ENDPOINT, {
+      const resource = $resource(DELIVERABLE_ANALYZER_ENDPOINT, {
         id: '@id'
       },
       {

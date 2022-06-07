@@ -108,29 +108,29 @@
           ],
         }
       })
-      .state('products.detail.product-versions.detail.milestone.detail.deliverables-operations-tab', {
-        url: '/deliverables-operations-tab',
-        component: 'pncProductMilestoneDetailDeliverablesOperationsTab',
+      .state('products.detail.product-versions.detail.milestone.detail.deliverables-analysis-tab', {
+        url: '/deliverables-analysis-tab',
+        component: 'pncProductMilestoneDetailDeliverablesAnalysisTab',
         data: {
-          displayName: 'Deliverables Operations',
-          title: '{{ productMilestone.version }} | {{ product.name }} | Milestone | Deliverables Operations'
+          displayName: 'Deliverables Analysis',
+          title: '{{ productMilestone.version }} | {{ product.name }} | Milestone | Deliverables Analysis'
         },
         resolve: {
-          deliverablesOperations: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+          deliverablesAnalysis: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
             ProductMilestoneResource.getDeliverablesAnalyzerOperations({ id: $stateParams.productMilestoneId }).$promise
           ],
         }
       })
-      .state('products.detail.product-versions.detail.milestone.deliverables-operation-details', {
-        url: '/deliverables-operation-details/{deliverablesOperationId}',
-        component: 'pncProductMilestoneDeliverablesOperationDetailsPage',
+      .state('products.detail.product-versions.detail.milestone.deliverables-analysis-details', {
+        url: '/deliverables-analysis-details/{deliverablesAnalysisId}',
+        component: 'pncProductMilestoneDeliverablesAnalysisDetailsPage',
         data: {
-          displayName: 'Deliverables Operation Details',
-          title: 'Deliverables Operation Details'
+          displayName: 'Deliverables Analysis Details',
+          title: 'Deliverables Analysis Details'
         },
         resolve: {
-          deliverablesOperation: ['OperationResource', '$stateParams', (OperationResource, $stateParams) =>
-            OperationResource.get({ id: $stateParams.deliverablesOperationId }).$promise
+          deliverablesAnalysis: ['OperationResource', '$stateParams', (OperationResource, $stateParams) =>
+            OperationResource.get({ id: $stateParams.deliverablesAnalysisId }).$promise
           ],
         }
       })

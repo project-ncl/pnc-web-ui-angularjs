@@ -17,13 +17,4 @@
     limitations under the License.
 
 -->
-<div class="row">
-  <pnc-toolbar filtering-page="$ctrl.filteringPage" filtering-fields="$ctrl.filteringFields"
-    sorting-fields="$ctrl.sortingFields" sorting-configs="$ctrl.sortingConfigs">
-  </pnc-toolbar>
-</div>
-<div>
-  <pnc-deliverables-operations-list deliverables-operations="$ctrl.filteringPage.data">
-  </pnc-deliverables-operations-list>
-  <pnc-page-controls pnc-page="$ctrl.filteringPage" class="pull-right"></pnc-page-controls>
-</div>
+<pnc-deliverables-analysis-data-table deliverables-analysis="$ctrl.deliverablesAnalysis"></pnc-deliverables-analysis-data-table>

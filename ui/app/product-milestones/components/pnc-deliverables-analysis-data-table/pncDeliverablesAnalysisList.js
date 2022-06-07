@@ -16,35 +16,33 @@
  * limitations under the License.
  */
 (function () {
-  "use strict";
+  'use strict';
 
   angular
-    .module("pnc.product-milestones")
-    .component("pncProductMilestoneDeliverablesOperationDetailsPage", {
+    .module('pnc.product-milestones')
+    .component('pncDeliverablesAnalysisList', {
       bindings: {
         /**
-         * deliverablesOperation: the deliverables operation object to display.
+         * Array: The list of deliverables analysis to display in the table
          */
-        deliverablesOperation: "<",
+        deliverablesAnalysis: '<',
       },
       templateUrl:
-        "product-milestones/deliverables-operation-details/pnc-product-milestone-deliverables-operation-details-page.html",
-      controller: ["$scope", Controller],
+        'product-milestones/components/pnc-deliverables-analysis-data-table/pnc-deliverables-analysis-list.html',
+      controller: [Controller],
     });
 
-  function Controller($scope) {
+  function Controller() {
     const $ctrl = this;
 
     // -- Controller API --
 
     // --------------------
 
-    $ctrl.$onInit = () => {
-      $ctrl.data = $ctrl.deliverablesOperation;
-
-      $ctrl.prefixFilters =
-        "loggerName.keyword:org.jboss.pnc.causeway|org.jboss.pnc._userlog_,level.keyword:INFO|ERROR|WARN";
-      $ctrl.matchFilters = `mdc.processContext:${$ctrl.data.id}`;
+    $ctrl.hasData = () => {
+      return (
+        $ctrl.deliverablesAnalysis && $ctrl.deliverablesAnalysis.length > 0
+      );
     };
   }
 })();
