@@ -201,7 +201,6 @@
               }
 
               else if (f.method === 'QUERY_PARAM') {
-                f.value = f.value.replace('?', '_'); // direct params do not support '?' operator
                 if (isExcluding) {
                   // Current form: %!<filter>%
                   // Backend expects: !%<filter>% - switch first two characters
