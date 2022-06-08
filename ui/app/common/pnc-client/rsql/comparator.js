@@ -66,14 +66,12 @@
 
         that.like = function (value) {
           value = value.replace(/\*/g, '%');
-          value = value.replace(/\?/g, '_');
           ctx.addToQuery('=like="' + value + '"');
           return ctx.next();
         };
 
         that.notlike = function (value) {
           value = value.replace(/\*/g, '%');
-          value = value.replace(/\?/g, '_');
           ctx.addToQuery('=notlike="' + value + '"');
           return ctx.next();
         };
