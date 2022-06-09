@@ -70,7 +70,7 @@
         }
       })
       .state('products.detail.product-versions.detail.milestone.detail.builds-performed-tab', {
-        url: '/build-performed-tab',
+        url: '/build-performed',
         component: 'pncProductMilestoneDetailBuildsPerformedTab',
         data: {
           displayName: 'Builds Performed',
@@ -83,7 +83,7 @@
         }
       })
       .state('products.detail.product-versions.detail.milestone.detail.close-results-tab', {
-        url: '/close-results-tab',
+        url: '/close-results',
         component: 'pncProductMilestoneCloseResultsTab',
         data: {
           displayName: 'Close Result',
@@ -96,7 +96,7 @@
         }
       })
       .state('products.detail.product-versions.detail.milestone.detail.delivered-artifacts-tab', {
-        url: '/delivered-artifacts-tab',
+        url: '/delivered-artifacts',
         component: 'pncProductMilestoneDetailDeliveredArtifactsTab',
         data: {
           displayName: 'Delivered Artifacts',
@@ -109,7 +109,7 @@
         }
       })
       .state('products.detail.product-versions.detail.milestone.detail.deliverables-analysis-tab', {
-        url: '/deliverables-analysis-tab',
+        url: '/deliverables-analysis',
         component: 'pncProductMilestoneDetailDeliverablesAnalysisTab',
         data: {
           displayName: 'Deliverables Analysis',
@@ -122,7 +122,7 @@
         }
       })
       .state('products.detail.product-versions.detail.milestone.detail.deliverables-analysis-details', {
-        url: '/deliverables-analysis-tab/{deliverablesAnalysisId}',
+        url: '/deliverables-analysis/{deliverablesAnalysisId}',
         component: 'pncProductMilestoneDeliverablesAnalysisDetailsPage',
         data: {
           displayName: 'Deliverables Analysis {{deliverablesAnalysisId}}',
