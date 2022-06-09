@@ -18,7 +18,7 @@
 
 -->
 <div class="page-header">
-  <h1>Deliverables Analysis Details</h1>
+  <h3>Deliverables Analysis Details</h3>
 </div>
 
 <dl class="dl-horizontal">
@@ -36,42 +36,6 @@
   <dd>{{ $ctrl.data.endTime | date:'medium' }}</dd>
 </dl>
 
-<!-- <div class="page-header">
-  <h3>Pushed Builds</h3>
-</div>
-
-<table class="table table-bordered table-striped table-hover" ng-show="$ctrl.showTable()">
-  <thead>
-    <th>Brew Push Status</th>
-    <th>PNC Job Id</th>
-    <th>Brew Build Id</th>
-    <th>Brew Build URL</th>
-  </thead>
-  <tbody>
-    <tr ng-repeat="buildPushResult in $ctrl.data.buildPushResults">
-      <td>{{ ::buildPushResult.status || '&mdash;' }}</td>
-      <td>
-        <a href ui-sref="builds.detail({ buildId: buildPushResult.buildId })" >#{{::buildPushResult.buildId }}</a>
-      </td>
-      <td>{{ ::buildPushResult.brewBuildId || '&mdash;' }}</td>
-      <td>
-        <a ng-if="buildPushResult.brewBuildUrl" target="_blank" href="{{ ::buildPushResult.brewBuildUrl }}">{{ ::buildPushResult.brewBuildUrl }}</a>
-        <span ng-if="!buildPushResult.brewBuildUrl">&mdash;</span>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<table class="table table-bordered table-striped table-hover" ng-hide="$ctrl.showTable()">
-  <tbody>
-    <tr>
-      <td class="text-center p-t-10 p-b-10"><em>There are no pushed builds to display</em></td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="page-header">
-  <h3>Log</h3>
-</div> -->
-
 <pnc-bifrost-log-viewer match-filters="$ctrl.matchFilters" prefix-filters="$ctrl.prefixFilters">
 </pnc-bifrost-log-viewer>
+<!-- Todo: margin bottom -->

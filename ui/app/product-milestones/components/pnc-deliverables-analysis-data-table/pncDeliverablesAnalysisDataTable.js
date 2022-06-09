@@ -41,12 +41,6 @@
 
     $ctrl.filteringFields = [
       {
-        id: 'id',
-        title: 'Id',
-        placeholder: 'string | !string | s?ring | st*ng',
-        filterType: 'text',
-      },
-      {
         id: 'progressStatus',
         title: 'Status',
         placeholder: 'Filter by Status',
@@ -63,18 +57,6 @@
     ];
 
     $ctrl.sortingFields = [
-      {
-        id: 'id',
-        title: 'Id',
-      },
-      {
-        id: 'progressStatus',
-        title: 'Status',
-      },
-      {
-        id: 'result',
-        title: 'Result',
-      },
       {
         id: 'submitTime',
         title: 'Submit Time',
