@@ -121,14 +121,15 @@
           ],
         }
       })
-      .state('products.detail.product-versions.detail.milestone.deliverables-analysis-details', {
-        url: '/deliverables-analysis-details/{deliverablesAnalysisId}',
+      .state('products.detail.product-versions.detail.milestone.detail.deliverables-analysis-details', {
+        url: '/deliverables-analysis-tab/{deliverablesAnalysisId}',
         component: 'pncProductMilestoneDeliverablesAnalysisDetailsPage',
         data: {
-          displayName: 'Deliverables Analysis Details',
-          title: 'Deliverables Analysis Details'
+          displayName: 'Deliverables Analysis {{deliverablesAnalysisId}}',
+          title: 'Deliverables Analysis | {{deliverablesAnalysisId}}'
         },
         resolve: {
+          deliverablesAnalysisId: [ '$stateParams', ($stateParams) => $stateParams.deliverablesAnalysisId ],
           deliverablesAnalysis: ['OperationResource', '$stateParams', (OperationResource, $stateParams) =>
             OperationResource.get({ id: $stateParams.deliverablesAnalysisId }).$promise
           ],

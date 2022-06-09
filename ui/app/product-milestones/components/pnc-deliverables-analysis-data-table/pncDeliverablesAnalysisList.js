@@ -39,10 +39,6 @@
 
     // --------------------
 
-    $ctrl.hasData = () => {
-      return (
-        $ctrl.deliverablesAnalysis && $ctrl.deliverablesAnalysis.length > 0
-      );
-    };
+    $ctrl.hasData = () => $ctrl.deliverablesAnalysis && $ctrl.deliverablesAnalysis.length > 0;
   }
 })();
