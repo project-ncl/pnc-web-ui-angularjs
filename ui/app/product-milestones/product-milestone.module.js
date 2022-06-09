@@ -126,7 +126,7 @@
         component: 'pncProductMilestoneDeliverablesAnalysisDetailsPage',
         data: {
           displayName: 'Deliverables Analysis {{deliverablesAnalysisId}}',
-          title: 'Deliverables Analysis | {{deliverablesAnalysisId}}'
+          title: 'Deliverables Analysis {{deliverablesAnalysisId}}'
         },
         resolve: {
           deliverablesAnalysisId: [ '$stateParams', ($stateParams) => $stateParams.deliverablesAnalysisId ],
