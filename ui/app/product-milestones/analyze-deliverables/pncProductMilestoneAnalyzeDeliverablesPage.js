@@ -47,7 +47,6 @@
         $state.go('products.detail.product-versions.detail.milestone.detail.deliverables-analysis-details',{ 
           deliverablesAnalysisId: response.id 
         });
-        console.log('response: ', response);
       }, (error) => {
         console.error(error);
       });
