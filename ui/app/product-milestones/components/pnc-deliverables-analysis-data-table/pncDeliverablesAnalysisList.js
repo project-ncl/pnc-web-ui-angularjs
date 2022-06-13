@@ -34,11 +34,14 @@
 
   function Controller() {
     const $ctrl = this;
+    $ctrl.hasData = false;
 
     // -- Controller API --
 
     // --------------------
 
-    $ctrl.hasData = () => $ctrl.deliverablesAnalysis && $ctrl.deliverablesAnalysis.length > 0;
+    $ctrl.$onInit = () => {
+      $ctrl.hasData = $ctrl.deliverablesAnalysis && $ctrl.deliverablesAnalysis.length > 0;
+    };
   }
 })();
