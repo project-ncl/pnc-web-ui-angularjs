@@ -386,3 +386,7 @@ table.v-align-middle td {
 .pficon-warning-triangle-o--white::before {
   color: white;
 }
+
+.log-viewer {
+  margin-bottom: 20px;
+}
