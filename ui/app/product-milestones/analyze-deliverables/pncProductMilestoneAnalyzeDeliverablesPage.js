@@ -44,7 +44,9 @@
       ProductMilestoneResource.analyzeDeliverables({ id: $ctrl.data.id }, {
         deliverablesUrls: deliverablesUrls.split('\n') // parse URLs into array
       }, (response) => {
-        // TODO redirect: $state.go(...)
+        $state.go('products.detail.product-versions.detail.milestone.detail.deliverables-analysis-details',{ 
+          deliverablesAnalysisId: response.id 
+        });
         console.log('response: ', response);
       }, (error) => {
         console.error(error);
