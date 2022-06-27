@@ -54,6 +54,12 @@
         filterType: 'select',
         filterValues: ['SUCCESSFUL', 'FAILED', 'SYSTEM_ERROR'],
       },
+      {
+        id: 'user.username',
+        title: 'User',
+        placeholder: 'string | !string | s?ring | st*ng',
+        filterType: 'text'
+      }
     ];
 
     $ctrl.sortingFields = [

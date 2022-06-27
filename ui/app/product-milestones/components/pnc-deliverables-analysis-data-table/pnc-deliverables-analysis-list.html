@@ -24,6 +24,7 @@
     <th>Status</th>
     <th>Result</th>
     <th>Submit Time</th>
+    <th>User</th>
   </thead>
   <tbody>
     <tr ng-repeat="deliverablesAnalysis in $ctrl.deliverablesAnalysis">
@@ -34,6 +35,7 @@
       <td>{{deliverablesAnalysis.progressStatus}}</td>
       <td>{{deliverablesAnalysis.result}}</td>
       <td>{{deliverablesAnalysis.submitTime | date:'medium' }}</td>
+      <td>{{deliverablesAnalysis.user.username}}</td>
     </tr>
   </tbody>
 </table>
