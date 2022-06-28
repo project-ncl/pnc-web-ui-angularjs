@@ -34,6 +34,12 @@
   <dd>{{ $ctrl.data.startTime | date:'medium' }}</dd>
   <dt>End Time:</dt>
   <dd>{{ $ctrl.data.endTime | date:'medium' }}</dd>
+  <dt>Parameters:</dt>
+  <dd>
+    <div ng-repeat="parameter in $ctrl.data.parameters" class="lh-1-5">
+      {{parameter}}
+    </div>
+  </dd>
 </dl>
 <div class="m-b-20">
   <pnc-bifrost-log-viewer match-filters="$ctrl.matchFilters" prefix-filters="$ctrl.prefixFilters">
