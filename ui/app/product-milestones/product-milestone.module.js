@@ -117,15 +117,17 @@
         },
         resolve: {
           deliverablesAnalysis: [
-            "ProductMilestoneResource",
-            "SortHelper",
-            "$stateParams",
+            'ProductMilestoneResource',
+            'SortHelper',
+            '$stateParams',
             (ProductMilestoneResource, SortHelper, $stateParams) =>
-              ProductMilestoneResource.getDeliverablesAnalyzerOperations({
-                id: $stateParams.productMilestoneId,
-                ...SortHelper.getSortQueryString("deliverablesAnalysisDataTable"),
-              }).$promise,
-          ]
+              ProductMilestoneResource.getDeliverablesAnalyzerOperations(
+                Object.assign(
+                  { id: $stateParams.productMilestoneId },
+                  SortHelper.getSortQueryString('deliverablesAnalysisDataTable')
+                )
+              ).$promise,
+          ],
         }
       })
       .state('products.detail.product-versions.detail.milestone.detail.deliverables-analysis-details', {
