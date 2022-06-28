@@ -116,9 +116,16 @@
           title: '{{ productMilestone.version }} | {{ product.name }} | Milestone | Deliverables Analysis'
         },
         resolve: {
-          deliverablesAnalysis: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
-            ProductMilestoneResource.getDeliverablesAnalyzerOperations({ id: $stateParams.productMilestoneId }).$promise
-          ],
+          deliverablesAnalysis: [
+            "ProductMilestoneResource",
+            "SortHelper",
+            "$stateParams",
+            (ProductMilestoneResource, SortHelper, $stateParams) =>
+              ProductMilestoneResource.getDeliverablesAnalyzerOperations({
+                id: $stateParams.productMilestoneId,
+                ...SortHelper.getSortQueryString("deliverablesAnalysisDataTable"),
+              }).$promise,
+          ]
         }
       })
       .state('products.detail.product-versions.detail.milestone.detail.deliverables-analysis-details', {
