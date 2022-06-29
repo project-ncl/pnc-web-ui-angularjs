@@ -25,7 +25,7 @@
         /**
          * Array: The list of deliverables analysis to display in the table
          */
-        deliverablesAnalysis: '<',
+        deliverablesAnalysisList: '<',
       },
       templateUrl:
         'product-milestones/components/pnc-deliverables-analysis-data-table/pnc-deliverables-analysis-list.html',
@@ -41,7 +41,7 @@
     // --------------------
 
     $ctrl.$onInit = () => {
-      $ctrl.hasData = $ctrl.deliverablesAnalysis && $ctrl.deliverablesAnalysis.length > 0;
+      $ctrl.hasData = $ctrl.deliverablesAnalysisList && $ctrl.deliverablesAnalysisList.length > 0;
     };
   }
 })();
