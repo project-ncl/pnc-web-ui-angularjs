@@ -42,8 +42,8 @@
     $ctrl.$onInit = () => {
       $ctrl.data = $ctrl.deliverablesAnalysis;
 
-      $ctrl.prefixFilters = 'loggerName.keyword:org.jboss.pnc,level.keyword:DEBUG|INFO|ERROR|WARN';
-      $ctrl.matchFilters = `mdc.processContext.keyword:${$ctrl.data.id}`;
+      $ctrl.prefixFilters = 'loggerName.keyword:org.jboss.pnc';
+      $ctrl.matchFilters = `level.keyword:DEBUG|INFO|ERROR|WARN,mdc.processContext.keyword:${$ctrl.data.id}`;
     };
   }
 })();
