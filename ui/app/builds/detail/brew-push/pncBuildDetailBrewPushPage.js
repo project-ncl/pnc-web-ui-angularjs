@@ -49,8 +49,8 @@
       function load(brewPushResult) {
         if (brewPushResult) {
           $ctrl.data = brewPushResult;
-          $ctrl.prefixFilters = 'loggerName.keyword:org.jboss.pnc.causeway|org.jboss.pnc._userlog_,level.keyword:INFO|ERROR|WARN';
-          $ctrl.matchFilters = `mdc.buildId.keyword:${brewPushResult.buildId},mdc.processContext.keyword:${brewPushResult.logContext}`;
+          $ctrl.prefixFilters = 'loggerName.keyword:org.jboss.pnc.causeway|org.jboss.pnc._userlog_';
+          $ctrl.matchFilters = `level.keyword:INFO|ERROR|WARN,mdc.buildId.keyword:${brewPushResult.buildId},mdc.processContext.keyword:${brewPushResult.logContext}`;
         }
       }
     }

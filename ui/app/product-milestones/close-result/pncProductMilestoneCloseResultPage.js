@@ -41,8 +41,8 @@
     $ctrl.$onInit = () => {
       $ctrl.data = $ctrl.closeResult.data[0];
 
-      $ctrl.prefixFilters = 'loggerName.keyword:org.jboss.pnc.causeway|org.jboss.pnc._userlog_,level.keyword:INFO|ERROR|WARN';
-      $ctrl.matchFilters = `mdc.processContext.keyword:${$ctrl.data.id}`;
+      $ctrl.prefixFilters = 'loggerName.keyword:org.jboss.pnc.causeway|org.jboss.pnc._userlog_';
+      $ctrl.matchFilters = `level.keyword:INFO|ERROR|WARN,mdc.processContext.keyword:${$ctrl.data.id}`;
 
       $scope.$on('MILESTONE_PUSH_STATUS_CHANGE', (event, milestonePushResult) => {
         $scope.$applyAsync(() => load(milestonePushResult));
@@ -56,7 +56,7 @@
     function load(milestonePushResult) {
       if (milestonePushResult) {
         $ctrl.data = milestonePushResult;
-        $ctrl.matchFilters = `mdc.processContext.keyword:${$ctrl.data.id}`;
+        $ctrl.matchFilters = `level.keyword:INFO|ERROR|WARN,mdc.processContext.keyword:${$ctrl.data.id}`;
       }
     }
   }
