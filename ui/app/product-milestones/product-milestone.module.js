@@ -176,7 +176,7 @@
         },
         params: {
           hideHeader: {
-            value: false,
+            value: true,
             type: 'bool'
           }
         },
@@ -195,7 +195,7 @@
         },
         params: {
           hideHeader: {
-            value: false,
+            value: true,
             type: 'bool'
           }
         },
@@ -235,7 +235,7 @@
         },
         params: {
           hideHeader: {
-            value: false,
+            value: true,
             type: 'bool'
           }
         },
