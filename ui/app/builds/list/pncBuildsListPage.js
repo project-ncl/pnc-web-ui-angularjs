@@ -33,17 +33,17 @@
 
     // -- Controller API --
     $ctrl.buildsFilteringFields = [{
-      id: 'user.username',
-      title: 'Username',
-      placeholder: 'string | !string | s?ring | st*ng',
-      filterType: 'text',
-      filterMethod: 'RSQL'
-    }, {
       id: 'buildConfigName',
       title: 'Build Config Name',
       placeholder: 'string | !string | s?ring | st*ng',
       filterType: 'text',
       filterMethod: 'QUERY_PARAM'
+    }, {
+      id: 'user.username',
+      title: 'Username',
+      placeholder: 'string | !string | s?ring | st*ng',
+      filterType: 'text',
+      filterMethod: 'RSQL'
     }, {
       id: 'status',
       title: 'Show Status',
