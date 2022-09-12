@@ -69,11 +69,11 @@
       <h3>Locations</h3>
       <dl class="dl-horizontal properties-list artifact-properties">
         <dt>Public URL</dt>
-        <dd><a ng-href="{{ $ctrl.artifact.publicUrl }}" ng-bind="$ctrl.artifact.publicUrl"></a></dd>
+        <dd><a ng-if="$ctrl.artifact.publicUrl" ng-href="{{ $ctrl.artifact.publicUrl }}" ng-bind="$ctrl.artifact.publicUrl"></a><span ng-if="!$ctrl.artifact.publicUrl" title="Download is not available for this item">&mdash;</span></dd>
         <dt>Origin URL</dt>
-        <dd><a ng-href="{{ $ctrl.artifact.originUrl }}" ng-bind="$ctrl.artifact.originUrl"></a></dd>
+        <dd><a ng-if="$ctrl.artifact.originUrl" ng-href="{{ $ctrl.artifact.originUrl }}" ng-bind="$ctrl.artifact.originUrl"></a><span ng-if="!$ctrl.artifact.originUrl" title="Download is not available for this item">&mdash;</span></dd>
         <dt>Deploy URL</dt>
-        <dd><a ng-href="{{ $ctrl.artifact.deployUrl }}" ng-bind="$ctrl.artifact.deployUrl"></a></dd>
+        <dd><a ng-if="$ctrl.artifact.deployUrl" ng-href="{{ $ctrl.artifact.deployUrl }}" ng-bind="$ctrl.artifact.deployUrl"></a><span ng-if="!$ctrl.artifact.deployUrl" title="Download is not available for this item">&mdash;</span></dd>
       </dl>
     </div>
 
