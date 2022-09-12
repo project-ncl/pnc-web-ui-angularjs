@@ -65,7 +65,8 @@
        'DEPRECATED',
        'BLACKLISTED',
        'TEMPORARY',
-       'DELETED'
+       'DELETED',
+       'IMPORTED'
      ]
     }, {
      id: 'buildCategory',
