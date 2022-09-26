@@ -37,7 +37,7 @@
     $ctrl.isCurrent = isCurrent;
 
     $ctrl.$onInit = () => {
-      $ctrl.deliveredArtifactsCount = $ctrl.deliveredArtifacts.total;
+      $ctrl.deliveredArtifactsCount = $ctrl.deliveredArtifacts.hits;
     };
 
     // --------------------
