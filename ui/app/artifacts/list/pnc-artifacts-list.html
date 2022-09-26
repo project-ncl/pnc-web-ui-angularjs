@@ -30,15 +30,15 @@
   <tbody>
     <tr ng-repeat="artifact in $ctrl.artifacts">
       <td><pnc-artifact-link artifact="artifact"></pnc-artifact-link></td>
-      <td class="text-center shrink-to-fit"><pnc-artifact-quality-label artifact="artifact"></pnc-artifact-quality-label></td>
+      <td class="text-center shrink-to-fit"><pnc-artifact-quality-label artifact="artifact" highlight-problematic-artifacts="$ctrl.highlightProblematicArtifacts"></pnc-artifact-quality-label></td>
       <td>{{ artifact.buildCategory }}</td>
       <td>
         <a ng-if="artifact.publicUrl" ng-href="{{ artifact.publicUrl }}" target="_self" href>{{ artifact.filename }}</a>
         <span ng-if="!artifact.publicUrl" title="Download is not available for this item">{{ artifact.filename }}</span>
       </td>
       <td class="text-center shrink-to-fit">
-        <span ng-if="artifact.targetRepository.repositoryType !== 'DISTRIBUTION_ARCHIVE'" class="label label-default">{{ artifact.targetRepository.repositoryType }}</span>
-        <span ng-if="artifact.targetRepository.repositoryType === 'DISTRIBUTION_ARCHIVE'" class="label label-warning" title="Artifacts with the DISTRIBUTION_ARCHIVE Repository Type are not built">{{ artifact.targetRepository.repositoryType }} <i class="pficon-warning-triangle-o pficon-warning-triangle-o--white"></i></span>
+        <span ng-if="!$ctrl.highlightProblematicArtifacts || (artifact.targetRepository.repositoryType !== 'DISTRIBUTION_ARCHIVE')" class="label label-default">{{ artifact.targetRepository.repositoryType }}</span>
+        <span ng-if=" $ctrl.highlightProblematicArtifacts && (artifact.targetRepository.repositoryType === 'DISTRIBUTION_ARCHIVE')" class="label label-warning" title="Artifacts with the DISTRIBUTION_ARCHIVE Repository Type are not built, they were not found in Brew nor PNC">{{ artifact.targetRepository.repositoryType }} <i class="pficon-warning-triangle-o pficon-warning-triangle-o--white"></i></span>
       </td>
       <td>
         <div class="checksum checksum-md5">

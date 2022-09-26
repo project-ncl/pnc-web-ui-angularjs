@@ -21,7 +21,8 @@
 
   angular.module('pnc.artifacts').component('pncArtifactQualityLabel', {
     bindings: {
-      artifact: '<'
+      artifact: '<',
+      highlightProblematicArtifacts: '<?'
     },
     templateUrl: 'artifacts/components/pnc-artifact-quality-label/pnc-artifact-quality-label.html',
     controller: [Controller]
