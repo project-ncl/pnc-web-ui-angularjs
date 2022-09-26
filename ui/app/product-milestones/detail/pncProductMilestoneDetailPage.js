@@ -38,7 +38,7 @@
 
     $ctrl.$onInit = () => {
       $ctrl.deliveredArtifactsCount = $ctrl.deliveredArtifacts.total;
-    }
+    };
 
     // --------------------
 
