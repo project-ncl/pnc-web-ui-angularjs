@@ -120,6 +120,7 @@
                 p.index = response.data.pageIndex || 0;
                 p.size = response.data.pageSize || 0;
                 p.total = response.data.totalPages || 1;
+                p.hits = response.data.totalHits;
                 p._config = response.config;
                 p.data = content;
                 p.$resolved = true;
