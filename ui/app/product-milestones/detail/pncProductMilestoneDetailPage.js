@@ -23,6 +23,7 @@
       productMilestone: '<',
       productVersion: '<',
       product: '<',
+      deliveredArtifacts: '<'
     },
     templateUrl: 'product-milestones/detail/pnc-product-milestone-detail-page.html',
     controller: ['ProductMilestoneHelper', Controller]
@@ -34,6 +35,10 @@
     // -- Controller API --
 
     $ctrl.isCurrent = isCurrent;
+
+    $ctrl.$onInit = () => {
+      $ctrl.deliveredArtifactsCount = $ctrl.deliveredArtifacts.total;
+    }
 
     // --------------------
 

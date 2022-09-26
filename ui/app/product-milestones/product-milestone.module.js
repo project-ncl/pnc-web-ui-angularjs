@@ -53,7 +53,10 @@
         resolve: {
           productMilestone: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
             ProductMilestoneResource.get({ id: $stateParams.productMilestoneId }).$promise
-          ]
+          ],
+          deliveredArtifacts: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) => 
+            ProductMilestoneResource.getDeliveredArtifacts({ id: $stateParams.productMilestoneId, pageSize: 1 }).$promise
+          ],
         }
       })
       .state('products.detail.product-versions.detail.milestone.detail.default', {
@@ -103,7 +106,7 @@
           title: '{{ productMilestone.version }} | {{ product.name }} | Milestone | Delivered Artifacts'
         },
         resolve: {
-          deliveredArtifacts: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) =>
+          deliveredArtifacts: ['ProductMilestoneResource', '$stateParams', (ProductMilestoneResource, $stateParams) => 
             ProductMilestoneResource.getDeliveredArtifacts({ id: $stateParams.productMilestoneId }).$promise
           ],
         }
