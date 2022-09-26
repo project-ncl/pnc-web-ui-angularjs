@@ -17,4 +17,5 @@
     limitations under the License.
 
 -->
-<span ng-class="$ctrl.labelClasses">{{ $ctrl.label }}</span>
+<span ng-if="!$ctrl.highlightProblematicArtifacts || ($ctrl.label !== 'IMPORTED')" ng-class="$ctrl.labelClasses">{{ $ctrl.label }}</span>
+<span ng-if=" $ctrl.highlightProblematicArtifacts && ($ctrl.label === 'IMPORTED')" class="label label-warning" title="Artifact with the IMPORTED Quality are not built">{{ $ctrl.label }} <i class="pficon-warning-triangle-o pficon-warning-triangle-o--white"></i></span>

@@ -37,7 +37,9 @@
        * Callback Function: invoked with the new and old artifact after any changes.
        * See usage example above.
        */
-      onUpdate: '&'
+      onUpdate: '&',
+
+      highlightProblematicArtifacts: '<?'
     },
     templateUrl: 'artifacts/list/pnc-artifacts-list.html',
     controller: ['ArtifactModals', Controller]

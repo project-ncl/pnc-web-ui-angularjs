@@ -26,7 +26,8 @@
        */
       artifacts: '<',
       build: '<?',
-      showBulkQualityChangeButton: '@'
+      showBulkQualityChangeButton: '@',
+      highlightProblematicArtifacts: '<?'
     },
     templateUrl: 'artifacts/list/pnc-artifacts-data-table.html',
     controller: [
