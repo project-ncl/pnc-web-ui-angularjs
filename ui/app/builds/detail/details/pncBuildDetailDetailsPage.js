@@ -25,16 +25,17 @@
       buildConfigRevision: '<'
     },
     templateUrl: 'builds/detail/details/pnc-build-detail-details-page.html',
-    controller: ['$scope', 'events', 'buildStatusHelper', Controller]
+    controller: ['$scope', 'events', 'buildStatusHelper', 'dateUtilConverter', Controller]
   });
 
 
-  function Controller($scope, events, buildStatusHelper) {
+  function Controller($scope, events, buildStatusHelper, dateUtilConverter) {
     const $ctrl = this;
 
     // -- Controller API --
 
     $ctrl.hideBrewPullActive = hideBrewPullActive;
+    $ctrl.calculateBuildTime = dateUtilConverter.calculateBuildTime;
 
     // --------------------
 

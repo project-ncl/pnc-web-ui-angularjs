@@ -27,6 +27,7 @@
     <th ng-if="::$ctrl.showColumn('submitTime')">Submit Time</th>
     <th ng-if="::$ctrl.showColumn('startTime')">Start Time</th>
     <th ng-if="::$ctrl.showColumn('endTime')">End Time</th>
+    <th ng-if="::$ctrl.showColumn('buildTime')">Build Time</th>
     <th ng-if="::$ctrl.showColumn('username')">User</th>
     <th ng-if="::$ctrl.showColumn('pushStatus')">Brew Push Status</th>
   </thead>
@@ -51,6 +52,7 @@
       <td ng-if="::$ctrl.showColumn('submitTime')">{{ item.submitTime | date:'medium' }}</td>
       <td ng-if="::$ctrl.showColumn('startTime')">{{ item.startTime | date:'medium' }}</td>
       <td ng-if="::$ctrl.showColumn('endTime')">{{ item.endTime | date:'medium' }}</td>
+      <td ng-if="::$ctrl.showColumn('buildTime')" class="text-right" title="hh:mm:ss">{{ ::$ctrl.calculateBuildTime(item.startTime, item.endTime) }}</td>
       <td ng-if="::$ctrl.showColumn('username')">{{ item.user.username }}</td>
       <td ng-if="::$ctrl.showColumn('pushStatus')" class="push-status">
         <pnc-brew-push-status-label build="item"></pnc-brew-push-status-label>

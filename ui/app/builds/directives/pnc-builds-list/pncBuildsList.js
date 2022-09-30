@@ -40,17 +40,18 @@
       hideHead: '<?'
     },
     templateUrl: 'builds/directives/pnc-builds-list/pnc-builds-list.html',
-    controller: [Controller]
+    controller: ['dateUtilConverter', Controller]
   });
 
-  function Controller() {
+  function Controller(dateUtilConverter) {
     var $ctrl = this;
-    var DEFAULT_FIELDS = ['status', 'id', 'configurationName', 'submitTime', 'startTime', 'endTime', 'username'];
+    var DEFAULT_FIELDS = ['status', 'id', 'configurationName', 'submitTime', 'startTime', 'endTime', 'buildTime', 'username'];
 
     // -- Controller API --
 
     $ctrl.showTable = showTable;
     $ctrl.showColumn = showColumn;
+    $ctrl.calculateBuildTime = dateUtilConverter.calculateBuildTime;
 
     // --------------------
 

@@ -48,6 +48,9 @@
         <dt ng-show="$ctrl.build.endTime">Finished:</dt>
         <dd ng-show="$ctrl.build.endTime">{{ ($ctrl.build.endTime | date : 'medium') }}</dd>
 
+        <dt ng-show="$ctrl.build.endTime">Build Time:</dt>
+        <dd ng-show="$ctrl.build.endTime" title="hh:mm:ss">{{ ::$ctrl.calculateBuildTime($ctrl.build.startTime, $ctrl.build.endTime) }}</dd>
+
         <dt>Build Type:</dt>
         <dd><span class="label label-default">{{ $ctrl.build.buildConfigRevision.buildType }}</span></dd>
 

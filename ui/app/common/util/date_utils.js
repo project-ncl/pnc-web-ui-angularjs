@@ -68,6 +68,28 @@
         };
 
         scope.format = 'yyyy/MM/dd';
+      }, 
+
+      calculateBuildTime(startTime, endTime) {
+        if (startTime && endTime) {
+          var diffSeconds = (Math.abs(new Date(startTime) - new Date(endTime))) / 1000;
+  
+          var hours = Math.floor(diffSeconds / 3600);
+          diffSeconds %= 3600;
+  
+          var minutes = Math.floor(diffSeconds / 60);
+          diffSeconds %= 60;
+  
+          var seconds = Math.floor(diffSeconds);
+  
+          var result = '';
+          result += String(hours).padStart(2, '0') + ':';
+          result += String(minutes).padStart(2, '0') + ':';
+          result += String(seconds).padStart(2, '0');
+  
+          return result;
+        }
+        return '';
       }
     };
   });
