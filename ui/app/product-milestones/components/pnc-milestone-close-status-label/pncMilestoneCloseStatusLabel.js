@@ -67,7 +67,7 @@
     };
 
     function getStatus() {
-      if (angular.isUndefined($ctrl.closeResult)) {
+      if (!$ctrl.closeResult || angular.isUndefined($ctrl.closeResult)) {
         return null;
       }
 
