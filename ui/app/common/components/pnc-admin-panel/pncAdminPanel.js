@@ -93,7 +93,7 @@
           if (res.status === 204) {
             changeMaintenanceSwitch(true);
             $ctrl.data.reason = null;
-            $ctrl.data.reason.etaTime = null;
+            $ctrl.data.etaTime = null;
             $('#activateMaintenance').modal('hide');
           }
         });
