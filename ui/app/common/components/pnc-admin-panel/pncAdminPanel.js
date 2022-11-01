@@ -54,14 +54,30 @@
       $('#' + targetId).find('.help-block').addClass('ng-hide');
     };
 
-    $ctrl.validateActivateFormGroup = function () {
+    $ctrl.validateActivateReasonFormGroup = function () {
       if (!$ctrl.data.reason || $ctrl.data.reason === '') {
-        setError('confirmActivateFormGroup');
+        setError('activateReasonFormGroup');
         return false;
       } else {
-        removeError('confirmActivateFormGroup');
+        removeError('activateReasonFormGroup');
         return true;
       }
+    };
+
+    $ctrl.validateEtaFormGroup = function () {
+      if (!$ctrl.data.etaTime || $ctrl.data.etaTime === '') {
+        setError('etaFormGroup');
+        return false;
+      } else {
+        removeError('etaFormGroup');
+        return true;
+      }
+    };
+
+    $ctrl.validateActivateFormGroup = function () {
+      let reasonStatus = $ctrl.validateActivateReasonFormGroup();
+      let etaStatus = $ctrl.validateEtaFormGroup();
+      return reasonStatus && etaStatus;
     };
 
     $ctrl.clearMaintenanceValidation = function () {
@@ -77,6 +93,7 @@
           if (res.status === 204) {
             changeMaintenanceSwitch(true);
             $ctrl.data.reason = null;
+            $ctrl.data.reason.etaTime = null;
             $('#activateMaintenance').modal('hide');
           }
         });
