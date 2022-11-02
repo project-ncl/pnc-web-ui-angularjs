@@ -39,7 +39,8 @@
 
     $ctrl.data = {
       /* Reason for activating Maintenance Mode */
-      reason: null
+      reason: null,
+      etaTime: null
     };
 
 
@@ -89,7 +90,11 @@
      */
     $ctrl.activateMaintenanceMode = function () {
       if ($ctrl.validateActivateFormGroup()) {
-        GenericSetting.activateMaintenanceMode($ctrl.data.reason).then(function (res) {
+        GenericSetting.activateMaintenanceMode(
+          $ctrl.data.reason +
+            ', ETA: ' +
+            ($ctrl.data.etaTime ? $ctrl.data.etaTime.toUTCString() : 'N/A')
+        ).then(function (res) {
           if (res.status === 204) {
             changeMaintenanceSwitch(true);
             $ctrl.data.reason = null;
