@@ -85,15 +85,30 @@
       removeError('confirmActivateFormGroup');
     };
 
+    const transDateToString = (date) => {
+      if (date && date.getTime()) {
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const hour = date.getHours();
+        const minute = date.getMinutes();
+        const monthString = month < 10 ? `0${month}` : month;
+        const dayString = day < 10 ? `0${day}` : day;
+        const hourString = hour < 10 ? `0${hour}` : hour;
+        const minuteString = minute < 10 ? `0${minute}` : minute;
+        return `${year}-${monthString}-${dayString} ${hourString}:${minuteString} UTC`;
+      } else {
+        return 'N/A';
+      }
+    };
+
     /**
      * Validate and activate maintenance mode, if returns 200 set the switch to on
      */
     $ctrl.activateMaintenanceMode = function () {
       if ($ctrl.validateActivateFormGroup()) {
         GenericSetting.activateMaintenanceMode(
-          $ctrl.data.reason +
-            ', ETA: ' +
-            ($ctrl.data.etaTime ? $ctrl.data.etaTime.toUTCString() : 'N/A')
+          $ctrl.data.reason + ', ETA: ' + transDateToString($ctrl.data.etaTime)
         ).then(function (res) {
           if (res.status === 204) {
             changeMaintenanceSwitch(true);
