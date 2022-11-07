@@ -90,21 +90,21 @@
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
-            <div id="activateReasonFormGroup" class="form-group">
+          <div id="activateReasonFormGroup" class="form-group">
             <label class="col-sm-2 control-label" for="activateReason" title="Reason to activate Maintenance Mode">*
               Reason:</label>
             <div class="col-sm-8">
               <input type="text" id="activateReason" ng-model="$ctrl.data.reason" class="form-control"
-                placeholder="Provide your reason to activate Maintenance Mode" ng-change="$ctrl.validateActivateReasonFormGroup()"
-                ng-blur="$ctrl.validateActivateReasonFormGroup()" required>
+                placeholder="Provide your reason to activate Maintenance Mode"
+                ng-change="$ctrl.validateActivateReasonFormGroup()" ng-blur="$ctrl.validateActivateReasonFormGroup()" required>
               <span class="help-block" ng-show="false">Required field.</span>
             </div>
           </div>
-          <div id="etaFormGroup" class="form-group">
+          <div id="etaFormGroup" class="form-group" ng-hide="$ctrl.data.etaTimeNa">
             <label class="col-sm-2 control-label" for="maintenanceETA" title="Estimated Time of Arrival in UTC">* ETA:</label>
             <div class="col-sm-8">
-                <div class="input-group">
-                  <input id="maintenanceETA" type="text" class="form-control"
+              <div class="input-group">
+                <input id="maintenanceETA" type="text" class="form-control"
                   placeholder="Estimated Time of Arrival in UTC, yyyy-MM-dd hh:mm" uib-datepicker-popup="yyyy-MM-dd HH:mm"
                   ng-model="$ctrl.data.etaTime" is-open="$ctrl.etaOpen" ng-change="$ctrl.validateEtaFormGroup()"
                   ng-blur="$ctrl.validateEtaFormGroup()" required>
@@ -112,13 +112,19 @@
                   <button type="button" class="btn btn-default" ng-click="$ctrl.etaOpen = !$ctrl.etaOpen"><i
                       class="glyphicon glyphicon-calendar"></i></button>
                 </span>
-                </div>
-                <div>
-                  <span class="help-block" ng-show="false">Required field.</span>
-                </div>
+              </div>
+              <div>
+                <span class="help-block" ng-show="false">Required field.</span>
+              </div>
             </div>
           </div>
-          </form>
+          <div id="etaNaFormGroup" class="form-group">
+            <label class="col-sm-2 control-label" for="eta-na-switch">ETA N/A:</label>
+            <div class="col-sm-8">
+              <input ng-model="$ctrl.data.etaTimeNa" class="bootstrap-switch" id="eta-na-switch" type="checkbox">
+            </div>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" ng-click="$ctrl.clearMaintenanceValidation()"

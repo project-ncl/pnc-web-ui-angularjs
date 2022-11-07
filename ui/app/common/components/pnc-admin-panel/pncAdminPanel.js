@@ -40,7 +40,8 @@
     $ctrl.data = {
       /* Reason for activating Maintenance Mode */
       reason: null,
-      etaTime: null
+      etaTime: null,
+      etaTimeNa: false
     };
 
 
@@ -66,11 +67,14 @@
     };
 
     $ctrl.validateEtaFormGroup = function () {
-      if (!$ctrl.data.etaTime || $ctrl.data.etaTime === '') {
-        setError('etaFormGroup');
+      if (
+        !$ctrl.data.etaTimeNa &&
+        (!$ctrl.data.etaTime || $ctrl.data.etaTime === "")
+      ) {
+        setError("etaFormGroup");
         return false;
       } else {
-        removeError('etaFormGroup');
+        removeError("etaFormGroup");
         return true;
       }
     };
@@ -108,13 +112,15 @@
     $ctrl.activateMaintenanceMode = function () {
       if ($ctrl.validateActivateFormGroup()) {
         GenericSetting.activateMaintenanceMode(
-          $ctrl.data.reason + ', ETA: ' + transDateToString($ctrl.data.etaTime)
+          $ctrl.data.reason +
+            ", ETA: " +
+            transDateToString($ctrl.data.etaTimeNa ? null : $ctrl.data.etaTime)
         ).then(function (res) {
           if (res.status === 204) {
             changeMaintenanceSwitch(true);
             $ctrl.data.reason = null;
             $ctrl.data.etaTime = null;
-            $('#activateMaintenance').modal('hide');
+            $("#activateMaintenance").modal("hide");
           }
         });
       }
