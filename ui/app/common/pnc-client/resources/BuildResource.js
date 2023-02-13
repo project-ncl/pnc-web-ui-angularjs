@@ -129,25 +129,6 @@
           url: BUILD_SSH_CREDENTIALS_ENDPOINT
         },
 
-        /**
-         * Gets build logs for specific build.
-         */
-        getLogBuild: {
-          method: 'GET',
-          url: ENDPOINT + '/logs/build',
-          cache: true,
-          transformResponse: function(data) { return { payload: data }; }
-        },
-
-        /**
-         * Gets alignment logs for specific build.
-         */
-        getLogAlign: {
-          method: 'GET',
-          url: ENDPOINT + '/logs/align',
-          cache: true,
-          transformResponse: function(data) { return { payload: data }; }
-        },
 
         /**
          * Cancel running build.
@@ -257,21 +238,6 @@
       }
       resource.prototype.$canonicalName = function () {
         return canonicalName(this);
-      };
-
-
-      function buildLogUrl(build) {
-        return ENDPOINT.replace(':id', build.id) + '/logs/build';
-      }
-      resource.prototype.$buildLogUrl = function () {
-        return buildLogUrl(this);
-      };
-
-      function alignLogUrl(build) {
-        return ENDPOINT.replace(':id', build.id) + '/logs/align';
-      }
-      resource.prototype.$alignLogUrl = function () {
-        return alignLogUrl(this);
       };
 
       function scmArchive(build) {

@@ -26,14 +26,24 @@
   module.provider('bifrostConfig', function () {
 
     let bifrostUrl;
+    let bifrostRestUrl;
 
     function setBifrostUrl(url) {
       bifrostUrl = url;
     }
 
+    function setBifrostRestUrl(url) {
+      bifrostRestUrl = url;
+    }
+
     function getBifrostUrl() {
       return bifrostUrl;
     }
+
+    function getBifrostRestUrl() {
+      return bifrostRestUrl;
+    }
+
 
     function getBifrostHost() {
       return new URL(bifrostUrl).host;
@@ -42,13 +52,16 @@
 
     return {
       setBifrostUrl,
+      setBifrostRestUrl,
       getBifrostUrl,
+      getBifrostRestUrl,
       getBifrostHost,
 
       $get: () => {
         return {
           getBifrostUrl,
-          getBifrostHost
+          getBifrostHost,
+          getBifrostRestUrl
         };
       }
     };
