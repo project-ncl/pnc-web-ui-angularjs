@@ -16,19 +16,19 @@
  * limitations under the License.
  */
 (function () {
-  "use strict";
+  'use strict';
 
-  const module = angular.module("pnc.common.bifrost.resources");
+  const module = angular.module('pnc.common.bifrost.resources');
 
-  module.value("STATIC_LOG_TEXT_PATH", "/text");
+  module.value('STATIC_LOG_TEXT_PATH', '/text');
 
   /**
    * @author Dennis Zhou
    */
-  module.factory("StaticLogResource", [
-    "$http",
-    "bifrostConfig",
-    "STATIC_LOG_TEXT_PATH",
+  module.factory('StaticLogResource', [
+    '$http',
+    'bifrostConfig',
+    'STATIC_LOG_TEXT_PATH',
     function ($http, bifrostConfig, STATIC_LOG_TEXT_PATH) {
       const ENDPOINT = bifrostConfig.getBifrostRestUrl() + STATIC_LOG_TEXT_PATH;
 
@@ -37,27 +37,27 @@
       resource.getStaticBuildLogText = (buildId) =>
         $http({
           url: ENDPOINT,
-          method: "GET",
+          method: 'GET',
           params: {
             matchFilters: `mdc.processContext:build-${buildId.id},loggerName:org.jboss.pnc._userlog_.build-log`,
-            direction: "ASC",
-            batchSize: "10000",
-            batchDelay: "500",
-            format: "PLAIN",
-            afterLine:{timestamp: new Date}
+            direction: 'ASC',
+            batchSize: '10000',
+            batchDelay: '500',
+            format: 'PLAIN',
+            afterLine:{timestamp: new Date()}
           },
         });
 
         resource.getStaticAlignmentLogText = (buildId) =>
         $http({
           url: ENDPOINT,
-          method: "GET",
+          method: 'GET',
           params: {
             matchFilters: `mdc.processContext:build-${buildId.id},loggerName:org.jboss.pnc._userlog_.alignment-log`,
-            direction: "ASC",
-            batchSize: "10000",
-            batchDelay: "500",
-            format: "LEVEL",
+            direction: 'ASC',
+            batchSize: '10000',
+            batchDelay: '500',
+            format: 'LEVEL',
           },
         });
       return resource;
