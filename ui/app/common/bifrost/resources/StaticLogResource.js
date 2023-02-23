@@ -23,40 +23,50 @@
   module.value('STATIC_LOG_TEXT_PATH', '/text');
 
   /**
-   * @author Dennis Zhou
+   * Resource for all Bifrost endpoints
    */
   module.factory('StaticLogResource', [
     '$http',
     'bifrostConfig',
     'STATIC_LOG_TEXT_PATH',
     function ($http, bifrostConfig, STATIC_LOG_TEXT_PATH) {
-      const ENDPOINT = bifrostConfig.getBifrostRestUrl() + STATIC_LOG_TEXT_PATH;
+      const ENDPOINT = bifrostConfig.getBifrostUrl() + STATIC_LOG_TEXT_PATH;
+      const LOG_DIRECTION = 'ASC';
+      const BATCH_SIZE_LINES = '10000';
+      const BATCH_DELAY_MILLISECONDS = '500';
 
       let resource = {};
 
+      /**
+       * Get static log text for a build log
+       * @param buildId - the id of the build
+       */
       resource.getStaticBuildLogText = (buildId) =>
         $http({
           url: ENDPOINT,
           method: 'GET',
           params: {
             matchFilters: `mdc.processContext:build-${buildId.id},loggerName:org.jboss.pnc._userlog_.build-log`,
-            direction: 'ASC',
-            batchSize: '10000',
-            batchDelay: '500',
+            direction: LOG_DIRECTION,
+            batchSize: BATCH_SIZE_LINES,
+            batchDelay: BATCH_DELAY_MILLISECONDS,
             format: 'PLAIN',
-            afterLine:{timestamp: new Date()}
           },
         });
 
-        resource.getStaticAlignmentLogText = (buildId) =>
+      /**
+       * Get static log text for an alignment log
+       * @param buildId - the id of the build
+       */
+      resource.getStaticAlignmentLogText = (buildId) =>
         $http({
           url: ENDPOINT,
           method: 'GET',
           params: {
             matchFilters: `mdc.processContext:build-${buildId.id},loggerName:org.jboss.pnc._userlog_.alignment-log`,
-            direction: 'ASC',
-            batchSize: '10000',
-            batchDelay: '500',
+            direction: LOG_DIRECTION,
+            batchSize: BATCH_SIZE_LINES,
+            batchDelay: BATCH_DELAY_MILLISECONDS,
             format: 'LEVEL',
           },
         });

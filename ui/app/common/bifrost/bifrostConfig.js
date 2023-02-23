@@ -40,11 +40,6 @@
       return bifrostUrl;
     }
 
-    function getBifrostRestUrl() {
-      return bifrostRestUrl;
-    }
-
-
     function getBifrostHost() {
       return new URL(bifrostUrl).host;
     }
@@ -54,14 +49,12 @@
       setBifrostUrl,
       setBifrostRestUrl,
       getBifrostUrl,
-      getBifrostRestUrl,
       getBifrostHost,
 
       $get: () => {
         return {
           getBifrostUrl,
-          getBifrostHost,
-          getBifrostRestUrl
+          getBifrostHost
         };
       }
     };

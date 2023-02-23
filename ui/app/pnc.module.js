@@ -121,7 +121,6 @@
       authConfigProvider.setSsoTokenLifespan(pncProperties.ssoTokenLifespan);
 
       bifrostConfigProvider.setBifrostUrl(pncProperties.externalBifrostUrl);
-      bifrostConfigProvider.setBifrostRestUrl(pncProperties.externalBifrostRestUrl);
     }
   ]);
 

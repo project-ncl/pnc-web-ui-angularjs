@@ -34,7 +34,7 @@
       // --------------------
 
       $ctrl.$onInit = () => {
-        const bifrostUrl = new URL(pncProperties.externalBifrostUrl);
+        const bifrostUrl = new URL(pncProperties.bifrostWsUrl);
         $ctrl.bifrostHost = bifrostUrl.host;
         $ctrl.prefixFilters = 'loggerName.keyword:org.jboss.pnc._userlog_';
         $ctrl.matchFilters = `mdc.processContext.keyword:${$ctrl.build.buildContentId}`;
