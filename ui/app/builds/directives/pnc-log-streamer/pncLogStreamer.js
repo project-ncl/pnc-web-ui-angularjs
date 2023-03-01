@@ -23,10 +23,10 @@
       build: '<'
     },
     templateUrl: 'builds/directives/pnc-log-streamer/pnc-log-streamer.html',
-    controller: ['pncProperties', Controller]
+    controller: ['pncProperties', 'bifrostConfig', Controller]
   });
 
-  function Controller(pncProperties) {
+  function Controller(pncProperties, bifrostConfig) {
     const $ctrl = this;
 
       // -- Controller API --
@@ -34,8 +34,7 @@
       // --------------------
 
       $ctrl.$onInit = () => {
-        const bifrostUrl = new URL(pncProperties.bifrostWsUrl);
-        $ctrl.bifrostHost = bifrostUrl.host;
+        $ctrl.bifrostHost = bifrostConfig.getBifrostWsHost();
         $ctrl.prefixFilters = 'loggerName.keyword:org.jboss.pnc._userlog_';
         $ctrl.matchFilters = `mdc.processContext.keyword:${$ctrl.build.buildContentId}`;
       };

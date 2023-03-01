@@ -239,6 +239,19 @@
       resource.prototype.$canonicalName = function () {
         return canonicalName(this);
       };
+      function buildLogUrl(build) {
+        return ENDPOINT.replace(':id', build.id) + '/logs/build';
+      }
+      resource.prototype.$buildLogUrl = function () {
+        return buildLogUrl(this);
+      };
+
+      function alignLogUrl(build) {
+        return ENDPOINT.replace(':id', build.id) + '/logs/align';
+      }
+      resource.prototype.$alignLogUrl = function () {
+        return alignLogUrl(this);
+      };
 
       function scmArchive(build) {
         return ENDPOINT.replace(':id', build.id) + '/scm-archive';

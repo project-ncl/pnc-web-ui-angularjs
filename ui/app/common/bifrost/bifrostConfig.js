@@ -45,7 +45,7 @@
     }
 
 
-    function getBifrostHost() {
+    function getBifrostWsHost() {
       return new URL(bifrostWsUrl).host;
     }
 
@@ -55,13 +55,13 @@
       setBifrostWsUrl,
       getBifrostUrl,
       getBifrostWsUrl,
-      getBifrostHost,
+      getBifrostWsHost,
 
       $get: () => {
         return {
           getBifrostUrl,
           getBifrostWsUrl,
-          getBifrostHost
+          getBifrostWsHost
         };
       }
     };
