@@ -239,6 +239,7 @@
       resource.prototype.$canonicalName = function () {
         return canonicalName(this);
       };
+      
       function buildLogUrl(build) {
         return ENDPOINT.replace(':id', build.id) + '/logs/build';
       }
