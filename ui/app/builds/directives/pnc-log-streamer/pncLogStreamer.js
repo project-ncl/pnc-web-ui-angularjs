@@ -34,7 +34,7 @@
       // --------------------
 
       $ctrl.$onInit = () => {
-        $ctrl.bifrostHost = bifrostConfig.getBifrostWsHost();
+        $ctrl.bifrostWsHost = bifrostConfig.getBifrostWsHost();
         $ctrl.prefixFilters = 'loggerName.keyword:org.jboss.pnc._userlog_';
         $ctrl.matchFilters = `mdc.processContext.keyword:${$ctrl.build.buildContentId}`;
       };
