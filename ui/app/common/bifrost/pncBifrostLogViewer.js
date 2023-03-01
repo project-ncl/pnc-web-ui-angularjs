@@ -48,7 +48,7 @@
 
 
     $ctrl.$onInit = () => {
-      $ctrl.bifrostHost = bifrostConfig.getBifrostHost();
+      $ctrl.bifrostHost = bifrostConfig.getBifrostWsHost();
     };
 
   }

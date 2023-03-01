@@ -35,7 +35,7 @@
       const BATCH_SIZE_LINES = '10000';
       const BATCH_DELAY_MILLISECONDS = '500';
 
-      let resource = {};
+      const resource = {};
 
       /**
        * Get static log text for a build log
