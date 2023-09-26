@@ -78,6 +78,19 @@
           <span ng-show="$ctrl.build.buildConfigRevision.scmRevision">{{ $ctrl.build.buildConfigRevision.scmRevision }}</span>
         </dd>
 
+        <dt class="lh-1-5 m-t-10 m-b-5">
+          Post-alignment<br>SCM Tag
+          <a uib-popover="SCM Tag after Alignment is executed"
+            popover-placement="right" popover-class="popover-info-tip" popover-append-to-body="true"
+            href><span class="fa fa-info-circle"></span></a> :
+        </dt>
+        <dd class="m-t-10 m-b-5">
+          <span ng-show="$ctrl.build.scmTag">{{ $ctrl.build.scmTag }}</span>
+          <span ng-hide="$ctrl.build.scmTag">
+            Not available
+          </span>
+        </dd>
+
         <dt class="lh-1-5 m-t-10">
           Post-alignment<br>SCM Revision
           <a uib-popover="SCM Revision after Alignment is executed"
@@ -89,19 +102,6 @@
           <span ng-hide="$ctrl.build.scmRevision">
             <span class="pficon pficon-warning-triangle-o" ng-if="$ctrl.buildStatusHelper.isFailed($ctrl.build.status)" title="Something went wrong, probably during alignment process, you should check logs for more details."></span>
             Not available, based on <code>{{ $ctrl.build.buildConfigRevision.scmRevision }}</code>
-          </span>
-        </dd>
-
-        <dt class="lh-1-5 m-t-10 m-b-5">
-          Post-alignment<br>SCM Tag
-          <a uib-popover="SCM Tag after Alignment is executed"
-            popover-placement="right" popover-class="popover-info-tip" popover-append-to-body="true"
-            href><span class="fa fa-info-circle"></span></a> :
-        </dt>
-        <dd class="m-t-10 m-b-5">
-          <span ng-show="$ctrl.build.scmTag">{{ $ctrl.build.scmTag }}</span>
-          <span ng-hide="$ctrl.build.scmTag">
-            Not available
           </span>
         </dd>
 
