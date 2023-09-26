@@ -69,18 +69,29 @@
         </dd>
 
         <dt class="lh-1-5 m-t-10">
-          Pre-alignment<br>SCM Revision
-          <a uib-popover="SCM Revision before Alignment is executed"
+          Pre-alignment<br>SCM Ref
+          <a uib-popover="SCM Ref before Alignment is executed (the revision specified in the Build Config, previously named as Pre-alignment SCM Revision)"
             popover-placement="right" popover-class="popover-info-tip" popover-append-to-body="true"
             href><span class="fa fa-info-circle"></span></a> :
         </dt>
         <dd class="m-t-10">
           <span ng-show="$ctrl.build.buildConfigRevision.scmRevision">{{ $ctrl.build.buildConfigRevision.scmRevision }}</span>
+          <span ng-show="$ctrl.build.scmBuildConfigRevisionInternal">[ available only on downstream ]</span>
+        </dd>
+
+        <dt class="lh-1-5 m-t-10">
+          Pre-alignment<br>SCM Revision
+          <a uib-popover="SCM Revision before Alignment is executed (the commit ID resolved from the Pre-alignment SCM Ref)"
+            popover-placement="right" popover-class="popover-info-tip" popover-append-to-body="true"
+            href><span class="fa fa-info-circle"></span></a> :
+        </dt>
+        <dd class="m-t-10">
+          <span ng-show="$ctrl.build.scmBuildConfigRevision">{{ $ctrl.build.scmBuildConfigRevision }}</span>
         </dd>
 
         <dt class="lh-1-5 m-t-10 m-b-5">
           Post-alignment<br>SCM Tag
-          <a uib-popover="SCM Tag after Alignment is executed"
+          <a uib-popover="SCM Tag after Alignment is executed (the tag created from PNC)"
             popover-placement="right" popover-class="popover-info-tip" popover-append-to-body="true"
             href><span class="fa fa-info-circle"></span></a> :
         </dt>
@@ -93,7 +104,7 @@
 
         <dt class="lh-1-5 m-t-10">
           Post-alignment<br>SCM Revision
-          <a uib-popover="SCM Revision after Alignment is executed"
+          <a uib-popover="SCM Revision after Alignment is executed (the commit ID resolved from the Post-alignment SCM Tag)"
             popover-placement="right" popover-class="popover-info-tip" popover-append-to-body="true"
             href><span class="fa fa-info-circle"></span></a> :
         </dt>
