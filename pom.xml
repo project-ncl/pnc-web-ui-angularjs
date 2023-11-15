@@ -30,7 +30,7 @@
 
   <groupId>org.jboss.pnc</groupId>
   <artifactId>parent</artifactId>
-  <version>1.2.8-SNAPSHOT</version>
+  <version>1.3.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>pnc-web-ui-angularjs</name>
