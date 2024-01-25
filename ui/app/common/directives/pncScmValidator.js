@@ -45,7 +45,7 @@
   module.directive('pncScmValidator', function () {
 
       var isScmUrl = function(allowedProtocols, exactHost, url) {
-        allowedProtocols = allowedProtocols.replace('git@', 'git@[\\w\\.]+').replace('git+ssh', 'git\\+ssh');
+        allowedProtocols = allowedProtocols.replace('git@', 'git@[\\w\\.\\-]+').replace('git+ssh', 'git\\+ssh');
         exactHost = exactHost && exactHost.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
 
         var pattern = new RegExp(
