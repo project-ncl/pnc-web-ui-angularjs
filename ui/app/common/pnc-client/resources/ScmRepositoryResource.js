@@ -69,6 +69,9 @@
       });
 
       resource.prototype.getName = function () {
+        if(this.internalUrl.startsWith('git@gitlab')){
+          return this.internalUrl.split(':')[1];
+        }
         return this.internalUrl.split('/').splice(3).join('/');
       };
 
