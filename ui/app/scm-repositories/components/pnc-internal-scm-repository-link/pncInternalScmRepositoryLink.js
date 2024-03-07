@@ -37,10 +37,13 @@
     // --------------------
 
     /**
-     * Parses internal repo url to Gerrit gitweb link of the project
+     * Parses internal repo url to Gerrit gitweb or Gitlab link of the project
      */
     function parseInternalRepoLink() {
       let url = $ctrl.internalScmRepositoryUrl;
+      if (url.startsWith('git@gitlab')) {
+        return 'https://' + url.split('@')[1].replace(':', '/');
+      }
       let protocol = url.split('://')[0];
       let base = url.split('://')[1].split('/')[0];
       let project = url.split(base + (['https', 'http'].includes(protocol) ? '/gerrit/' : '/'))[1];

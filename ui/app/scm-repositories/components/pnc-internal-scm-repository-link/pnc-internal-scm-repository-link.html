@@ -19,5 +19,12 @@
 -->
 <span>{{ $ctrl.internalScmRepositoryUrl || 'Empty' }}</span>
 <span ng-if="$ctrl.internalScmRepositoryUrl">
-  [<a ng-href="{{ $ctrl.parseInternalRepoLink() }}" target="_blank" id="internal-url" class="form-control-static"> Gerrit </a>]
+  [<a
+    ng-href="{{ $ctrl.parseInternalRepoLink() }}"
+    target="_blank"
+    id="internal-url"
+    class="form-control-static"
+    >{{$ctrl.internalScmRepositoryUrl.startsWith('git@') ? 'Gitlab' :
+    'Gerrit'}}</a
+  >]
 </span>
