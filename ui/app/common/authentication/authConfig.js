@@ -20,7 +20,7 @@
   
   angular.module('pnc.common.authentication').provider('authConfig',
     function () {
-      var ssoTokenLifespan = 86400000; // Default: 24 Hours
+      var ssoTokenLifespan = 10; // 10 sec - minimal time for token validity, token is now valid for 5 min max (auth.redhat)
   
       function getSsoTokenLifespan() {
         return ssoTokenLifespan;
