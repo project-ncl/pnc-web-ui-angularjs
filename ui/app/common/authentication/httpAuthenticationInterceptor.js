@@ -34,14 +34,16 @@
 
       interceptor.request = function (config) {
         var authService;
+        var authConfig;
 
         if (keycloak) {
           authService = $injector.get('authService');
+          authConfig = $injector.get('authConfig');
           /*
            * Verify that the token validity will not outlive the max SSO session time,
            * Force logout of user if they do not have minimum SSO session time left.
            */
-          if (keycloak.authenticated && !authService.verifySsoTokenLifespan()) {
+          if (keycloak.authenticated && !authService.verifySSORefreshTokenLifespan()) {
             $log.info('SSO token lifespace below threshold, terminating session');
             authService.logoutAsync();
             keycloak.clearToken();
@@ -50,16 +52,14 @@
           if (keycloak.token) {
             // Prevents screen flicker by directly returning the config
             // object if the keycloak token does not need to be refreshed.
-            if (!keycloak.isTokenExpired(3600 * 23)) { //token should be valid at least 23h
-
+            if (authService.verifySSOAccessTokenLifespan()) {
               addAuthHeaders(config, keycloak.token);
               return config;
 
             } else {
-
               var deferred = $q.defer();
 
-              keycloak.updateToken(0).then(() => {
+              keycloak.updateToken(authConfig.getSsoTokenLifespan()).then(() => {
                 addAuthHeaders(config, keycloak.token);
                 deferred.resolve(config);
               }).catch(function () {
