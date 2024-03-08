@@ -57,17 +57,22 @@
       };
 
       authService.isSuperUser = function () {
-        return authService.userHasRole('system-user');
+        return authService.userHasRole('pnc-users-admin');
       };
 
       /**
        * Verifies the minimum lifespan of the refresh token.
        */
-      authService.verifySsoTokenLifespan = function () {
-        const MIN_REFRESH_TOKEN_EXPIRY_DATE = Date.now() + authConfig.getSsoTokenLifespan();
+      authService.verifySSORefreshTokenLifespan = function () {
+        // Keycloak timestamp is in seconds, not milliseconds
+        return keycloak.authenticated && Date.now() < keycloak.refreshTokenParsed.exp * 1000;
+      };
+
+      authService.verifySSOAccessTokenLifespan = function () {
+        const MIN_ACCESS_TOKEN_EXPIRY_DATE = Date.now() + authConfig.getSsoTokenLifespan() * 1000;
 
         // Keycloak timestamp is in seconds, not milliseconds
-        return keycloak.authenticated && MIN_REFRESH_TOKEN_EXPIRY_DATE < keycloak.refreshTokenParsed.exp * 1000;
+        return keycloak.authenticated && MIN_ACCESS_TOKEN_EXPIRY_DATE < keycloak.tokenParsed.exp * 1000;
       };
 
       authService.getPncUser = function () {
