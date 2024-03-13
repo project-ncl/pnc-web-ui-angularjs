@@ -49,25 +49,20 @@
 
       messageBus.onGroupBuildProgressChange(newGroupBuildProgressEventHandler(events.GROUP_BUILD_PROGRESS_CHANGED));
       messageBus.onGroupBuildStatusChange(newGroupBuildProgressEventHandler(events.GROUP_BUILD_STATUS_CHANGED));
-
-      messageBus.onGenericSettingMaintenanceChanged(notification => {
-        if (notification.message) {
+      
+      messageBus.onPNCStatusChanged(notification => {
+        if(notification.message) {
           const message = JSON.parse(notification.message);
-          if (message.maintenanceModeEnabled) {
+          if(message.isMaintenanceMode){
             $rootScope.$broadcast(events.MAINTENANCE_MODE_ON);
           } else {
             $rootScope.$broadcast(events.MAINTENANCE_MODE_OFF);
           }
+          if(message.banner){
+            $rootScope.$broadcast(events.NEW_ANNOUNCEMENT, message);
+          }
         }
       });
-
-      messageBus.onGenericSettingNewAnnouncement(notification => {
-        if (notification.message) {
-          const message = JSON.parse(notification.message);
-          $rootScope.$broadcast(events.NEW_ANNOUNCEMENT, message);
-        }
-      });
-
 
       messageBus.onScmRepositoryCreationSuccess(notification => {
         if (notification.scmRepository) {
