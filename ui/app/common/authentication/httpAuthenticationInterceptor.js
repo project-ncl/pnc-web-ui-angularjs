@@ -58,8 +58,7 @@
 
             } else {
               var deferred = $q.defer();
-
-              keycloak.updateToken(authConfig.getSsoTokenLifespan()).then(() => {
+              keycloak.updateToken(authConfig.getSsoTokenLifespan() / 1000).then(() => {
                 addAuthHeaders(config, keycloak.token);
                 deferred.resolve(config);
               }).catch(function () {

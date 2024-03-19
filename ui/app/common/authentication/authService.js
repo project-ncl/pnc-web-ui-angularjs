@@ -69,7 +69,7 @@
       };
 
       authService.verifySSOAccessTokenLifespan = function () {
-        const MIN_ACCESS_TOKEN_EXPIRY_DATE = Date.now() + authConfig.getSsoTokenLifespan() * 1000;
+        const MIN_ACCESS_TOKEN_EXPIRY_DATE = Date.now() + authConfig.getSsoTokenLifespan();
 
         // Keycloak timestamp is in seconds, not milliseconds
         return keycloak.authenticated && MIN_ACCESS_TOKEN_EXPIRY_DATE < keycloak.tokenParsed.exp * 1000;
