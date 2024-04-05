@@ -27,6 +27,9 @@
       }
   
       function setSsoTokenLifespan(timeInMilis) {
+        if (timeInMilis > 290000){
+          return; //use default value of 10 sec if config has value of more than 5 minutes
+        }
         if (!angular.isNumber(timeInMilis)) {
           console.warn('Invalid value for configuration item ssoTokenLifespan: %s, using default of %d', timeInMilis, ssoTokenLifespan);
           return;
