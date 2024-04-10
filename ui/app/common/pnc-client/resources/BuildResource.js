@@ -190,7 +190,39 @@
             reason: '@reason'
           },
           successNotification: 'All quality levels changed'
-        }
+        },
+
+        getBuildLogs: {
+          method: 'GET',
+          url: ENDPOINT+'/logs/build',
+          params: {
+            id: '@id',
+          },
+          transformResponse: function(data, headersGetter, status) {
+            // If the response is plain text, just return it.
+            if (status === 200 && headersGetter('Content-Type').indexOf('text/plain') !== -1) {
+              return { data };
+            } else {
+              return angular.fromJson(data); // Fallback for other types
+            }
+          }
+        },
+
+        getAlignmentLogs: {
+          method: 'GET',
+          url: ENDPOINT+'/logs/align',
+          params: {
+            id: '@id',
+          },
+          transformResponse: function(data, headersGetter, status) {
+            // If the response is plain text, just return it.
+            if (status === 200 && headersGetter('Content-Type').indexOf('text/plain') !== -1) {
+              return { data };
+            } else {
+              return angular.fromJson(data); // Fallback for other types
+            }
+          }
+        },
       });
 
 

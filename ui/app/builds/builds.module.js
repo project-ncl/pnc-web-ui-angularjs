@@ -168,8 +168,8 @@
           title: '#{{ buildName }} {{ build.buildConfigRevision.name }} | Build Log'
         },
         resolve: {
-          buildLog: ['StaticLogResource', 'build', function (StaticLogResource, build) {
-            return StaticLogResource.getStaticBuildLogText({ id: build.id });
+          buildLog: ['BuildResource', 'build', function (BuildResource, build) {
+            return BuildResource.getBuildLogs({ id: build.id}).$promise;
           }],
           sshCredentials: ['BuildResource', 'build', function (BuildResource, build) {
             return BuildResource.getSshCredentials({
@@ -229,8 +229,8 @@
           title: '#{{ buildName }} {{ build.buildConfigRevision.name }} | Alignment Log'
         },
         resolve: {
-          alignmentLog: ['StaticLogResource', 'build', function (StaticLogResource, build) {
-            return StaticLogResource.getStaticAlignmentLogText({ id: build.id });
+          alignmentLog: ['BuildResource', 'build', function (BuildResource, build) {
+            return BuildResource.getAlignmentLogs({ id: build.id}).$promise;
           }],
           buildName: ['utils', 'build', function (utils, build){
             return utils.getBuildName(build);
