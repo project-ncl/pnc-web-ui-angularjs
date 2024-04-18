@@ -35,19 +35,46 @@
     $ctrl.parseInternalRepoLink = parseInternalRepoLink;
 
     // --------------------
+    const preDefinedScmsPrefix = {
+      gitlab: 'GitLab',
+      code: 'Gerrit'
+    };
+
+    // Regular expression to match 'git://','git+ssh://', 'http://', 'https://', 'git@', and 'ssh://git@'
+    const protocolRegex =
+    /^(git:\/\/|git\+ssh:\/\/|http:\/\/|https:\/\/|git@|ssh:\/\/git@)/;
 
     /**
      * Parses internal repo url to Gerrit gitweb or Gitlab link of the project
      */
     function parseInternalRepoLink() {
       let url = $ctrl.internalScmRepositoryUrl;
-      if (url.startsWith('git@gitlab')) {
-        return 'https://' + url.split('@')[1].replace(':', '/');
+      const protocolMatch = url.match(protocolRegex);
+      const protocol = protocolMatch ? protocolMatch.at(1) : '';
+
+      let webUrl = protocol === 'git@' ? url.replace(':', '/') : url;
+      const base = webUrl.split(protocol).at(1).split('/').at(0);
+
+      // Find the first prefix in preDefinedScmsPrefix that matches the start of base
+      const namePrefixKey = Object.keys(preDefinedScmsPrefix).find((key) => base.startsWith(key));
+      const name = namePrefixKey ? preDefinedScmsPrefix[namePrefixKey] : base;
+
+      // Special handling for URLs from Gerrit, will be removed after Gerrit support ends.
+      const matchedGerritUrl = Object.keys(preDefinedScmsPrefix).find(
+        (key) => key.includes(base) && preDefinedScmsPrefix[key] === 'Gerrit'
+      );
+      if (matchedGerritUrl) {
+        const path = url.split(matchedGerritUrl).at(1);
+        const replaceRegex = path.startsWith('/gerrit/') ? /^\/gerrit\// : /^\//;
+        webUrl = `https://${matchedGerritUrl}/gerrit/gitweb?p=${path.replace(
+          replaceRegex,
+          ''
+        )};a=summary`;
+      } else {
+        webUrl = webUrl.replace(protocol, 'https://');
       }
-      let protocol = url.split('://')[0];
-      let base = url.split('://')[1].split('/')[0];
-      let project = url.split(base + (['https', 'http'].includes(protocol) ? '/gerrit/' : '/'))[1];
-      return 'https://' + base + '/gerrit/gitweb?p=' + project + ';a=summary';
+
+      return { scmRepositoryUrl: url, webUrl, name };
     }
   }
 
