@@ -20,11 +20,10 @@
 <span>{{ $ctrl.internalScmRepositoryUrl || 'Empty' }}</span>
 <span ng-if="$ctrl.internalScmRepositoryUrl">
   [<a
-    ng-href="{{ $ctrl.parseInternalRepoLink() }}"
+    ng-href="{{ $ctrl.parseInternalRepoLink().webUrl }}"
     target="_blank"
     id="internal-url"
     class="form-control-static"
-    >{{$ctrl.internalScmRepositoryUrl.startsWith('git@') ? 'Gitlab' :
-    'Gerrit'}}</a
+    >{{ $ctrl.parseInternalRepoLink().name }}</a
   >]
 </span>
