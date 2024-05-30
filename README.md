@@ -19,7 +19,7 @@ Once the pre-reqs have been taken care of, run:
 During development it is useful to run the UI in a local server that will watch the file system and automatically reload whenever any files are changed. In order to do this you'll need to set up some environment variables to tell the UI where to find the various PNC services:
 
 ```bash
-PNC_UI_PNC_URL #The location of the PNC REST API
+PNC_UI_PNC_REST_URL #The location of the PNC REST API
 PNC_UI_PNC_NOTIFICATIONS_URL #The location of the PNC REST websocket notifications endpoint
 PNC_UI_DA_URL #The location of the Dependency Analyzer REST API
 PNC_UI_DA_IMPORT_URL #The location of the Dependency Analyzer Build Configuration Generator endpoint
@@ -27,11 +27,12 @@ PNC_UI_DA_IMPORT_RPC_URL #The location of the Dependency Analyzer WebSocket JSON
 PNC_UI_KEYCLOAK_URL #The location of the keycloak server
 PNC_UI_KEYCLOAK_REALM #The keycloak realm to authenticate with
 PNC_UI_KEYCLOAK_CLIENT_ID #The keycloak client id
+PNC_UI_INTERNAL_SCM_AUTHORITY # internal scm authority
 ```
 Example configuration:
 
 ```bash
-export PNC_UI_PNC_URL=http://127.0.0.1:8080/pnc-rest/v2
+export PNC_UI_PNC_REST_URL=http://127.0.0.1:8080/pnc-rest/v2
 export PNC_UI_PNC_NOTIFICATIONS_URL=ws://127.0.0.1:8080/pnc-rest/notifications
 export PNC_UI_DA_URL=http://127.0.0.1/da/rest/v-0.4
 export PNC_UI_DA_IMPORT_URL=http://127.0.0.1/da-bcg/rest/v-0.3
@@ -39,6 +40,7 @@ export PNC_UI_DA_IMPORT_RPC_URL=ws://127.0.0.1/da-bcg/ws
 export PNC_UI_KEYCLOAK_URL=https://127.0.0.1/auth
 export PNC_UI_KEYCLOAK_REALM=pnc
 export PNC_UI_KEYCLOAK_CLIENT_ID=pncweb
+export PNC_UI_INTERNAL_SCM_AUTHORITY=gitlab.com
 ```
 
 With these configurations set you can run a development server by simply running:
