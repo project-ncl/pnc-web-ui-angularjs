@@ -42,7 +42,19 @@
    * <input pnc-scm-validator="git|ssh|http|https|git+ssh|git@" pnc-exact-host="user@host.xz:port" ... >
    * @author Martin Kelnar
    */
-  module.directive('pncScmValidator', function () {
+  module.directive('pncScmValidator', ['pncProperties', function (pncProperties) {
+
+      function isRepoInternal(url) {
+        return url.includes(pncProperties.internalScmAuthority);
+      }
+
+      // From NCL-8685: for gitlab internal url, only support scp format
+      function isGitlabAndNotScpFormat(url) {
+        const isGitlab = url.includes('gitlab');
+        // scp format is: <user>@<host>:<path>
+        const patternScpFormat = new RegExp('^.+@.+:.+$');
+        return isGitlab && !patternScpFormat.test(url);
+      }
 
       var isScmUrl = function(allowedProtocols, exactHost, url) {
         allowedProtocols = allowedProtocols.replace('git@', 'git@[\\w\\.\\-]+').replace('git+ssh', 'git\\+ssh');
@@ -54,7 +66,8 @@
           (exactHost ? exactHost + '(\\/[\\w\\.:~_-]+)+\\.git' : '[\\w\\.@:\\/~_-]+') + // repository
           //'\\.git' +                          // suffix
           '(?:\\/?|\\#[\\d\\w\\.\\-_]+?)$');  // parameters
-        return pattern.test(url);
+
+        return pattern.test(url) && !(isRepoInternal(url) && isGitlabAndNotScpFormat(url));
       };
 
       return {
@@ -74,6 +87,6 @@
 
       };
     }
-  );
+  ]);
 
 })();
