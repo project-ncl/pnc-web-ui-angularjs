@@ -231,7 +231,7 @@
         if (authService.isAuthenticated()) {
           return $q.when(authService.getPncUser()).then(currentUser => {
             // only user who performed the build can get SSH credentials
-            if (currentUser.id === params.buildUser.id) {
+            if (currentUser.id === params.buildUser.id || authService.isSuperUser()) {
               return resource._getSshCredentials(params);
             }
             console.info('SSH Credentials: not available for current user');
