@@ -45,7 +45,7 @@
     </script>
 
     <!--Button set for ssh credentials-->
-    <span ng-if="$ctrl.isCurrentUser">
+    <span ng-if="$ctrl.isCurrentUser || $ctrl.isSuperUser">
        <button
          uib-popover-template="'popoverTemplate.html'"
          popover-title="SSH credentials"

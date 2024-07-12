@@ -43,6 +43,7 @@
     $ctrl.$onInit = function () {
       $ctrl.logFileName = $ctrl.build.id + '_' + $ctrl.build.buildConfigRevision.name + '_' + $ctrl.build.status + '.txt';
       $ctrl.isCurrentUser = authService.isCurrentUser($ctrl.build.user);
+      $ctrl.isSuperUser = authService.isSuperUser();
     };
 
   }
