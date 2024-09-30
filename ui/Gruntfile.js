@@ -104,6 +104,7 @@ module.exports = function (grunt) {
 
     if (cfgPath) {
       cfg = grunt.file.readJSON(cfgPath);
+      cfg.pncNewUIUrl = getOpt('pnc-new-ui-url', 'PNC_NEW_UI_URL');
     } else {
       cfg = {
         'pncNewUIUrl': getOpt('pnc-new-ui-url', 'PNC_NEW_UI_URL'),
